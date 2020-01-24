@@ -1,14 +1,26 @@
 # DockerRailsBase
 
-Base images to build Docker container for Ruby on Rails applications
+Opinionated Docker base images to build Ruby on Rails applications for production
 
-- Based on the official [Ruby image](https://hub.docker.com/_/ruby/) for Ruby 2.6.5 (Alpine)
+- Based on the official [Ruby image](https://hub.docker.com/_/ruby/) for Alpine Linux
 - Supports multi stage builds
-  - Builder stage: Adds packages needed for building (git, Node.js, Yarn, PostgreSQL client, Vips and build tools) and standard gems
-  - Final stage: Adds packages needed for production (postgresql-client, vips, tzdata, file)
 
 
-Example:
+## Builder stage
+
+- Based on ruby:2.6.5-alpine
+- Adds packages needed for building: git, Node.js, Yarn, PostgreSQL client, Vips and build tools
+- Adds some standard gems (Rails 6 etc.)
+- Adds some standard Node modules (Vue.js etc.)
+
+
+## Final stage
+
+- Based on ruby:2.6.5-alpine
+- Adds packages needed for production: postgresql-client, vips, tzdata, file
+
+
+## Usage example
 
 ```Dockerfile
 ######################
@@ -41,9 +53,6 @@ RUN rm -rf node_modules tmp/cache vendor/bundle test
 ###############################
 # Stage Final
 FROM docker.pkg.github.com/ledermann/docker-rails-base/rails-base-final:latest
-
-ENV RAILS_LOG_TO_STDOUT=true
-ENV RAILS_SERVE_STATIC_FILES=true
 
 # Add user
 RUN addgroup -g 1000 -S app && \
