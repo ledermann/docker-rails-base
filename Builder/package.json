@@ -1,0 +1,21 @@
+{
+  "name": "docker-rails-base",
+  "private": true,
+  "version": "0.1.0",
+  "dependencies": {
+    "@rails/activestorage": "^6.0.2-1",
+    "@rails/webpacker": "^4.2.2",
+    "axios": "^0.19.2",
+    "lodash": "^4.17.5",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.8.3",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-vue": "^6.1.2",
+    "tailwindcss": "^1.2.0-canary.5",
+    "webpack-dev-server": "^3.10.1"
+  }
+}
