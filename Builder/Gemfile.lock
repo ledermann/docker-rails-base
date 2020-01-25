@@ -56,6 +56,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2)
+    acts_as_list (1.0.0)
+      activerecord (>= 4.2)
     aws-eventstream (1.0.3)
     aws-partitions (1.268.0)
     aws-sdk-core (3.89.1)
@@ -76,6 +78,7 @@ GEM
     bootsnap (1.4.5)
       msgpack (~> 1.0)
     builder (3.2.4)
+    cancancan (3.0.2)
     concurrent-ruby (1.1.5)
     crass (1.0.6)
     devise (4.7.1)
@@ -120,6 +123,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     oj (3.10.1)
     orm_adapter (0.5.0)
+    pagy (3.7.2)
     pg (1.2.2)
     puma (4.3.1)
       nio4r (~> 2.0)
@@ -172,6 +176,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    strip_attributes (1.9.0)
+      activemodel (>= 3.0, < 7.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tzinfo (1.2.6)
@@ -191,18 +197,22 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   aws-sdk-s3
   bootsnap (>= 1.4.2)
+  cancancan
   devise
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   lograge
   oj
+  pagy
   pg (>= 0.18, < 2.0)
   puma (~> 4.3)
   rack-cors
   rails (~> 6.0.2, >= 6.0.2.1)
   rollbar
+  strip_attributes
   tzinfo-data
   webpacker (~> 4.2)
 
