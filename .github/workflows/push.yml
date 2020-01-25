@@ -19,6 +19,6 @@ jobs:
       - name: Push the images to GitHub Package Registry
         if: github.ref == 'refs/heads/master'
         run: |
-          docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }}
+          docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{ secrets.PACKAGES_TOKEN }}
           docker push docker.pkg.github.com/ledermann/docker-rails-base/rails-base-builder:latest
           docker push docker.pkg.github.com/ledermann/docker-rails-base/rails-base-final:latest
