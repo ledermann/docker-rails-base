@@ -16,10 +16,9 @@ jobs:
         working-directory: ./Final
         run: docker build -t docker.pkg.github.com/ledermann/docker-rails-base/rails-base-final:latest .
 
-      - name: Login to GitHub Package Registry
-        run: docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Push the images
+      - name: Push the images to GitHub Package Registry
+        if: github.ref == 'refs/heads/master'
         run: |
+          docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{ secrets.GITHUB_TOKEN }}
           docker push docker.pkg.github.com/ledermann/docker-rails-base/rails-base-builder:latest
           docker push docker.pkg.github.com/ledermann/docker-rails-base/rails-base-final:latest
