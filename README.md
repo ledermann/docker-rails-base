@@ -72,7 +72,7 @@ RUN bundle install -j4 --retry 3 --without development:test && \
 
 # Install yarn packages
 COPY package.json yarn.lock /app/
-RUN yarn install
+RUN yarn install --prod
 
 # Add the Rails app
 ADD . /app
