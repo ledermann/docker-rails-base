@@ -9,14 +9,19 @@ When using the official Ruby image, building a Docker image for a typical Rails 
 
 I was looking for a way to reduce this time, so I created base images that contain most of the dependencies used in my applications.
 
-I've compared build times on my main machine using a typical Rails application. This is the result:
+And while I'm at it, I also moved as much as possible from the app-specific Dockerfile into the base image by using [ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild) triggers. This makes the Dockerfile in my apps small and simple.
+
+
+## Performance
+
+I compared building times using a typical Rails application. This is the result on my local machine:
 
 - Based on official Ruby image: **4:50 min**
-- Based on DockerRailsBase: **2:07 min**
+- Based on DockerRailsBase: **1:57 min**
 
 As you can see, using DockerRailsBase is more than **2 times faster** compared to the official Ruby image. It saves nearly **3min** on every build.
 
-Note: Before starting the build, the base image was not present on my machine, so it was downloaded first. If the base image is already present, the build time is only 1:18min (**3 times faster**).
+Note: Before I started timing, the base image was not available on my machine, so it was downloaded first, which took some time. If the base image is already available, the building time is only 1:18min (**3 times faster**).
 
 
 ## How?
@@ -61,48 +66,13 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 ### Usage example
 
 ```Dockerfile
-######################
-# Stage: Builder
-FROM docker.pkg.github.com/ledermann/docker-rails-base/rails-base-builder:latest as Builder
-
-# Install gems
-ADD Gemfile* /app/
-RUN bundle install -j4 --retry 3 --without development:test && \
-    bundle clean --force
-
-# Install yarn packages
-COPY package.json yarn.lock /app/
-RUN yarn install --prod
-
-# Add the Rails app
-ADD . /app
-
-# Compile assets
-RUN RAILS_ENV=production \
-    SECRET_KEY_BASE=dummy \
-    bundle exec rails webpacker:compile
-
-# Remove folders not needed in resulting image
-RUN rm -rf node_modules tmp/cache test
-
-###############################
-# Stage Final
+FROM docker.pkg.github.com/ledermann/docker-rails-base/rails-base-builder:latest AS Builder
 FROM docker.pkg.github.com/ledermann/docker-rails-base/rails-base-final:latest
-
-# Add user
-RUN addgroup -g 1000 -S app && \
-    adduser -u 1000 -S app -G app
 USER app
-
-# Copy app with gems from former build stage
-COPY --from=Builder /usr/local/bundle/ /usr/local/bundle/
-COPY --from=Builder --chown=app:app /app /app
-
-WORKDIR /app
-
-# Expose Puma port
-EXPOSE 3000
+CMD ["startup.sh"] # defined in the app image
 ```
+
+Yes, this is the complete Dockerfile of the Rails app. It's so simple because the work is done by ONBUILD triggers.
 
 
 ## FAQ
