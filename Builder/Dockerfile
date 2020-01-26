@@ -44,7 +44,7 @@ ONBUILD ADD . /app
 # Compile assets with webpacker
 ONBUILD RUN RAILS_ENV=production \
             SECRET_KEY_BASE=dummy \
-            bundle exec rails webpacker:compile
+            bundle exec rails assets:precompile
 
 # Remove folders not needed in resulting image
 ONBUILD RUN rm -rf node_modules tmp/cache vendor/bundle test spec
