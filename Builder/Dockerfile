@@ -13,11 +13,11 @@ RUN apk add --update --no-cache \
 
 WORKDIR /app
 
+# Install standard Node modules
+COPY package.json yarn.lock /app/
+RUN yarn install
+
 # Install standard gems
 ADD Gemfile* /app/
 RUN bundle config --global frozen 1 && \
     bundle install -j4 --retry 3
-
-# Install standard Node modules
-COPY package.json yarn.lock /app/
-RUN yarn install
