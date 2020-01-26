@@ -12,6 +12,9 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 
+# Use SCSS for stylesheets
+gem 'sass-rails', '>= 6'
+
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.2'
 
@@ -45,14 +48,48 @@ gem 'strip_attributes'
 # The ultimate pagination ruby gem
 gem 'pagy'
 
+# A modern, responsive admin framework for Ruby on Rails
+gem 'trestle'
+
 # Flexible authentication solution for Rails with Warden
 gem 'devise'
 
+# Barebones two-factor authentication with Devise
+gem 'devise-two-factor'
+
+# A modular Ruby webserver interface
+gem 'rack', '!= 2.1.0', '!= 2.1.1' # Fix Sidekiq issue
+
 # Rack Middleware for handling Cross-Origin Resource Sharing (CORS), which makes cross-origin AJAX possible.
 gem 'rack-cors', require: 'rack/cors'
+
+# Rack middleware for blocking & throttling
+gem 'rack-attack'
+
+# Rack middleware for defining a canonical host name.
+gem 'rack-canonical-host'
 
 # The authorization Gem for Ruby on Rails
 gem 'cancancan'
 
 # An ActiveRecord plugin for managing lists
 gem 'acts_as_list'
+
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+gem 'turbolinks_render'
+
+# Template language whose goal is to reduce the syntax to the essential parts without becoming cryptic
+gem 'slim'
+
+# Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions
+gem 'rest-client'
+
+# Simple, efficient background processing for Ruby
+gem 'sidekiq'
+
+# Complete Ruby geocoding solution
+gem 'geocoder'
+
+# Search Engine Optimization (SEO) for Ruby on Rails applications
+gem 'meta-tags'
