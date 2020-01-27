@@ -18,7 +18,7 @@ COPY package.json yarn.lock /app/
 RUN yarn install
 
 # Install standard gems
-ADD Gemfile* /app/
+COPY Gemfile* /app/
 RUN bundle config --global frozen 1 && \
     bundle config --local build.sassc --disable-march-tune-native && \
     bundle install -j4 --retry 3
@@ -26,7 +26,7 @@ RUN bundle config --global frozen 1 && \
 #### ONBUILD: Add triggers to the image, executed later while building a child image
 
 # Install Ruby gems (for production only)
-ONBUILD ADD Gemfile* /app/
+ONBUILD COPY Gemfile* /app/
 ONBUILD RUN bundle install -j4 --retry 3 --without development:test && \
   # Remove unneeded gems
   bundle clean --force && \
@@ -39,8 +39,8 @@ ONBUILD RUN bundle install -j4 --retry 3 --without development:test && \
 ONBUILD COPY package.json yarn.lock /app/
 ONBUILD RUN yarn install --prod
 
-# Add the Rails app
-ONBUILD ADD . /app
+# Copy the whole application folder into the image
+ONBUILD COPY . /app
 
 # Compile assets with webpacker
 ONBUILD RUN RAILS_ENV=production \
