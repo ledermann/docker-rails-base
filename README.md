@@ -1,3 +1,5 @@
+![Build images](https://github.com/ledermann/docker-rails-base/workflows/Build%20images/badge.svg)
+
 # DockerRailsBase
 
 Building Docker images usually takes a long time. This repo contains base images with preinstalled dependencies for [Ruby on Rails](https://rubyonrails.org/), so building a production image will be **2-3 times faster**.
@@ -29,31 +31,33 @@ Note: Before I started timing, the base image was not available on my machine, s
 This repo is based on the following assumptions:
 
 - Your app is compatible with [Ruby 2.6.5 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/2.6/alpine3.11/Dockerfile)
-- Your app uses Ruby on Rails
+- Your app uses Ruby on Rails 6
+- Your app uses PostgreSQL
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
 - Your app compiles JS with [Webpacker](https://github.com/rails/webpacker)
-- Your app's Dockerfile uses [multi-stage building](https://docs.docker.com/develop/develop-images/multistage-build/)
 
-There are two Dockerfiles in this repo, one for the first stage (called "Builder") and one for the resulting stage (called "Final").
+To build a very small production image, [multi-stage building](https://docs.docker.com/develop/develop-images/multistage-build/) is used. There are two Dockerfiles in this repo, one for the first stage (called "Builder") and one for the resulting stage (called "Final").
 
 ### Builder stage
 
-Used for installing Ruby gems and Node modules. Includes Git, Node.js and some build tools - all you need to compile assets.
+Used for installing Ruby gems and Node modules. Includes Git, Node.js and some build tools - all we need to compile assets.
 
 - Based on ruby:2.6.5-alpine
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client, Vips and build tools
 - Adds some standard Ruby gems (Rails 6 etc.)
 - Adds some standard Node modules (Vue.js etc.)
+- Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
 
 See [Builder/Dockerfile](./Builder/Dockerfile)
 
 
 ### Final stage
 
-Production image including just the minimum. Prepared for copying app and gems from the Builder stage.
+Used to build the production image which includes just the minimum.
 
 - Based on ruby:2.6.5-alpine
 - Adds packages needed for production: postgresql-client, vips, tzdata, file
+- Via ONBUILD triggers it mainly copies the app and gems from the "Builder" stage
 
 See [Final/Dockerfile](./Final/Dockerfile)
 
@@ -90,3 +94,7 @@ This doesn't matter:
 - A missing Alpine package can be installed via `apk add` inside your app's Dockerfile.
 - A missing Node module can be installed via `yarn install` inside your app's Dockerfile.
 - A missing Ruby gem can be installed via `bundle install` inside your app's Dockerfile.
+
+### There are gems included that my app doesn't need. Will they bloat the resulting image?
+
+No. In the build stage there is a `bundle clean --force`, which uninstalls all gems not referenced in the app's Gemfile.
