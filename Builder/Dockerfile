@@ -20,6 +20,7 @@ RUN yarn install
 # Install standard gems
 ADD Gemfile* /app/
 RUN bundle config --global frozen 1 && \
+    bundle config --local build.sassc --disable-march-tune-native && \
     bundle install -j4 --retry 3
 
 #### ONBUILD: Add triggers to the image, executed later while building a child image
