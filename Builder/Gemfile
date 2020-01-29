@@ -93,3 +93,9 @@ gem 'geocoder'
 
 # Search Engine Optimization (SEO) for Ruby on Rails applications
 gem 'meta-tags'
+
+# Intelligent search made easy with Rails and Elasticsearch
+gem 'searchkick'
+
+# The Rails adapter for Inertia.js
+gem 'inertia_rails'
