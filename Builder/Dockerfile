@@ -35,10 +35,6 @@ ONBUILD RUN bundle install -j4 --retry 3 --without development:test && \
   find /usr/local/bundle/gems/ -name "*.c" -delete && \
   find /usr/local/bundle/gems/ -name "*.o" -delete
 
-# Install Node modules (for production only)
-ONBUILD COPY package.json yarn.lock /app/
-ONBUILD RUN yarn install --prod
-
 # Copy the whole application folder into the image
 ONBUILD COPY . /app
 

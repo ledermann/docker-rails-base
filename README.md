@@ -92,7 +92,7 @@ Using a prebuilt image improves installing dependencies a lot, because only the 
 This doesn't matter:
 
 - A missing Alpine package can be installed with `apk add` inside your app's Dockerfile.
-- A missing Node module (or version) will be installed with `yarn install` via the ONBUILD trigger.
+- A missing Node module (or version) will be installed with `rails assets:precompile` via the ONBUILD trigger.
 - A missing Ruby gem (or version) will be installed with `bundle install` via the ONBUILD trigger.
 
 ### There are gems included that my app doesn't need. Will they bloat the resulting image?
