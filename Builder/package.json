@@ -10,7 +10,7 @@
     "@rails/webpacker": "^4.2.2",
     "axios": "^0.19.2",
     "lodash": "^4.17.5",
-    "tailwindcss": "^1.2.0-canary.5",
+    "tailwindcss": "^1.2.0",
     "vue": "^2.6.11",
     "vue-loader": "^15.8.3",
     "vue-template-compiler": "^2.6.11"
