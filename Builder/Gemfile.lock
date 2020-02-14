@@ -248,9 +248,9 @@ GEM
       activemodel (>= 5)
       elasticsearch (>= 6)
       hashie
-    sidekiq (6.0.4)
+    sidekiq (6.0.5)
       connection_pool (>= 2.2.2)
-      rack (>= 2.0.0)
+      rack (~> 2.0)
       rack-protection (>= 2.0.0)
       redis (>= 4.1.0)
     slim (4.0.1)
