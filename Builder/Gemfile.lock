@@ -263,7 +263,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    strip_attributes (1.9.0)
+    strip_attributes (1.9.1)
       activemodel (>= 3.0, < 7.0)
     temple (0.8.2)
     thor (1.0.1)
