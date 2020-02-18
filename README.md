@@ -70,8 +70,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 ### Usage example
 
 ```Dockerfile
-FROM docker.pkg.github.com/ledermann/docker-rails-base/rails-base-builder:latest AS Builder
-FROM docker.pkg.github.com/ledermann/docker-rails-base/rails-base-final:latest
+FROM ledermann/rails-base-builder:latest AS Builder
+FROM ledermann/rails-base-final:latest
 USER app
 CMD ["startup.sh"] # defined in the app image
 ```
