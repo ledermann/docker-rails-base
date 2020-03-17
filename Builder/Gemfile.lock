@@ -113,7 +113,7 @@ GEM
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
     ffi (1.12.2)
-    geocoder (1.6.1)
+    geocoder (1.6.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashie (4.1.0)
