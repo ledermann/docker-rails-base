@@ -174,7 +174,7 @@ GEM
     oj (3.10.5)
     orm_adapter (0.5.0)
     pagy (3.7.3)
-    pg (1.2.2)
+    pg (1.2.3)
     public_suffix (4.0.3)
     puma (4.3.3)
       nio4r (~> 2.0)
