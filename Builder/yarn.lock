@@ -774,9 +774,9 @@
     nprogress "^0.2.0"
 
 "@rails/activestorage@^6.0.2-1":
-  version "6.0.2-1"
-  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.0.2-1.tgz#c048c190db30f72862fb99102b806fefc748a583"
-  integrity sha512-oiBkpCQWrOVVdSA2xc/X+NDOCEeehcWqX3yrFbCTjOweNz0U60wkmxcPLUJApV8KVl5llmLTqM3VIpQzHcHovA==
+  version "6.0.2-2"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.0.2-2.tgz#108b0ad80a7cbf8d7e4c3ef5e54ea6ddb2a06d3c"
+  integrity sha512-bIQJqywfagz/UV0RP4jgLclUaBBsRoIdzGClaJ6z9EGa2QAnzu2Fdr7MrqlIDZl0/SZgteOmgF+WjZXNewSucA==
   dependencies:
     spark-md5 "^3.0.0"
 
