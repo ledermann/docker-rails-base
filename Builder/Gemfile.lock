@@ -281,7 +281,7 @@ GEM
     turbolinks_render (0.9.17)
       rails (>= 5.2.0)
       turbolinks-source (~> 5.1)
-    tzinfo (1.2.6)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
