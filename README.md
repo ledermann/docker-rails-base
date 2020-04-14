@@ -42,10 +42,10 @@ To build a very small production image, [multi-stage building](https://docs.dock
 
 Used for installing Ruby gems and Node modules. Includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on ruby:2.6.6-alpine
+- Based on [ruby:2.6.6-alpine](https://github.com/docker-library/ruby/blob/master/2.6/alpine3.11/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
-- Adds some standard Ruby gems (Rails 6 etc.)
-- Adds some standard Node modules (Vue.js etc.)
+- Adds some standard Ruby gems (Rails 6 etc., see [Gemfile](./Builder/Gemfile))
+- Adds some standard Node modules (Vue.js etc., see [package.json](./Builder/package.json))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
 
 See [Builder/Dockerfile](./Builder/Dockerfile)
@@ -55,7 +55,7 @@ See [Builder/Dockerfile](./Builder/Dockerfile)
 
 Used to build the production image which includes just the minimum.
 
-- Based on ruby:2.6.6-alpine
+- Based on [ruby:2.6.6-alpine](https://github.com/docker-library/ruby/blob/master/2.6/alpine3.11/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
 - Via ONBUILD triggers it mainly copies the app and gems from the "Builder" stage
 
@@ -64,7 +64,7 @@ See [Final/Dockerfile](./Final/Dockerfile)
 
 ### Staying up-to-date
 
-Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node module will lead to an updated image.
+Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node module results in an updated image.
 
 
 ### Usage example
