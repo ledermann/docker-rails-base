@@ -99,3 +99,6 @@ gem 'searchkick'
 
 # The Rails adapter for Inertia.js
 gem 'inertia_rails'
+
+# The safe Markdown parser, reloaded
+gem 'redcarpet'
