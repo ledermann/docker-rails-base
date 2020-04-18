@@ -38,10 +38,14 @@ ONBUILD RUN bundle install -j4 --retry 3 --without development:test && \
 # Copy the whole application folder into the image
 ONBUILD COPY . /app
 
-# Compile assets with webpacker
+# Compile assets with Webpacker or Sprockets
+# If there are encrypted credentials, rename them before and after to avoid a MissingKeyError
+ONBUILD RUN mv config/credentials.yml.enc config/credentials.yml.enc.bak 2>/dev/null || true
 ONBUILD RUN RAILS_ENV=production \
             SECRET_KEY_BASE=dummy \
+            RAILS_MASTER_KEY=dummy \
             bundle exec rails assets:precompile
+ONBUILD RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/null || true
 
 # Remove folders not needed in resulting image
 ONBUILD RUN rm -rf node_modules tmp/cache vendor/bundle test spec
