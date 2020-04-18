@@ -250,7 +250,7 @@ GEM
       elasticsearch (>= 6)
       hashie
     semantic_range (2.3.0)
-    sidekiq (6.0.6)
+    sidekiq (6.0.7)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       rack-protection (>= 2.0.0)
