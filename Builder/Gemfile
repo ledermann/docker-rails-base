@@ -57,9 +57,6 @@ gem 'devise'
 # Barebones two-factor authentication with Devise
 gem 'devise-two-factor'
 
-# A modular Ruby webserver interface
-gem 'rack', '!= 2.1.0', '!= 2.1.1' # Fix Sidekiq issue
-
 # Rack Middleware for handling Cross-Origin Resource Sharing (CORS), which makes cross-origin AJAX possible.
 gem 'rack-cors', require: 'rack/cors'
 
