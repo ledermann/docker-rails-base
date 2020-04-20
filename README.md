@@ -73,7 +73,7 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 FROM ledermann/rails-base-builder:latest AS Builder
 FROM ledermann/rails-base-final:latest
 USER app
-CMD ["startup.sh"] # defined in the app image
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
 
 Yes, this is the complete Dockerfile of the Rails app. It's so simple because the work is done by ONBUILD triggers.
