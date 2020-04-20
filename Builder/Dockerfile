@@ -27,13 +27,14 @@ RUN bundle config --global frozen 1 && \
 
 # Install Ruby gems (for production only)
 ONBUILD COPY Gemfile* /app/
-ONBUILD RUN bundle install -j4 --retry 3 --without development:test && \
-  # Remove unneeded gems
-  bundle clean --force && \
-  # Remove unneeded files from installed gems (cached *.gem, *.o, *.c)
-  rm -rf /usr/local/bundle/cache/*.gem && \
-  find /usr/local/bundle/gems/ -name "*.c" -delete && \
-  find /usr/local/bundle/gems/ -name "*.o" -delete
+ONBUILD RUN bundle config --local without 'development test' && \
+            bundle install -j4 --retry 3 && \
+            # Remove unneeded gems
+            bundle clean --force && \
+            # Remove unneeded files from installed gems (cached *.gem, *.o, *.c)
+            rm -rf /usr/local/bundle/cache/*.gem && \
+            find /usr/local/bundle/gems/ -name "*.c" -delete && \
+            find /usr/local/bundle/gems/ -name "*.o" -delete
 
 # Copy the whole application folder into the image
 ONBUILD COPY . /app
