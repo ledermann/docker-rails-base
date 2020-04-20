@@ -318,7 +318,7 @@ DEPENDENCIES
   oj
   pagy
   pg (>= 0.18, < 2.0)
-  puma (~> 4.3)
+  puma (~> 4.1)
   rack-attack
   rack-canonical-host
   rack-cors
