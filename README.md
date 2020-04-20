@@ -34,7 +34,7 @@ This repo is based on the following assumptions:
 - Your app uses Ruby on Rails 6
 - Your app uses PostgreSQL
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
-- Your app compiles JS with [Webpacker](https://github.com/rails/webpacker)
+- Your app compiles JS with [Webpacker](https://github.com/rails/webpacker) and/or [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails)
 
 To build a very small production image, [multi-stage building](https://docs.docker.com/develop/develop-images/multistage-build/) is used. There are two Dockerfiles in this repo, one for the first stage (called "Builder") and one for the resulting stage (called "Final").
 
