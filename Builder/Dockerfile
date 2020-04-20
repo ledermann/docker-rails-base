@@ -19,7 +19,7 @@ RUN yarn install --frozen-lockfile
 
 # Install standard gems
 COPY Gemfile* /app/
-RUN bundle config --global frozen 1 && \
+RUN bundle config --local frozen 1 && \
     bundle config --local build.sassc --disable-march-tune-native && \
     bundle install -j4 --retry 3
 
