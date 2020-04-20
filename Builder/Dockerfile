@@ -15,7 +15,7 @@ WORKDIR /app
 
 # Install standard Node modules
 COPY package.json yarn.lock /app/
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 # Install standard gems
 COPY Gemfile* /app/
