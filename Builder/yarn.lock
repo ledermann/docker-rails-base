@@ -6314,9 +6314,9 @@ svgo@^1.0.0:
     util.promisify "~1.0.0"
 
 tailwindcss@^1.2.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.3.0.tgz#cc21de3320d5690dca2e2fa2a9e502495f51cc70"
-  integrity sha512-x1zEn7mOqtg/Iv8IUrbY5phNkIYiaISwLWLtTl3Vgy44fwrRr5zc4+h/pPsYLaMOIlbHWQpPkYpNz8lynpT0Gw==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.3.1.tgz#bc852c3cb15fec244e249c0c05da28bd4dbfdc30"
+  integrity sha512-aKAfvPeoXl8mPkVAxuW9+KRsxhQTZ9u4CtmUIIXd9fwhSg4hZ/PnVkhNCDF43Hms2eaxVceZxe17mdCa/cME5g==
   dependencies:
     autoprefixer "^9.4.5"
     bytes "^3.0.0"
