@@ -2,7 +2,7 @@ FROM ruby:2.6.6-alpine
 LABEL maintainer="georg@ledermann.dev"
 
 # Add basic packages
-RUN apk add --update --no-cache \
+RUN apk add --no-cache \
       build-base \
       postgresql-dev \
       git \
