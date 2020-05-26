@@ -1272,9 +1272,9 @@ aws-sign2@~0.7.0:
   integrity sha1-tG6JCTSpWR8tL2+G1+ap8bP+dqg=
 
 aws4@^1.8.0:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
-  integrity sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
+  version "1.10.0"
+  resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.10.0.tgz#a17b3a8ea811060e74d47d306122400ad4497ae2"
+  integrity sha512-3YDiu347mtVtjpyV3u5kVqQLP242c06zwDOgpeRnybmXlYYsLbtTrUBUm8i8srONt+FWobl5aibnU1030PeeuA==
 
 axios@^0.19.0, axios@^0.19.2:
   version "0.19.2"
@@ -1375,14 +1375,14 @@ bluebird@^3.1.1, bluebird@^3.5.5:
   integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
 
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.4.0:
-  version "4.11.8"
-  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
-  integrity sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA==
+  version "4.11.9"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.9.tgz#26d556829458f9d1e81fc48952493d0ba3507828"
+  integrity sha512-E6QoYqCKZfgatHTdHzs1RRKP7ip4vvm+EyRUeE2RF0NblwVvb0p6jSVeNTOFxPn26QXN2o6SMfNxKp6kU8zQaw==
 
 bn.js@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-5.1.1.tgz#48efc4031a9c4041b9c99c6941d903463ab62eb5"
-  integrity sha512-IUTD/REb78Z2eodka1QZyyEk66pciRcP6Sroka0aI3tG/iwIdYLrBD62RsubR7vqdt3WyX8p4jxeatzmRSphtA==
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-5.1.2.tgz#c9686902d3c9a27729f43ab10f9d79c2004da7b0"
+  integrity sha512-40rZaf3bUNKTVYu9sIeeEGOg7g14Yvnj9kH7b50EiwX0Q7A6umbvfI5tvHaOERH0XigqKkfLkFQxzb4e6CIXnA==
 
 boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
@@ -1643,9 +1643,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001043, caniuse-lite@^1.0.30001061:
-  version "1.0.30001062"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001062.tgz#d814b648338504b315222ace6f1a533d9a55e390"
-  integrity sha512-ei9ZqeOnN7edDrb24QfJ0OZicpEbsWxv7WusOiQGz/f2SfvBgHHbOEwBJ8HKGVSyx8Z6ndPjxzR6m0NQq+0bfw==
+  version "1.0.30001066"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001066.tgz#0a8a58a10108f2b9bf38e7b65c237b12fd9c5f04"
+  integrity sha512-Gfj/WAastBtfxLws0RCh2sDbTK/8rJuSeZMecrSkNGYxPcv7EzblmDGfWQCFEQcSqYE2BRgQiJh8HOD07N5hIw==
 
 case-sensitive-paths-webpack-plugin@^2.3.0:
   version "2.3.0"
@@ -2412,9 +2412,9 @@ ecc-jsbn@~0.1.1:
     safer-buffer "^2.1.0"
 
 electron-to-chromium@^1.3.413:
-  version "1.3.446"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.446.tgz#12c336bc858e04d6b614a488f32f2dd89561601f"
-  integrity sha512-CLQaFuvkKqR9FD2G3cJrr1fV7DRMXiAKWLP2F8cxtvvtzAS7Tubt0kF47/m+uE61kiT+I7ZEn7HqLnmWdOhmuA==
+  version "1.3.452"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.452.tgz#ef6877702722471aa044a2429336cd450629934d"
+  integrity sha512-IdbjgCEqDvcU/1kUQa6C49I2NZOY3SBmU9Eus7mdFdJJBqn0Lg1Epfi/T4nqVcxTNBEGhcjwMhY1EysMBsXZrw==
 
 elliptic@^6.0.0, elliptic@^6.5.2:
   version "6.5.2"
@@ -3570,9 +3570,9 @@ js-base64@^2.1.8:
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
 js-yaml@^3.13.1:
-  version "3.13.1"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.13.1.tgz#aff151b30bfdfa8e49e05da22e7415e9dfa37847"
-  integrity sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.0.tgz#a7a34170f26a21bb162424d8adacb4113a69e482"
+  integrity sha512-/4IbIeHcD9VMHFqDR/gQ7EdZdLimOvW2DdcxFjdyyZ9NsbS+ccrXqVWDtab/lRl5AlUqmpBx8EhPaWR+OtY17A==
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
@@ -5390,9 +5390,9 @@ postcss@^6.0.9:
     supports-color "^5.4.0"
 
 postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.11, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.17, postcss@^7.0.18, postcss@^7.0.2, postcss@^7.0.21, postcss@^7.0.26, postcss@^7.0.27, postcss@^7.0.30, postcss@^7.0.5, postcss@^7.0.6:
-  version "7.0.30"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.30.tgz#cc9378beffe46a02cbc4506a0477d05fcea9a8e2"
-  integrity sha512-nu/0m+NtIzoubO+xdAlwZl/u5S5vi/y6BCsoL8D+8IxsD3XvBS8X4YEADNIVXKVuQvduiucnRv+vPIqj56EGMQ==
+  version "7.0.31"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.31.tgz#332af45cb73e26c0ee2614d7c7fb02dfcc2bd6dd"
+  integrity sha512-a937VDHE1ftkjk+8/7nj/mrjtmkn69xxzJgRETXdAUU+IgOYPQNJF17haGWbeDxSyk++HA14UA98FurvPyBJOA==
   dependencies:
     chalk "^2.4.2"
     source-map "^0.6.1"
@@ -5677,9 +5677,9 @@ regexpu-core@^4.7.0:
     unicode-match-property-value-ecmascript "^1.2.0"
 
 regjsgen@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/regjsgen/-/regjsgen-0.5.1.tgz#48f0bf1a5ea205196929c0d9798b42d1ed98443c"
-  integrity sha512-5qxzGZjDs9w4tzT3TPhCJqWdCc3RLYwy9J2NB0nm5Lz+S273lvWcpjaTGHsT1dc6Hhfq41uSEOw8wBmxrKOuyg==
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/regjsgen/-/regjsgen-0.5.2.tgz#92ff295fb1deecbf6ecdab2543d207e91aa33733"
+  integrity sha512-OFFT3MfrH90xIW8OOSyUrk6QHD5E9JOTeGodiJeBS3J6IwlgzJMNE/1bZklWz5oTg+9dCMyEetclvCVXOPoN3A==
 
 regjsparser@^0.6.4:
   version "0.6.4"
@@ -6071,9 +6071,9 @@ spark-md5@^3.0.0:
   integrity sha512-0tF3AGSD1ppQeuffsLDIOWlKUd3lS92tFxcsrh5Pe3ZphhnoK+oXIBTzOAThZCiuINZLvpiLH/1VS1/ANEJVig==
 
 spdx-correct@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/spdx-correct/-/spdx-correct-3.1.0.tgz#fb83e504445268f154b074e218c87c003cd31df4"
-  integrity sha512-lr2EZCctC2BNR7j7WzJ2FpDznxky1sjfxvvYEyzxNyb6lZXHODmEoJeFu4JupYlkfha1KZpJyoqiJ7pgA1qq8Q==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/spdx-correct/-/spdx-correct-3.1.1.tgz#dece81ac9c1e6713e5f7d1b6f17d468fa53d89a9"
+  integrity sha512-cOYcUWwhCuHCXi49RhFRCyJEK3iPj1Ziz9DpViV3tbZOwXD49QzIN3MpOLJNxh2qwq2lJJZaKMVw9qNi4jTC0w==
   dependencies:
     spdx-expression-parse "^3.0.0"
     spdx-license-ids "^3.0.0"
