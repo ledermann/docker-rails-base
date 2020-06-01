@@ -334,7 +334,6 @@ DEPENDENCIES
   trestle
   turbolinks (~> 5)
   turbolinks_render
-  tzinfo-data
   webpacker (~> 5.0)
 
 RUBY VERSION
