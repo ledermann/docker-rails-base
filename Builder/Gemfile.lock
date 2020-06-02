@@ -84,7 +84,7 @@ GEM
     builder (3.2.4)
     cancancan (3.1.0)
     concurrent-ruby (1.1.6)
-    connection_pool (2.2.2)
+    connection_pool (2.2.3)
     crass (1.0.6)
     devise (4.7.1)
       bcrypt (~> 3.0)
