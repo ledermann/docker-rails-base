@@ -186,8 +186,6 @@ GEM
       rack (>= 1.0.0, < 3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-protection (2.0.8.1)
-      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -250,11 +248,10 @@ GEM
       elasticsearch (>= 6)
       hashie
     semantic_range (2.3.0)
-    sidekiq (6.0.7)
+    sidekiq (6.1.0)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
-      rack-protection (>= 2.0.0)
-      redis (>= 4.1.0)
+      redis (>= 4.2.0)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
