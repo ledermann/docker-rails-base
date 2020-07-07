@@ -1,4 +1,4 @@
-![Build images](https://github.com/ledermann/docker-rails-base/workflows/Build%20images/badge.svg)
+![Build images](https://github.com/tadpreston/docker-rails-base/workflows/Build%20images/badge.svg)
 
 # DockerRailsBase
 
@@ -70,8 +70,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 ### Usage example
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:latest AS Builder
-FROM ledermann/rails-base-final:latest
+FROM tadpreston/rails-base-builder:latest AS Builder
+FROM tadpreston/rails-base-final:latest
 USER app
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
