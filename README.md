@@ -67,7 +67,9 @@ See [Final/Dockerfile](./Final/Dockerfile)
 Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node module results in an updated image.
 
 
-### Usage example
+### How to use for your Rails application
+
+#### Build Docker image
 
 ```Dockerfile
 FROM ledermann/rails-base-builder:latest AS Builder
@@ -77,6 +79,31 @@ CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
 
 Yes, this is the complete Dockerfile of the Rails app. It's so simple because the work is done by ONBUILD triggers.
+
+
+#### Continuous integration (CI)
+
+Example to build the application's image with GitHub Actions and push it to the GitHub Package registry:
+
+```yaml
+deploy:
+  runs-on: ubuntu-latest
+
+  steps:
+    - uses: actions/checkout@v2
+
+    - name: Login to GitHub Package Registry
+      run: docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{ secrets.PACKAGES_TOKEN }}
+
+    - name: Build the image
+      run: |
+        export COMMIT_TIME=$(git show -s --format=%ci ${GITHUB_SHA})
+        export COMMIT_SHA=${GITHUB_SHA}
+        docker build --build-arg COMMIT_TIME --build-arg COMMIT_SHA -t "docker.pkg.github.com/user/repo/repo:latest" .
+
+    - name: Push the image
+      run: docker push "docker.pkg.github.com/user/repo/repo:latest"
+```
 
 
 ## FAQ
