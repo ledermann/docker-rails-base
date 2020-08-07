@@ -98,3 +98,6 @@ gem 'inertia_rails'
 
 # Markdown that smells nice (http://github.com/vmg/redcarpet)
 gem 'redcarpet'
+
+# A comprehensive slugging and pretty-URL plugin. (https://github.com/norman/friendly_id)
+gem 'friendly_id'
