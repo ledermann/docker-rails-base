@@ -6310,9 +6310,9 @@ svgo@^1.0.0:
     util.promisify "~1.0.0"
 
 tailwindcss@^1.6.2:
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.6.3.tgz#92a759eaaeeafcde8167a3c3fac4018d59ba5892"
-  integrity sha512-omopCo7QGOclvUYWVpur0/jdP3AKLZPQr0XQB0+qbiHp7V2/tj6uknqvskUkYxP0yuQCL8i/Ekn4JaxbSV60gQ==
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-1.7.0.tgz#923d746847c52e120c7c193488c16d12c519a0aa"
+  integrity sha512-MA9GaF+8KVim1B7TeT4GRD6cbopYQ/IdAyzisRO3dauANbzJ/h/0Z1w+MWpi2NjsF/CvGRfmiRRVSAKeDSfbng==
   dependencies:
     "@fullhuman/postcss-purgecss" "^2.1.2"
     autoprefixer "^9.4.5"
@@ -6330,6 +6330,7 @@ tailwindcss@^1.6.2:
     postcss-js "^2.0.0"
     postcss-nested "^4.1.1"
     postcss-selector-parser "^6.0.0"
+    postcss-value-parser "^4.1.0"
     pretty-hrtime "^1.0.3"
     reduce-css-calc "^2.1.6"
     resolve "^1.14.2"
