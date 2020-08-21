@@ -8,7 +8,7 @@
     "@inertiajs/inertia-vue": "^0.1.4",
     "@rails/activestorage": "^6.0.3",
     "@rails/webpacker": "^5.1.1",
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "lodash": "^4.17.19",
     "tailwindcss": "^1.6.2",
     "vue": "^2.6.11",
