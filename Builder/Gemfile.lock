@@ -287,8 +287,8 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    warden (1.2.8)
-      rack (>= 2.0.6)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     webpacker (5.2.1)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
