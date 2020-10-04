@@ -30,7 +30,7 @@ Note: Before I started timing, the base image was not available on my machine, s
 
 This repo is based on the following assumptions:
 
-- Your app is compatible with [Ruby 2.7.1 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.11/Dockerfile)
+- Your app is compatible with [Ruby 2.7.1 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
 - Your app uses Ruby on Rails 6
 - Your app uses PostgreSQL
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
@@ -42,7 +42,7 @@ To build a very small production image, [multi-stage building](https://docs.dock
 
 Used for installing Ruby gems and Node modules. Includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:2.7.1-alpine](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.11/Dockerfile)
+- Based on [ruby:2.7.1-alpine](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
 - Adds some standard Ruby gems (Rails 6 etc., see [Gemfile](./Builder/Gemfile))
 - Adds some standard Node modules (Vue.js etc., see [package.json](./Builder/package.json))
@@ -55,7 +55,7 @@ See [Builder/Dockerfile](./Builder/Dockerfile)
 
 Used to build the production image which includes just the minimum.
 
-- Based on [ruby:2.7.1-alpine](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.11/Dockerfile)
+- Based on [ruby:2.7.1-alpine](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
 - Via ONBUILD triggers it mainly copies the app and gems from the "Builder" stage
 
