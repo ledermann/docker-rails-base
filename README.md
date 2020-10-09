@@ -72,8 +72,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 #### Build Docker image
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:latest AS Builder
-FROM ledermann/rails-base-final:latest
+FROM ledermann/rails-base-builder:2.7.2-alpine AS Builder
+FROM ledermann/rails-base-final:2.7.2-alpine
 USER app
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
