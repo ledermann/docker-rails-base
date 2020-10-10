@@ -323,7 +323,7 @@ DEPENDENCIES
   rack-attack
   rack-canonical-host
   rack-cors
-  rails (~> 6.0.2, >= 6.0.2.2)
+  rails (~> 6.0.3, >= 6.0.3.4)
   redcarpet
   rest-client
   rollbar
