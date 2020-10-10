@@ -1,6 +1,9 @@
 name: Build images
 on: push
 
+env:
+  TAG_NAME: 2.7.2-alpine
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,16 +23,28 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
           docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{ secrets.PACKAGES_TOKEN }}
+
           docker tag builder docker.pkg.github.com/ledermann/docker-rails-base/rails-base-builder:latest
+          docker tag builder docker.pkg.github.com/ledermann/docker-rails-base/rails-base-builder:${{ env.TAG_NAME }}
           docker push docker.pkg.github.com/ledermann/docker-rails-base/rails-base-builder:latest
+          docker push docker.pkg.github.com/ledermann/docker-rails-base/rails-base-builder:${{ env.TAG_NAME }}
+
           docker tag final docker.pkg.github.com/ledermann/docker-rails-base/rails-base-final:latest
           docker push docker.pkg.github.com/ledermann/docker-rails-base/rails-base-final:latest
+          docker tag final docker.pkg.github.com/ledermann/docker-rails-base/rails-base-final:${{ env.TAG_NAME }}
+          docker push docker.pkg.github.com/ledermann/docker-rails-base/rails-base-final:${{ env.TAG_NAME }}
 
       - name: Push the images to Docker Hub
         if: github.ref == 'refs/heads/master'
         run: |
           docker login -u ledermann -p ${{ secrets.DOCKER_TOKEN }}
+
           docker tag builder ledermann/rails-base-builder:latest
           docker push ledermann/rails-base-builder:latest
+          docker tag builder ledermann/rails-base-builder:${{ env.TAG_NAME }}
+          docker push ledermann/rails-base-builder:${{ env.TAG_NAME }}
+
           docker tag final ledermann/rails-base-final:latest
           docker push ledermann/rails-base-final:latest
+          docker tag final ledermann/rails-base-final:${{ env.TAG_NAME }}
+          docker push ledermann/rails-base-final:${{ env.TAG_NAME }}
