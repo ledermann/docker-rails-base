@@ -83,7 +83,7 @@ Yes, this is the complete Dockerfile of the Rails app. It's so simple because th
 
 #### Continuous integration (CI)
 
-Example to build the application's image with GitHub Actions and push it to the GitHub Package registry:
+Example to build the application's image with GitHub Actions and push it to the GitHub Container Registry:
 
 ```yaml
 deploy:
@@ -92,17 +92,17 @@ deploy:
   steps:
     - uses: actions/checkout@v2
 
-    - name: Login to GitHub Package Registry
-      run: docker login docker.pkg.github.com -u $GITHUB_ACTOR -p ${{ secrets.PACKAGES_TOKEN }}
+    - name: Login to GitHub Container Registry
+      run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
     - name: Build the image
       run: |
         export COMMIT_TIME=$(git show -s --format=%ci ${GITHUB_SHA})
         export COMMIT_SHA=${GITHUB_SHA}
-        docker build --build-arg COMMIT_TIME --build-arg COMMIT_SHA -t "docker.pkg.github.com/user/repo/repo:latest" .
+        docker build --build-arg COMMIT_TIME --build-arg COMMIT_SHA -t ghcr.io/user/repo:latest .
 
     - name: Push the image
-      run: docker push "docker.pkg.github.com/user/repo/repo:latest"
+      run: docker push ghcr.io/user/repo:latest
 ```
 
 
