@@ -2,7 +2,7 @@ name: Build images
 on: push
 
 env:
-  TAG_NAME: 2.7.1-alpine
+  TAG_NAME: 2.7.2-alpine
 
 jobs:
   build:
