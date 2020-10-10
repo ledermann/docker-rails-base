@@ -3,15 +3,14 @@
   "private": true,
   "version": "0.1.0",
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^3.0.0",
-    "@inertiajs/inertia": "^0.3.4",
-    "@inertiajs/inertia-vue": "^0.2.0",
+    "@inertiajs/inertia": "^0.3.6",
+    "@inertiajs/inertia-vue": "^0.2.4",
     "@rails/activestorage": "^6.0.3",
-    "@rails/webpacker": "^5.1.1",
-    "lodash": "^4.17.19",
-    "tailwindcss": "^1.6.2",
-    "vue": "^2.6.11",
+    "@rails/webpacker": "^5.2.1",
+    "lodash": "^4.17.20",
+    "tailwindcss": "^1.8.12",
+    "vue": "^2.6.12",
     "vue-loader": "^15.9.3",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   }
 }
