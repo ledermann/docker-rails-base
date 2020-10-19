@@ -36,11 +36,11 @@ This repo is based on the following assumptions:
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
 - Your app compiles JS with [Webpacker](https://github.com/rails/webpacker) and/or [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails)
 
-To build a very small production image, [multi-stage building](https://docs.docker.com/develop/develop-images/multistage-build/) is used. There are two Dockerfiles in this repo, one for the first stage (called "Builder") and one for the resulting stage (called "Final").
+It uses [multi-stage building](https://docs.docker.com/develop/develop-images/multistage-build/) to build a very small production image. There are two Dockerfiles in this repo, one for the first stage (called `Builder`) and one for the resulting stage (called `Final`).
 
 ### Builder stage
 
-Used for installing Ruby gems and Node modules. Includes Git, Node.js and some build tools - all we need to compile assets.
+The `Builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
 - Based on [ruby:2.7.2-alpine](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
@@ -53,11 +53,11 @@ See [Builder/Dockerfile](./Builder/Dockerfile)
 
 ### Final stage
 
-Used to build the production image which includes just the minimum.
+The `Final` stage builds the production image, which includes just the bare minimum.
 
 - Based on [ruby:2.7.2-alpine](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
-- Via ONBUILD triggers it mainly copies the app and gems from the "Builder" stage
+- Via ONBUILD triggers it mainly copies the app and gems from the `Builder` stage
 
 See [Final/Dockerfile](./Final/Dockerfile)
 
