@@ -273,7 +273,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    trestle (0.9.3)
+    trestle (0.9.4)
       activemodel (>= 4.2.0)
       kaminari (>= 1.1.0)
       railties (>= 4.2.0)
