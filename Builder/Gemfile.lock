@@ -114,7 +114,7 @@ GEM
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     ffi (1.13.1)
-    friendly_id (5.4.0)
+    friendly_id (5.4.1)
       activerecord (>= 4.0.0)
     geocoder (1.6.4)
     globalid (0.4.2)
