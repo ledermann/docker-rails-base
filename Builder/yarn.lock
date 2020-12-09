@@ -867,9 +867,9 @@
     mkdirp "^1.0.4"
 
 "@rails/activestorage@^6.0.3-4":
-  version "6.0.3-4"
-  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.0.3-4.tgz#4b6c161ba12acd94ef7215e479780357af67511c"
-  integrity sha512-WHgk4E5EwWol9LS3DNyhPyuCwWPszJZeMOSx7cZGuJa5C4Ytp5bQYWTRoHmIaRrycFTxXs/2RuHBvoBqf+Dgrw==
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.1.0.tgz#e8d42c4e275f6b0cef2a888728b47300a87a1047"
+  integrity sha512-47VbzNQ/45cjpcckP1eUkzh/V26kb+Qc6U8pEGbAhmNjF2/yfTzSefdHfubkz4NUSaapELqael0J3jhG8BWHsA==
   dependencies:
     spark-md5 "^3.0.0"
 
