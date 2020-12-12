@@ -82,7 +82,7 @@ GEM
     bootsnap (1.5.1)
       msgpack (~> 1.0)
     builder (3.2.4)
-    cancancan (3.1.0)
+    cancancan (3.2.0)
     concurrent-ruby (1.1.7)
     connection_pool (2.2.3)
     crass (1.0.6)
