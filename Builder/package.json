@@ -4,7 +4,7 @@
     "@inertiajs/inertia": "^0.7.0",
     "@inertiajs/inertia-vue": "^0.4.1",
     "@inertiajs/progress": "^0.2.2",
-    "@rails/activestorage": "^6.0.3-4",
+    "@rails/activestorage": "^6.1.0",
     "@rails/webpacker": "^5.2.1",
     "css-loader": "^5.0.0",
     "tailwindcss": "^1.9.6",
