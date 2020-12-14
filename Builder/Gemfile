@@ -51,9 +51,6 @@ gem 'trestle'
 # Flexible authentication solution for Rails with Warden (https://github.com/heartcombo/devise)
 gem 'devise'
 
-# Barebones two-factor authentication with Devise (https://github.com/tinfoil/devise-two-factor)
-gem 'devise-two-factor'
-
 # Middleware for enabling Cross-Origin Resource Sharing in Rack apps (https://github.com/cyu/rack-cors)
 gem 'rack-cors', require: 'rack/cors'
 
