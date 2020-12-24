@@ -105,7 +105,7 @@ GEM
       faraday (~> 1)
       multi_json
     erubi (1.10.0)
-    faraday (1.1.0)
+    faraday (1.2.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
     ffi (1.14.2)
