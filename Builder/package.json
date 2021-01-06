@@ -1,8 +1,8 @@
 {
   "private": true,
   "dependencies": {
-    "@inertiajs/inertia": "^0.7.0",
-    "@inertiajs/inertia-vue": "^0.4.1",
+    "@inertiajs/inertia": "^0.8.2",
+    "@inertiajs/inertia-vue": "^0.5.4",
     "@inertiajs/progress": "^0.2.2",
     "@rails/activestorage": "^6.1.0",
     "@rails/webpacker": "^5.2.1",
