@@ -6,7 +6,7 @@
     "@inertiajs/progress": "^0.2.2",
     "@rails/activestorage": "^6.1.0",
     "@rails/webpacker": "^5.2.1",
-    "css-loader": "^3.5.3",
+    "css-loader": "^3.6.0",
     "tailwindcss": "^1.9.6",
     "vue": "^2.6.12",
     "vue-loader": "^16.1.1",
