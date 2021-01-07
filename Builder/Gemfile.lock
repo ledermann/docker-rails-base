@@ -111,7 +111,7 @@ GEM
       ruby2_keywords
     faraday-net_http (1.0.0)
     ffi (1.14.2)
-    friendly_id (5.4.1)
+    friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     geocoder (1.6.4)
     globalid (0.4.2)
