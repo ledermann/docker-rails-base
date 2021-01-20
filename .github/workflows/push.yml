@@ -20,7 +20,7 @@ jobs:
         run: docker build -t final .
 
       - name: Push the images to GitHub Container Registry
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: |
           echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
@@ -35,7 +35,7 @@ jobs:
           docker push ghcr.io/ledermann/rails-base-final:${{ env.TAG_NAME }}
 
       - name: Push the images to Docker Hub
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: |
           echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ledermann --password-stdin
 
