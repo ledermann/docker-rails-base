@@ -56,4 +56,4 @@ ONBUILD RUN RAILS_ENV=production \
 ONBUILD RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/null || true
 
 # Remove folders not needed in resulting image
-ONBUILD RUN rm -rf node_modules tmp/cache vendor/bundle test spec
+ONBUILD RUN rm -rf node_modules tmp/cache vendor/bundle test spec app/javascript app/packs
