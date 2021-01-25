@@ -38,7 +38,7 @@ jobs:
       - name: Push the images to Docker Hub
         if: github.ref == 'refs/heads/main'
         run: |
-          echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ledermann --password-stdin
+          echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
           docker tag builder ${{ env.USER_NAME }}/rails-base-builder:latest
           docker push ${{ env.USER_NAME }}/rails-base-builder:latest
