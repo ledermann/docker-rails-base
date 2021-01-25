@@ -3,6 +3,7 @@ on: push
 
 env:
   TAG_NAME: 2.7.2-alpine
+  USER_NAME: ledermann
 
 jobs:
   build:
@@ -24,27 +25,27 @@ jobs:
         run: |
           echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
-          docker tag builder ghcr.io/ledermann/rails-base-builder:latest
-          docker tag builder ghcr.io/ledermann/rails-base-builder:${{ env.TAG_NAME }}
-          docker push ghcr.io/ledermann/rails-base-builder:latest
-          docker push ghcr.io/ledermann/rails-base-builder:${{ env.TAG_NAME }}
+          docker tag builder ghcr.io/${{ env.USER_NAME }}/rails-base-builder:latest
+          docker tag builder ghcr.io/${{ env.USER_NAME }}/rails-base-builder:${{ env.TAG_NAME }}
+          docker push ghcr.io/${{ env.USER_NAME }}/rails-base-builder:latest
+          docker push ghcr.io/${{ env.USER_NAME }}/rails-base-builder:${{ env.TAG_NAME }}
 
-          docker tag final ghcr.io/ledermann/rails-base-final:latest
-          docker push ghcr.io/ledermann/rails-base-final:latest
-          docker tag final ghcr.io/ledermann/rails-base-final:${{ env.TAG_NAME }}
-          docker push ghcr.io/ledermann/rails-base-final:${{ env.TAG_NAME }}
+          docker tag final ghcr.io/${{ env.USER_NAME }}/rails-base-final:latest
+          docker push ghcr.io/${{ env.USER_NAME }}/rails-base-final:latest
+          docker tag final ghcr.io/${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
+          docker push ghcr.io/${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
 
       - name: Push the images to Docker Hub
         if: github.ref == 'refs/heads/main'
         run: |
           echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ledermann --password-stdin
 
-          docker tag builder ledermann/rails-base-builder:latest
-          docker push ledermann/rails-base-builder:latest
-          docker tag builder ledermann/rails-base-builder:${{ env.TAG_NAME }}
-          docker push ledermann/rails-base-builder:${{ env.TAG_NAME }}
+          docker tag builder ${{ env.USER_NAME }}/rails-base-builder:latest
+          docker push ${{ env.USER_NAME }}/rails-base-builder:latest
+          docker tag builder ${{ env.USER_NAME }}/rails-base-builder:${{ env.TAG_NAME }}
+          docker push ${{ env.USER_NAME }}/rails-base-builder:${{ env.TAG_NAME }}
 
-          docker tag final ledermann/rails-base-final:latest
-          docker push ledermann/rails-base-final:latest
-          docker tag final ledermann/rails-base-final:${{ env.TAG_NAME }}
-          docker push ledermann/rails-base-final:${{ env.TAG_NAME }}
+          docker tag final ${{ env.USER_NAME }}/rails-base-final:latest
+          docker push ${{ env.USER_NAME }}/rails-base-final:latest
+          docker tag final ${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
+          docker push ${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
