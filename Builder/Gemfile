@@ -31,7 +31,7 @@ gem 'image_processing', '~> 1.2'
 gem 'aws-sdk-s3'
 
 # Boot large ruby/rails apps faster (https://github.com/Shopify/bootsnap)
-gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bootsnap', '>= 1.4.4'
 
 # Reports exceptions to Rollbar (https://rollbar.com)
 gem 'rollbar'
@@ -52,7 +52,7 @@ gem 'trestle'
 gem 'devise'
 
 # Middleware for enabling Cross-Origin Resource Sharing in Rack apps (https://github.com/cyu/rack-cors)
-gem 'rack-cors', require: 'rack/cors'
+gem 'rack-cors'
 
 # Block & throttle abusive requests (https://github.com/kickstarter/rack-attack)
 gem 'rack-attack'
