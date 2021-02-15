@@ -30,7 +30,7 @@ Note: Before I started timing, the base image was not available on my machine, s
 
 This repo is based on the following assumptions:
 
-- Your app is compatible with [Ruby 2.7.2 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
+- Your app is compatible with [Ruby 3.0.0 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
 - Your app uses Ruby on Rails 6.0 or 6.1
 - Your app uses PostgreSQL
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
@@ -42,7 +42,7 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `Builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:2.7.2-alpine](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
+- Based on [ruby:3.0.0-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
 - Adds some standard Ruby gems (Rails 6.1 etc., see [Gemfile](./Builder/Gemfile))
 - Adds some standard Node modules (Vue.js etc., see [package.json](./Builder/package.json))
@@ -55,7 +55,7 @@ See [Builder/Dockerfile](./Builder/Dockerfile)
 
 The `Final` stage builds the production image, which includes just the bare minimum.
 
-- Based on [ruby:2.7.2-alpine](https://github.com/docker-library/ruby/blob/master/2.7/alpine3.12/Dockerfile)
+- Based on [ruby:3.0.0-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
 - Via ONBUILD triggers it mainly copies the app and gems from the `Builder` stage
 
@@ -72,8 +72,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 #### Build Docker image
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:2.7.2-alpine AS Builder
-FROM ledermann/rails-base-final:2.7.2-alpine
+FROM ledermann/rails-base-builder:3.0.0-alpine AS Builder
+FROM ledermann/rails-base-final:3.0.0-alpine
 USER app
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
