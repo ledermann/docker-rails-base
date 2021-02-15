@@ -105,6 +105,26 @@ deploy:
       run: docker push ghcr.io/user/repo:latest
 ```
 
+## Available Docker images
+
+Both Docker images (`Builder` and `Final`) are regularly published at DockerHub and tagged with the current Ruby version:
+
+* https://hub.docker.com/r/ledermann/rails-base-builder/tags
+* https://hub.docker.com/r/ledermann/rails-base-final/tags
+
+Beware: The published images are **not** immutable. When a dependency (e.g. Ruby gem) is updated, the images will be republished using the **same** tag.
+
+When a new Ruby version comes out, a new tag is introduced and the images will be published using this tag and the former images will not be updated anymore. Here is a list of the tags that have been used in this repo so far:
+
+| Ruby version | Tag          | First published |
+|--------------|--------------|-----------------|
+| 3.0.0        | 3.0.0-alpine | 2021-02-15      |
+| 2.7.2        | 2.7.2-alpine | 2020-10-10      |
+| 2.7.1        | 2.7.1-alpine | 2020-05-20      |
+| 2.6.6        | -            | 2020-04-01      |
+| 2.6.5        | -            | 2020-01-24      |
+
+The latest Docker images are also tagged as `latest`. However, it is not recommended to use this tag in your Rails application, because updating an app to a new Ruby version usually requires some extra work.
 
 ## FAQ
 
