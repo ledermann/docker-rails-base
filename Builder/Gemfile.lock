@@ -270,7 +270,7 @@ GEM
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
-    trestle (0.9.4)
+    trestle (0.9.5)
       activemodel (>= 4.2.0)
       kaminari (>= 1.1.0)
       railties (>= 4.2.0)
