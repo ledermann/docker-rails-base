@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:1.0-experimental
 FROM ruby:3.0.0-alpine
 LABEL maintainer="georg@ledermann.dev"
 
