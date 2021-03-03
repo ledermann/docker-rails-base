@@ -69,7 +69,9 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 
 ### How to use for your Rails application
 
-#### Build Docker image
+#### Building the Docker image
+
+Add this `Dockerfile` to your application:
 
 ```Dockerfile
 FROM ledermann/rails-base-builder:3.0.0-alpine AS Builder
@@ -78,7 +80,34 @@ USER app
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
 
-Yes, this is the complete Dockerfile of the Rails app. It's so simple because the work is done by ONBUILD triggers.
+Yes, this is the complete `Dockerfile` of your Rails app. It's so simple because the work is done by ONBUILD triggers.
+
+Now build the image:
+
+```bash
+$ docker build .
+```
+
+#### Building the Docker image with BuildKit
+
+[BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/) requires a little [workaround](https://github.com/moby/buildkit/issues/816) to trigger the ONBUILD statements. Add a `COPY` statement to the `Dockerfile`:
+
+```Dockerfile
+FROM ledermann/rails-base-builder:3.0.0-alpine AS Builder
+FROM ledermann/rails-base-final:3.0.0-alpine
+
+# Workaround to trigger Builder's ONBUILDs to finish:
+COPY --from=Builder /etc/alpine-release /tmp/dummy
+
+USER app
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+```
+
+Now you can build the image with BuildKit:
+
+```
+docker buildx build .
+```
 
 
 #### Continuous integration (CI)
