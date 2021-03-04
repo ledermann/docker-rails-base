@@ -49,7 +49,9 @@ ONBUILD COPY . /app
 #      we hide the credentials while compiling assets (by renaming them before and after)
 #
 ONBUILD RUN mv config/credentials.yml.enc config/credentials.yml.enc.bak 2>/dev/null || true
-ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc RAILS_ENV=production \
+ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
+            --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
+            RAILS_ENV=production \
             SECRET_KEY_BASE=dummy \
             RAILS_MASTER_KEY=dummy \
             bundle exec rails assets:precompile

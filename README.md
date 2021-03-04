@@ -109,6 +109,18 @@ Now you can build the image with BuildKit:
 docker buildx build .
 ```
 
+You can use private npm/Yarn packages by mounting the config file:
+
+```
+docker buildx build --secret id=npmrc,src=$HOME/.npmrc .
+```
+
+or
+
+```
+docker buildx build --secret id=yarnrc,src=$HOME/.yarnrc.yml .
+```
+
 
 #### Continuous integration (CI)
 
