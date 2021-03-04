@@ -49,6 +49,7 @@ ONBUILD COPY . /app
 #      we hide the credentials while compiling assets (by renaming them before and after)
 #
 ONBUILD RUN mv config/credentials.yml.enc config/credentials.yml.enc.bak 2>/dev/null || true
+ONBUILD RUN mv config/credentials config/credentials.bak 2>/dev/null || true 
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
             --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
             RAILS_ENV=production \
@@ -56,6 +57,7 @@ ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
             RAILS_MASTER_KEY=dummy \
             bundle exec rails assets:precompile
 ONBUILD RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/null || true
+ONBUILD RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 
 # Remove folders not needed in resulting image
 ONBUILD RUN rm -rf node_modules tmp/cache vendor/bundle test spec app/javascript app/packs
