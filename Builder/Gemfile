@@ -90,9 +90,6 @@ gem 'meta-tags'
 # Intelligent search made easy with Rails and Elasticsearch (https://github.com/ankane/searchkick)
 gem 'searchkick'
 
-# Inertia adapter for Rails (https://github.com/inertiajs/inertia-rails)
-gem 'inertia_rails'
-
 # Markdown that smells nice (http://github.com/vmg/redcarpet)
 gem 'redcarpet'
 
