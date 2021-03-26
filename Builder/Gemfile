@@ -12,6 +12,9 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Puma is a simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications (http://puma.io)
 gem 'puma', '~> 5.0'
 
+# The speed of a single-page web application without having to write any JavaScript. (https://github.com/hotwired/turbo-rails)
+gem 'turbo-rails'
+
 # Sass adapter for the Rails asset pipeline. (https://github.com/rails/sass-rails)
 gem 'sass-rails', '>= 6'
 
