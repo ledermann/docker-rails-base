@@ -5,7 +5,6 @@ LABEL maintainer="georg@ledermann.dev"
 RUN apk add --no-cache \
       postgresql-client \
       tzdata \
-      shared-mime-info \
       file
 
 # Configure Rails

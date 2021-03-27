@@ -10,7 +10,6 @@ RUN apk add --no-cache \
       nodejs \
       yarn \
       tzdata \
-      shared-mime-info \
       file
 
 WORKDIR /app
