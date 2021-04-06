@@ -30,7 +30,7 @@ Note: Before I started timing, the base image was not available on my machine, s
 
 This repo is based on the following assumptions:
 
-- Your app is compatible with [Ruby 3.0.0 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
+- Your app is compatible with [Ruby 3.0.1 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
 - Your app uses Ruby on Rails 6.0 or 6.1
 - Your app uses PostgreSQL
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
@@ -42,7 +42,7 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `Builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:3.0.0-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
+- Based on [ruby:3.0.1-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
 - Adds some standard Ruby gems (Rails 6.1 etc., see [Gemfile](./Builder/Gemfile))
 - Adds Node modules from the Rails community (Turbo, Stimulus etc., see [package.json](./Builder/package.json))
@@ -55,7 +55,7 @@ See [Builder/Dockerfile](./Builder/Dockerfile)
 
 The `Final` stage builds the production image, which includes just the bare minimum.
 
-- Based on [ruby:3.0.0-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
+- Based on [ruby:3.0.1-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
 - Via ONBUILD triggers it mainly copies the app and gems from the `Builder` stage
 
@@ -74,8 +74,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 Add this `Dockerfile` to your application:
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:3.0.0-alpine AS Builder
-FROM ledermann/rails-base-final:3.0.0-alpine
+FROM ledermann/rails-base-builder:3.0.1-alpine AS Builder
+FROM ledermann/rails-base-final:3.0.1-alpine
 USER app
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
@@ -93,8 +93,8 @@ $ docker build .
 [BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/) requires a little [workaround](https://github.com/moby/buildkit/issues/816) to trigger the ONBUILD statements. Add a `COPY` statement to the `Dockerfile`:
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:3.0.0-alpine AS Builder
-FROM ledermann/rails-base-final:3.0.0-alpine
+FROM ledermann/rails-base-builder:3.0.1-alpine AS Builder
+FROM ledermann/rails-base-final:3.0.1-alpine
 
 # Workaround to trigger Builder's ONBUILDs to finish:
 COPY --from=Builder /etc/alpine-release /tmp/dummy
@@ -159,6 +159,7 @@ When a new Ruby version comes out, a new tag is introduced and the images will b
 
 | Ruby version | Tag          | First published |
 |--------------|--------------|-----------------|
+| 3.0.1        | 3.0.1-alpine | 2021-04-06      |
 | 3.0.0        | 3.0.0-alpine | 2021-02-15      |
 | 2.7.2        | 2.7.2-alpine | 2020-10-10      |
 | 2.7.1        | 2.7.1-alpine | 2020-05-20      |
