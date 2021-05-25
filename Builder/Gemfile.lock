@@ -96,12 +96,12 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    elasticsearch (7.12.0)
-      elasticsearch-api (= 7.12.0)
-      elasticsearch-transport (= 7.12.0)
-    elasticsearch-api (7.12.0)
+    elasticsearch (7.13.0)
+      elasticsearch-api (= 7.13.0)
+      elasticsearch-transport (= 7.13.0)
+    elasticsearch-api (7.13.0)
       multi_json
-    elasticsearch-transport (7.12.0)
+    elasticsearch-transport (7.13.0)
       faraday (~> 1)
       multi_json
     erubi (1.10.0)
