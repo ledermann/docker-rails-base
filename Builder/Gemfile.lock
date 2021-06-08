@@ -126,7 +126,7 @@ GEM
       activesupport (>= 4.2.0)
     hashie (4.1.0)
     http-accept (1.7.0)
-    http-cookie (1.0.3)
+    http-cookie (1.0.4)
       domain_name (~> 0.5)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
