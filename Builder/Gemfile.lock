@@ -281,7 +281,7 @@ GEM
       kaminari (>= 1.1.0)
       railties (>= 4.2.0)
       sprockets-rails (>= 2.0.0)
-    turbo-rails (0.5.10)
+    turbo-rails (0.5.11)
       rails (>= 6.0.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
