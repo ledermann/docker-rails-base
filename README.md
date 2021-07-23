@@ -26,15 +26,21 @@ As you can see, using DockerRailsBase is more than **2 times faster** compared t
 Note: Before I started timing, the base image was not available on my machine, so it was downloaded first, which took some time. If the base image is already available, the building time is only 1:18min (**3 times faster**).
 
 
-## How?
+# Requirements
 
 This repo is based on the following assumptions:
 
-- Your app is compatible with [Ruby 3.0.2 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
+- Your Docker host is compatible with [Alpine Linux 3.14](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.14.0), which requires Docker 20.10.0 or later
+- Your app is compatible with [Ruby 3.0.2 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.14/Dockerfile)
 - Your app uses Ruby on Rails 6.0 or 6.1
 - Your app uses PostgreSQL
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
 - Your app compiles JS with [Webpacker](https://github.com/rails/webpacker) and/or [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails)
+
+If your project differs from this, I suggest to fork this project and create your own base image.
+
+
+## How?
 
 It uses [multi-stage building](https://docs.docker.com/develop/develop-images/multistage-build/) to build a very small production image. There are two Dockerfiles in this repo, one for the first stage (called `Builder`) and one for the resulting stage (called `Final`).
 
@@ -42,7 +48,7 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `Builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:3.0.2-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
+- Based on [ruby:3.0.2-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.14/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
 - Adds some standard Ruby gems (Rails 6.1 etc., see [Gemfile](./Builder/Gemfile))
 - Adds Node modules from the Rails community (Turbo, Stimulus etc., see [package.json](./Builder/package.json))
@@ -55,7 +61,7 @@ See [Builder/Dockerfile](./Builder/Dockerfile)
 
 The `Final` stage builds the production image, which includes just the bare minimum.
 
-- Based on [ruby:3.0.2-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.13/Dockerfile)
+- Based on [ruby:3.0.2-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.14/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
 - Via ONBUILD triggers it mainly copies the app and gems from the `Builder` stage
 
