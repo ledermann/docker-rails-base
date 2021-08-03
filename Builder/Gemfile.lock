@@ -185,7 +185,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.12.0-x86_64-linux)
       racc (~> 1.4)
-    oj (3.12.2)
+    oj (3.12.3)
     orm_adapter (0.5.0)
     pagy (4.10.1)
     pg (1.2.3)
