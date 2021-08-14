@@ -146,7 +146,8 @@ deploy:
       run: |
         export COMMIT_TIME=$(git show -s --format=%ci ${GITHUB_SHA})
         export COMMIT_SHA=${GITHUB_SHA}
-        docker build --build-arg COMMIT_TIME --build-arg COMMIT_SHA -t ghcr.io/user/repo:latest .
+        export TAG_OR_BRANCH=${GITHUB_REF#refs/*/}
+        docker buildx build --build-arg COMMIT_TIME --build-arg COMMIT_SHA --build-arg TAG_OR_BRANCH -t ghcr.io/user/repo:latest .
 
     - name: Push the image
       run: docker push ghcr.io/user/repo:latest
