@@ -19,7 +19,7 @@ EXPOSE 3000
 # This image is for production env only
 ENV RAILS_ENV production
 
-# Write GIT commit SHA and TIME to env vars
+# Write GIT meta data from arguments to env vars
 ONBUILD ARG COMMIT_SHA
 ONBUILD ARG COMMIT_TIME
 ONBUILD ARG TAG_OR_BRANCH

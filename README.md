@@ -140,7 +140,11 @@ deploy:
     - uses: actions/checkout@v2
 
     - name: Login to GitHub Container Registry
-      run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build the image
       run: |
