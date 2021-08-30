@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "@hotwired/turbo-rails": "^7.0.0-rc.2",
+    "@hotwired/turbo-rails": "^7.0.0-rc.3",
     "@rails/actioncable": "^6.1.4",
     "@rails/activestorage": "^6.1.4",
     "@rails/ujs": "^6.1.4",
