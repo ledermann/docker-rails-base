@@ -9,7 +9,7 @@ gem 'rails', '~> 6.1.4'
 # Pg is the Ruby interface to the {PostgreSQL RDBMS}[http://www.postgresql.org/] (https://github.com/ged/ruby-pg)
 gem 'pg', '>= 0.18', '< 2.0'
 
-# Puma is a simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications (http://puma.io)
+# Puma is a simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications (https://puma.io)
 gem 'puma', '~> 5.0'
 
 # The speed of a single-page web application without having to write any JavaScript. (https://github.com/hotwired/turbo-rails)
@@ -57,7 +57,7 @@ gem 'devise'
 # Middleware for enabling Cross-Origin Resource Sharing in Rack apps (https://github.com/cyu/rack-cors)
 gem 'rack-cors'
 
-# Block & throttle abusive requests (https://github.com/kickstarter/rack-attack)
+# Block & throttle abusive requests (https://github.com/rack/rack-attack)
 gem 'rack-attack'
 
 # Rack middleware for defining a canonical host name. (http://github.com/tylerhunt/rack-canonical-host)
@@ -81,7 +81,7 @@ gem 'slim'
 # Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions. (https://github.com/rest-client/rest-client)
 gem 'rest-client'
 
-# Simple, efficient background processing for Ruby (http://sidekiq.org)
+# Simple, efficient background processing for Ruby (https://sidekiq.org)
 gem 'sidekiq'
 
 # Complete geocoding solution for Ruby. (http://www.rubygeocoder.com)
@@ -90,7 +90,7 @@ gem 'geocoder'
 # Collection of SEO helpers for Ruby on Rails. (http://github.com/kpumuk/meta-tags)
 gem 'meta-tags'
 
-# Intelligent search made easy with Rails and Elasticsearch (https://github.com/ankane/searchkick)
+# Intelligent search made easy with Rails and Elasticsearch or OpenSearch (https://github.com/ankane/searchkick)
 gem 'searchkick'
 
 # Markdown that smells nice (http://github.com/vmg/redcarpet)
