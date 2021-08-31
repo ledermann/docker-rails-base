@@ -63,6 +63,9 @@ gem 'rack-attack'
 # Rack middleware for defining a canonical host name. (http://github.com/tylerhunt/rack-canonical-host)
 gem 'rack-canonical-host'
 
+# Brotli compression for Rack responses (http://github.com/marcotc/rack-brotli/)
+gem 'rack-brotli'
+
 # Simple authorization solution for Rails. (https://github.com/CanCanCommunity/cancancan)
 gem 'cancancan'
 
