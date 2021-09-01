@@ -125,7 +125,7 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
-    ffi (1.15.3)
+    ffi (1.15.4)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     geocoder (1.6.7)
