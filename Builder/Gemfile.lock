@@ -197,7 +197,7 @@ GEM
     rack (2.2.3)
     rack-attack (6.5.0)
       rack (>= 1.0, < 3)
-    rack-brotli (1.1.0)
+    rack-brotli (1.2.0)
       brotli (>= 0.1.7)
       rack (>= 1.4)
     rack-canonical-host (1.0.0)
