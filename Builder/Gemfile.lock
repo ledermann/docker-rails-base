@@ -308,7 +308,7 @@ GEM
     unf_ext (0.0.7.7)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webpacker (5.4.2)
+    webpacker (5.4.3)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
