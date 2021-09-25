@@ -6,6 +6,6 @@
     "@rails/activestorage": "^6.1.4",
     "@rails/ujs": "^6.1.4",
     "@rails/webpacker": "^5.4.3",
-    "stimulus": "^2.0.0"
+    "stimulus": "^3.0.0"
   }
 }
