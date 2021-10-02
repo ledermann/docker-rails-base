@@ -138,6 +138,12 @@ deploy:
 
   steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Fetch tag annotations
+      # https://github.com/actions/checkout/issues/290
+      run: git fetch --tags --force
 
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v1
@@ -148,10 +154,10 @@ deploy:
 
     - name: Build the image
       run: |
-        export COMMIT_TIME=$(git show -s --format=%ci ${GITHUB_SHA})
+        export COMMIT_TIME=$(git show -s --format=%cI ${GITHUB_SHA})
         export COMMIT_SHA=${GITHUB_SHA}
-        export TAG_OR_BRANCH=${GITHUB_REF#refs/*/}
-        docker buildx build --build-arg COMMIT_TIME --build-arg COMMIT_SHA --build-arg TAG_OR_BRANCH -t ghcr.io/user/repo:latest .
+        export COMMIT_VERSION=$(git describe)
+        docker buildx build --build-arg COMMIT_TIME --build-arg COMMIT_SHA --build-arg COMMIT_VERSION -t ghcr.io/user/repo:latest .
 
     - name: Push the image
       run: docker push ghcr.io/user/repo:latest
