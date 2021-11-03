@@ -66,7 +66,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     aws-eventstream (1.2.0)
     aws-partitions (1.523.0)
-    aws-sdk-core (3.121.5)
+    aws-sdk-core (3.121.6)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.520.1)
       aws-sigv4 (~> 1.1)
