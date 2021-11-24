@@ -2,7 +2,7 @@ name: Build images
 on: push
 
 env:
-  TAG_NAME: 3.0.2-alpine
+  TAG_NAME: 3.0.3-alpine
   USER_NAME: ledermann
 
 jobs:
