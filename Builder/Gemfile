@@ -13,7 +13,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 5.0'
 
 # The speed of a single-page web application without having to write any JavaScript. (https://github.com/hotwired/turbo-rails)
-gem 'turbo-rails'
+gem 'turbo-rails', '>= 1.0.0'
 
 # Sass adapter for the Rails asset pipeline. (https://github.com/rails/sass-rails)
 gem 'sass-rails', '>= 6'
