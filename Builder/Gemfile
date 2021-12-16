@@ -9,7 +9,7 @@ gem 'rails', '~> 6.1.4'
 # Pg is the Ruby interface to the {PostgreSQL RDBMS}[http://www.postgresql.org/] (https://github.com/ged/ruby-pg)
 gem 'pg', '>= 0.18', '< 2.0'
 
-# Puma is a simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications (https://puma.io)
+# Puma is a simple, fast, threaded, and highly parallel HTTP 1.1 server for Ruby/Rack applications (https://puma.io)
 gem 'puma', '~> 5.0'
 
 # The speed of a single-page web application without having to write any JavaScript. (https://github.com/hotwired/turbo-rails)
@@ -42,7 +42,7 @@ gem 'lograge'
 # Whitespace cleanup for ActiveModel attributes (https://github.com/rmm5t/strip_attributes)
 gem 'strip_attributes'
 
-# The Ultimate Pagination Ruby Gem (https://github.com/ddnexus/pagy)
+# The kick-ass pagination ruby gem (https://github.com/ddnexus/pagy)
 gem 'pagy'
 
 # A modern, responsive admin framework for Ruby on Rails (https://www.trestle.io)
@@ -57,7 +57,7 @@ gem 'rack-cors'
 # Block & throttle abusive requests (https://github.com/rack/rack-attack)
 gem 'rack-attack'
 
-# Rack middleware for defining a canonical host name. (http://github.com/tylerhunt/rack-canonical-host)
+# Rack middleware for defining a canonical host name. (https://github.com/tylerhunt/rack-canonical-host)
 gem 'rack-canonical-host'
 
 # Brotli compression for Rack responses (http://github.com/marcotc/rack-brotli/)
@@ -87,7 +87,7 @@ gem 'sidekiq'
 # Complete geocoding solution for Ruby. (http://www.rubygeocoder.com)
 gem 'geocoder'
 
-# Collection of SEO helpers for Ruby on Rails. (http://github.com/kpumuk/meta-tags)
+# Collection of SEO helpers for Ruby on Rails. (https://github.com/kpumuk/meta-tags)
 gem 'meta-tags'
 
 # Intelligent search made easy with Rails and Elasticsearch or OpenSearch (https://github.com/ankane/searchkick)
