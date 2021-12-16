@@ -278,8 +278,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    strip_attributes (1.11.0)
-      activemodel (>= 3.0, < 7.0)
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
@@ -343,7 +341,7 @@ DEPENDENCIES
   searchkick
   sidekiq
   slim
-  strip_attributes
+  sprockets-rails
   trestle
   turbo-rails
   turbolinks (~> 5)

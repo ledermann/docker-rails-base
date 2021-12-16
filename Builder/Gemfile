@@ -39,9 +39,6 @@ gem 'rollbar'
 # Tame Rails' multi-line logging into a single line per request (https://github.com/roidrage/lograge)
 gem 'lograge'
 
-# Whitespace cleanup for ActiveModel attributes (https://github.com/rmm5t/strip_attributes)
-gem 'strip_attributes'
-
 # The kick-ass pagination ruby gem (https://github.com/ddnexus/pagy)
 gem 'pagy'
 
