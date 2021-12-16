@@ -42,14 +42,14 @@ ONBUILD COPY . /app
 # Compile assets with Webpacker or Sprockets
 #
 # Notes:
-#   1. Executing "assets:precompile" runs "yarn:install" prior
-#   2. Executing "assets:precompile" runs "webpacker:compile", too
-#   3. For an app using encrypted credentials, Rails raises a `MissingKeyError`
+#   1. Executing "assets:precompile" runs "webpacker:compile", too
+#   2. For an app using encrypted credentials, Rails raises a `MissingKeyError`
 #      if the master key is missing. Because on CI there is no master key,
 #      we hide the credentials while compiling assets (by renaming them before and after)
 #
 ONBUILD RUN mv config/credentials.yml.enc config/credentials.yml.enc.bak 2>/dev/null || true
 ONBUILD RUN mv config/credentials config/credentials.bak 2>/dev/null || true 
+ONBUILD RUN yarn install
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
             --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
             RAILS_ENV=production \
