@@ -3,8 +3,8 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.0",
-    "@rails/actioncable": "^6.1.4",
-    "@rails/activestorage": "^6.1.4-3",
+    "@rails/actioncable": "^7.0.0",
+    "@rails/activestorage": "^7.0.0",
     "@rails/request.js": "^0.0.6"
   }
 }

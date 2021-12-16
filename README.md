@@ -32,7 +32,7 @@ This repo is based on the following assumptions:
 
 - Your Docker host is compatible with [Alpine Linux 3.15](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.15.0), which requires Docker 20.10.0 or later
 - Your app is compatible with [Ruby 3.0.3 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.15/Dockerfile)
-- Your app uses Ruby on Rails 6.0 or 6.1
+- Your app uses Ruby on Rails 6.0, 6.1 or 7.0
 - Your app uses PostgreSQL
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
 - Your app compiles JS with [Webpacker](https://github.com/rails/webpacker) and/or [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails)
@@ -50,7 +50,7 @@ The `Builder` stage installs Ruby gems and Node modules. It also includes Git, N
 
 - Based on [ruby:3.0.3-alpine](https://github.com/docker-library/ruby/blob/master/3.0/alpine3.15/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
-- Adds some standard Ruby gems (Rails 6.1 etc., see [Gemfile](./Builder/Gemfile))
+- Adds some standard Ruby gems (Rails 7.0 etc., see [Gemfile](./Builder/Gemfile))
 - Adds Node modules from the Rails community (Turbo, Stimulus etc., see [package.json](./Builder/package.json))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
 
