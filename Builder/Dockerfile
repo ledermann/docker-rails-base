@@ -48,7 +48,7 @@ ONBUILD COPY . /app
 #      we hide the credentials while compiling assets (by renaming them before and after)
 #
 ONBUILD RUN mv config/credentials.yml.enc config/credentials.yml.enc.bak 2>/dev/null || true
-ONBUILD RUN mv config/credentials config/credentials.bak 2>/dev/null || true 
+ONBUILD RUN mv config/credentials config/credentials.bak 2>/dev/null || true
 ONBUILD RUN yarn install
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
             --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
