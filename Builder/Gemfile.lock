@@ -346,24 +346,24 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   aws-sdk-s3
-  bootsnap (>= 1.4.4)
+  bootsnap
   cancancan
   devise
   friendly_id
   geocoder
   image_processing (~> 1.2)
-  jbuilder (~> 2.7)
+  jbuilder
   lograge
   meta-tags
   oj
   pagy
-  pg (>= 0.18, < 2.0)
+  pg (~> 1.1)
   puma (~> 5.0)
   rack-attack
   rack-brotli
   rack-canonical-host
   rack-cors
-  rails (~> 7.0.0)
+  rails (~> 7.0.1)
   redcarpet
   rest-client
   rollbar
