@@ -1,5 +1,5 @@
 name: Build images
-on: push
+on: [push, pull_request]
 
 env:
   TAG_NAME: 3.1.0-alpine
