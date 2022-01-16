@@ -5,6 +5,7 @@ LABEL maintainer="georg@ledermann.dev"
 # Add basic packages
 RUN apk add --no-cache \
       build-base \
+      gcompat \
       postgresql-dev \
       git \
       nodejs \
