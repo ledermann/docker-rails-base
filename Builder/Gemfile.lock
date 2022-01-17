@@ -316,7 +316,7 @@ GEM
       kaminari (>= 1.1.0)
       railties (>= 4.2.0)
       sprockets-rails (>= 2.0.0)
-    turbo-rails (1.0.0)
+    turbo-rails (1.0.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     turbolinks (5.2.1)
