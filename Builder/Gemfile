@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.0'
 
 # Full-stack web application framework. (https://rubyonrails.org)
-gem 'rails', '~> 7.0.1'
+gem 'rails', '~> 7.0.2'
 
 # Sprockets Rails integration (https://github.com/rails/sprockets-rails)
 gem 'sprockets-rails'
