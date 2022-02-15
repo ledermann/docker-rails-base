@@ -6,6 +6,7 @@ LABEL maintainer="georg@ledermann.dev"
 RUN apk add --no-cache \
       build-base \
       gcompat \
+      vips-dev \
       postgresql-dev \
       git \
       nodejs \
