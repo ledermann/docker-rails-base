@@ -4,6 +4,7 @@ LABEL maintainer="georg@ledermann.dev"
 # Add basic packages
 RUN apk add --no-cache \
       postgresql-client \
+      brotli-libs \
       tzdata \
       file
 
