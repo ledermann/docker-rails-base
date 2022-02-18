@@ -113,7 +113,7 @@ GEM
       faraday (~> 1)
       multi_json
     erubi (1.10.0)
-    faraday (1.9.3)
+    faraday (1.10.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
