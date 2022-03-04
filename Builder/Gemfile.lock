@@ -255,7 +255,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (5.0.1)
+    searchkick (5.0.2)
       activemodel (>= 5.2)
       hashie
     sidekiq (6.4.1)
