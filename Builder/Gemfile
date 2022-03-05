@@ -90,9 +90,6 @@ gem 'geocoder'
 # Collection of SEO helpers for Ruby on Rails. (https://github.com/kpumuk/meta-tags)
 gem 'meta-tags'
 
-# Intelligent search made easy with Rails and Elasticsearch or OpenSearch (https://github.com/ankane/searchkick)
-gem 'searchkick'
-
 # Markdown that smells nice (http://github.com/vmg/redcarpet)
 gem 'redcarpet'
 

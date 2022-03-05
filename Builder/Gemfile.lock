@@ -111,7 +111,6 @@ GEM
     geocoder (1.7.3)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    hashie (5.0.0)
     http-accept (1.7.0)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
@@ -255,9 +254,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    searchkick (5.0.2)
-      activemodel (>= 5.2)
-      hashie
     sidekiq (6.4.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -334,7 +330,6 @@ DEPENDENCIES
   rest-client
   rollbar
   sass-rails (>= 6)
-  searchkick
   sidekiq
   slim
   sprockets-rails
