@@ -8,6 +8,8 @@ RUN apk add --no-cache \
       gcompat \
       vips-dev \
       postgresql-dev \
+      sqlite-dev \
+      mariadb-dev \
       git \
       nodejs \
       yarn \

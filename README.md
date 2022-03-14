@@ -33,7 +33,7 @@ This repo is based on the following assumptions:
 - Your Docker host is compatible with [Alpine Linux 3.15](https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.15.0), which requires Docker 20.10.0 or later
 - Your app is compatible with [Ruby 3.1.1 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.1/alpine3.15/Dockerfile)
 - Your app uses Ruby on Rails 6.0, 6.1 or 7.0
-- Your app uses PostgreSQL
+- Your app uses PostgreSQL, SQLite or MySQL/MariaDB
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
 - Your app compiles JS with [Webpacker](https://github.com/rails/webpacker) and/or [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails)
 
