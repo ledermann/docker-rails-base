@@ -64,4 +64,9 @@ ONBUILD RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/
 ONBUILD RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 
 # Remove folders not needed in resulting image
-ONBUILD RUN rm -rf node_modules tmp/cache vendor/bundle test spec app/javascript app/packs
+# This includes `app/javascript` which contains the JavaScript source code.
+# Normally it is not needed in the resulting image, because it was compiled
+# to `public/`. But if the app uses importmaps, the folder is still required
+# for pinning and must not be removed.
+ONBUILD RUN rm -rf node_modules tmp/cache vendor/bundle test spec app/packs
+ONBUILD RUN if [ ! -f config/importmap.rb ]; then rm -rf app/javascript; fi
