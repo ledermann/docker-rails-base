@@ -9,6 +9,15 @@ gem 'rails', '~> 7.0.2', '>= 7.0.2.3'
 # Sprockets Rails integration (https://github.com/rails/sprockets-rails)
 gem 'sprockets-rails'
 
+# Bundle and process CSS with Tailwind, Bootstrap, PostCSS, Sass in Rails via Node.js. (https://github.com/rails/cssbundling-rails)
+gem 'cssbundling-rails'
+
+# Bundle and transpile JavaScript in Rails with esbuild, rollup.js, or Webpack. (https://github.com/rails/jsbundling-rails)
+gem 'jsbundling-rails'
+
+# A modest JavaScript framework for the HTML you already have. (https://stimulus.hotwired.dev)
+gem 'stimulus-rails'
+
 # Pg is the Ruby interface to the PostgreSQL RDBMS (https://github.com/ged/ruby-pg)
 gem 'pg', '~> 1.1'
 
