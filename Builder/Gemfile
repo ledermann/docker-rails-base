@@ -78,12 +78,6 @@ gem 'cancancan'
 # A gem adding sorting, reordering capabilities to an active_record model, allowing it to act as a list (http://github.com/brendon/acts_as_list)
 gem 'acts_as_list'
 
-# Turbolinks makes navigating your web application faster (https://github.com/turbolinks/turbolinks)
-gem 'turbolinks', '~> 5'
-
-# Use Rails render with Turbolinks (https://github.com/jorgemanrubia/turbolinks_render)
-gem 'turbolinks_render'
-
 # Slim is a template language. (http://slim-lang.com/)
 gem 'slim'
 
