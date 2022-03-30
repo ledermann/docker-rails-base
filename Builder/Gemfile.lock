@@ -140,7 +140,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
-    lograge (0.11.2)
+    lograge (0.12.0)
       actionpack (>= 4)
       activesupport (>= 4)
       railties (>= 4)
