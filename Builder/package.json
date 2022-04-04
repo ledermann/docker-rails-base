@@ -6,6 +6,6 @@
     "@rails/actioncable": "^7.0.2",
     "@rails/activestorage": "^7.0.2",
     "@rails/request.js": "^0.0.6",
-    "esbuild": "^0.14.30"
+    "esbuild": "^0.14.31"
   }
 }
