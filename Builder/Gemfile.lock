@@ -114,7 +114,7 @@ GEM
     globalid (1.0.0)
       activesupport (>= 5.0)
     http-accept (1.7.0)
-    http-cookie (1.0.4)
+    http-cookie (1.0.5)
       domain_name (~> 0.5)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
