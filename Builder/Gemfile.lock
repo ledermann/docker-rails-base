@@ -276,7 +276,7 @@ GEM
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.10)
-    timeout (0.2.0)
+    timeout (0.3.0)
     trestle (0.9.6)
       activemodel (>= 4.2.0)
       kaminari (>= 1.1.0)
