@@ -12,6 +12,7 @@ RUN apk add --no-cache \
       mariadb-dev \
       git \
       nodejs \
+      npm \
       yarn \
       tzdata \
       file
