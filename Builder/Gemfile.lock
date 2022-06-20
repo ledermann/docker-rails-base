@@ -95,7 +95,7 @@ GEM
     concurrent-ruby (1.1.10)
     connection_pool (2.2.5)
     crass (1.0.6)
-    cssbundling-rails (1.1.0)
+    cssbundling-rails (1.1.1)
       railties (>= 6.0.0)
     devise (4.8.1)
       bcrypt (~> 3.0)
