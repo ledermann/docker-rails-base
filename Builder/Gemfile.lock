@@ -91,7 +91,7 @@ GEM
       msgpack (~> 1.2)
     brotli (0.4.0)
     builder (3.2.4)
-    cancancan (3.3.0)
+    cancancan (3.4.0)
     concurrent-ruby (1.1.10)
     connection_pool (2.2.5)
     crass (1.0.6)
