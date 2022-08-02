@@ -106,7 +106,7 @@ GEM
     digest (3.1.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    erubi (1.10.0)
+    erubi (1.11.0)
     ffi (1.15.5)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
