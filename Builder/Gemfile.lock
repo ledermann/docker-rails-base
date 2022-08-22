@@ -232,7 +232,7 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redcarpet (3.5.1)
-    redis (4.7.1)
+    redis (4.8.0)
     request_store (1.5.1)
       rack (>= 1.4)
     responders (3.0.1)
@@ -256,7 +256,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sidekiq (6.5.4)
+    sidekiq (6.5.5)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.5.0)
