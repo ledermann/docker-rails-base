@@ -93,7 +93,7 @@ GEM
     builder (3.2.4)
     cancancan (3.4.0)
     concurrent-ruby (1.1.10)
-    connection_pool (2.2.5)
+    connection_pool (2.3.0)
     crass (1.0.6)
     cssbundling-rails (1.1.1)
       railties (>= 6.0.0)
