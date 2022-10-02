@@ -20,7 +20,10 @@ RUN apk add --no-cache \
 WORKDIR /app
 
 # Install standard Node modules
+# Note: If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
+#       explicitely exclude it from installing (because tests are not run here)
 COPY package.json yarn.lock /app/
+ENV CYPRESS_INSTALL_BINARY=0
 RUN yarn install --immutable
 
 # Install standard gems
