@@ -1,1 +1,10 @@
 /Builder/node_modules
+
+# Yarn 3 files
+/Builder/.yarn/*
+!/Builder/.yarn/cache
+!/Builder/.yarn/patches
+!/Builder/.yarn/plugins
+!/Builder/.yarn/releases
+!/Builder/.yarn/sdks
+!/Builder/.yarn/versions

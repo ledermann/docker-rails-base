@@ -21,7 +21,7 @@ WORKDIR /app
 
 # Install standard Node modules
 COPY package.json yarn.lock /app/
-RUN yarn install --frozen-lockfile
+RUN yarn install --immutable
 
 # Install standard gems
 COPY Gemfile* /app/
@@ -54,7 +54,7 @@ ONBUILD COPY . /app
 #
 ONBUILD RUN mv config/credentials.yml.enc config/credentials.yml.enc.bak 2>/dev/null || true
 ONBUILD RUN mv config/credentials config/credentials.bak 2>/dev/null || true
-ONBUILD RUN yarn install
+ONBUILD RUN yarn install --immutable
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
             --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
             RAILS_ENV=production \
