@@ -107,7 +107,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.11.0)
     ffi (1.15.5)
-    friendly_id (5.4.2)
+    friendly_id (5.5.0)
       activerecord (>= 4.0.0)
     geocoder (1.8.1)
     globalid (1.0.0)
