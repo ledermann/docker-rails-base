@@ -269,7 +269,7 @@ GEM
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.0)
-    trestle (0.9.6)
+    trestle (0.9.7)
       activemodel (>= 4.2.0)
       kaminari (>= 1.1.0)
       railties (>= 4.2.0)
