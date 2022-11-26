@@ -123,7 +123,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jmespath (1.6.1)
+    jmespath (1.6.2)
     jsbundling-rails (1.0.3)
       railties (>= 6.0.0)
     kaminari (1.2.2)
