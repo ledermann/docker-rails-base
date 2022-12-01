@@ -19,17 +19,22 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 
-# Install standard Node modules
-# Note: If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
-#       explicitely exclude it from installing (because tests are not run here)
+#### Install standard Node modules
 COPY package.json yarn.lock /app/
+# If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
+# explicitely exclude it from installing (because tests are not run here)
 ENV CYPRESS_INSTALL_BINARY=0
+# Avoid error "digital envelope routines::initialization error" while compiling assets with Webpack
+# due to OpenSSL 3.0 (included in Alpine 3.17)
+ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN yarn install --frozen-lockfile
+####
 
-# Install standard gems
+##### Install standard gems
 COPY Gemfile* /app/
 RUN bundle config --local frozen 1 && \
     bundle install -j4 --retry 3
+####
 
 #### ONBUILD: Add triggers to the image, executed later while building a child image
 
