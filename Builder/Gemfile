@@ -85,7 +85,7 @@ gem 'slim'
 gem 'rest-client'
 
 # Simple, efficient background processing for Ruby (https://sidekiq.org)
-gem 'sidekiq'
+gem 'sidekiq', '< 7'
 
 # Complete geocoding solution for Ruby. (http://www.rubygeocoder.com)
 gem 'geocoder'

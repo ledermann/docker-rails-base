@@ -249,8 +249,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sidekiq (6.5.7)
-      connection_pool (>= 2.2.5)
+    sidekiq (6.5.8)
+      connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
       redis (>= 4.5.0, < 5)
     slim (4.1.0)
@@ -321,7 +321,7 @@ DEPENDENCIES
   rest-client
   rollbar
   sass-rails (>= 6)
-  sidekiq
+  sidekiq (< 7)
   slim
   sprockets-rails
   stimulus-rails
