@@ -225,7 +225,8 @@ GEM
       zeitwerk (~> 2.5)
     rake (13.0.6)
     redcarpet (3.5.1)
-    redis (4.8.0)
+    redis-client (0.11.2)
+      connection_pool
     request_store (1.5.1)
       rack (>= 1.4)
     responders (3.0.1)
@@ -249,10 +250,11 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sidekiq (6.5.8)
-      connection_pool (>= 2.2.5, < 3)
-      rack (~> 2.0)
-      redis (>= 4.5.0, < 5)
+    sidekiq (7.0.2)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.11.0)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -321,7 +323,7 @@ DEPENDENCIES
   rest-client
   rollbar
   sass-rails (>= 6)
-  sidekiq (< 7)
+  sidekiq
   slim
   sprockets-rails
   stimulus-rails
