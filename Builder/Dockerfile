@@ -40,7 +40,8 @@ RUN bundle config --local frozen 1 && \
 
 # Install Ruby gems (for production only)
 ONBUILD COPY Gemfile* /app/
-ONBUILD RUN bundle config --local without 'development test' && \
+ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
+            bundle config --local without 'development test' && \
             bundle install -j4 --retry 3 && \
             # Remove unneeded gems
             bundle clean --force && \

@@ -127,6 +127,12 @@ or
 docker buildx build --secret id=yarnrc,src=$HOME/.yarnrc.yml .
 ```
 
+In a similar way you can provide a configuration file for Bundler:
+
+```
+docker buildx build --secret id=bundleconfig,src=$HOME/.bundle/config .
+```
+
 
 #### Continuous integration (CI)
 
