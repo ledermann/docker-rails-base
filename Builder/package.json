@@ -6,6 +6,8 @@
     "@rails/actioncable": "^7.0.4",
     "@rails/activestorage": "^7.0.4",
     "@rails/request.js": "^0.0.8",
-    "vite": "^4.0.2"
+    "rollup": "^3.7.5",
+    "vite": "^4.0.2",
+    "vite-plugin-rails": "^0.1.0"
   }
 }
