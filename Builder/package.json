@@ -7,7 +7,7 @@
     "@rails/activestorage": "^7.0.4",
     "@rails/request.js": "^0.0.8",
     "rollup": "^3.7.5",
-    "vite": "^4.0.2",
+    "vite": "^4.0.3",
     "vite-plugin-rails": "^0.1.0"
   }
 }
