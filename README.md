@@ -50,8 +50,8 @@ The `Builder` stage installs Ruby gems and Node modules. It also includes Git, N
 
 - Based on [ruby:3.1.3-alpine](https://github.com/docker-library/ruby/blob/master/3.1/alpine3.17/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
-- Adds some standard Ruby gems (Rails 7.0 etc., see [Gemfile](./Builder/Gemfile))
-- Adds Node modules from the Rails community (Turbo, Stimulus etc., see [package.json](./Builder/package.json))
+- Adds some default Ruby gems (Rails 7.0 etc., see [Gemfile](./Builder/Gemfile))
+- Adds some default Node modules (Turbo, Stimulus, TailwindCSS etc., see [package.json](./Builder/package.json))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
 
 See [Builder/Dockerfile](./Builder/Dockerfile)

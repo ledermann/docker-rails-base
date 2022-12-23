@@ -1,12 +1,16 @@
 {
   "private": true,
   "dependencies": {
+    "@honeybadger-io/js": "^4.8.1",
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.2.4",
     "@rails/actioncable": "^7.0.4",
     "@rails/activestorage": "^7.0.4",
     "@rails/request.js": "^0.0.8",
-    "rollup": "^3.8.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.20",
+    "rollup": "^3.8.1",
+    "tailwindcss": "^3.2.4",
     "vite": "^4.0.3",
     "vite-plugin-rails": "^0.1.0"
   }

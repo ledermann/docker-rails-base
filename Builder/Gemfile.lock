@@ -112,6 +112,7 @@ GEM
     geocoder (1.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    honeybadger (5.0.2)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -240,7 +241,6 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rollbar (3.3.3)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     sass-rails (6.0.0)
@@ -261,6 +261,10 @@ GEM
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
+    slim-rails (3.5.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 5.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -288,6 +292,10 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
+    view_component (2.80.0)
+      activesupport (>= 5.2.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     vite_rails (3.0.13)
       railties (>= 5.1, < 8)
       vite_ruby (~> 3.0, >= 3.2.2)
@@ -314,6 +322,7 @@ DEPENDENCIES
   devise
   friendly_id
   geocoder
+  honeybadger
   image_processing (~> 1.2)
   jbuilder
   lograge
@@ -329,14 +338,14 @@ DEPENDENCIES
   rails (~> 7.0.4)
   redcarpet
   rest-client
-  rollbar
   sass-rails (>= 6)
   sidekiq
-  slim
+  slim-rails
   sprockets-rails
   stimulus-rails
   trestle
   turbo-rails
+  view_component
   vite_rails
 
 RUBY VERSION

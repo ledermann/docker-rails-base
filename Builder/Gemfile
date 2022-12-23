@@ -42,8 +42,8 @@ gem 'aws-sdk-s3'
 # Boot large ruby/rails apps faster (https://github.com/Shopify/bootsnap)
 gem 'bootsnap', require: false
 
-# Reports exceptions to Rollbar (https://rollbar.com)
-gem 'rollbar'
+# Error reports you can be happy about. (https://github.com/honeybadger-io/honeybadger-ruby)
+gem 'honeybadger'
 
 # Tame Rails' multi-line logging into a single line per request (https://github.com/roidrage/lograge)
 gem 'lograge'
@@ -75,8 +75,11 @@ gem 'cancancan'
 # A gem adding sorting, reordering capabilities to an active_record model, allowing it to act as a list (http://github.com/brendon/acts_as_list)
 gem 'acts_as_list'
 
-# Slim is a template language. (http://slim-lang.com/)
-gem 'slim'
+# Slim templates generator for Rails (https://github.com/slim-template/slim-rails)
+gem 'slim-rails'
+
+# A framework for building reusable, testable & encapsulated view components in Ruby on Rails. (https://viewcomponent.org)
+gem 'view_component'
 
 # Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions. (https://github.com/rest-client/rest-client)
 gem 'rest-client'
