@@ -4,7 +4,6 @@
 
 Building Docker images usually takes a long time. This repo contains base images with preinstalled dependencies for [Ruby on Rails](https://rubyonrails.org/), so building a production image will be **2-3 times faster**.
 
-
 ## What?
 
 When using the official Ruby image, building a Docker image for a typical Rails application requires lots of time for installing dependencies - mainly OS packages, Ruby gems, Ruby gems with native extensions (Nokogiri etc.) and Node modules. This is required every time the app needs to be deployed to production.
@@ -12,7 +11,6 @@ When using the official Ruby image, building a Docker image for a typical Rails 
 I was looking for a way to reduce this time, so I created base images that contain most of the dependencies used in my applications.
 
 And while I'm at it, I also moved as much as possible from the app-specific Dockerfile into the base image by using [ONBUILD](https://docs.docker.com/engine/reference/builder/#onbuild) triggers. This makes the Dockerfile in my apps small and simple.
-
 
 ## Performance
 
@@ -24,7 +22,6 @@ I compared building times using a typical Rails application. This is the result 
 As you can see, using DockerRailsBase is more than **2 times faster** compared to the official Ruby image. It saves nearly **3min** on every build.
 
 Note: Before I started timing, the base image was not available on my machine, so it was downloaded first, which took some time. If the base image is already available, the building time is only 1:18min (**3 times faster**).
-
 
 # Requirements
 
@@ -38,7 +35,6 @@ This repo is based on the following assumptions:
 - Your app bundles JavaScript with `rails assets:precompile`. This works with [Vite Ruby](https://github.com/ElMassimo/vite_ruby), [Webpacker](https://github.com/rails/webpacker), [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails) and others.
 
 If your project differs from this, I suggest to fork this project and create your own base image.
-
 
 ## How?
 
@@ -56,7 +52,6 @@ The `Builder` stage installs Ruby gems and Node modules. It also includes Git, N
 
 See [Builder/Dockerfile](./Builder/Dockerfile)
 
-
 ### Final stage
 
 The `Final` stage builds the production image, which includes just the bare minimum.
@@ -67,11 +62,9 @@ The `Final` stage builds the production image, which includes just the bare mini
 
 See [Final/Dockerfile](./Final/Dockerfile)
 
-
 ### Staying up-to-date
 
 Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node module results in an updated image.
-
 
 ### How to use for your Rails application
 
@@ -133,7 +126,6 @@ In a similar way you can provide a configuration file for Bundler:
 docker buildx build --secret id=bundleconfig,src=$HOME/.bundle/config .
 ```
 
-
 #### Continuous integration (CI)
 
 Example to build the application's image with GitHub Actions and push it to the GitHub Container Registry:
@@ -173,15 +165,15 @@ deploy:
 
 Both Docker images (`Builder` and `Final`) are regularly published at DockerHub and tagged with the current Ruby version:
 
-* https://hub.docker.com/r/ledermann/rails-base-builder/tags
-* https://hub.docker.com/r/ledermann/rails-base-final/tags
+- https://hub.docker.com/r/ledermann/rails-base-builder/tags
+- https://hub.docker.com/r/ledermann/rails-base-final/tags
 
 Beware: The published images are **not** immutable. When a dependency (e.g. Ruby gem) is updated, the images will be republished using the **same** tag.
 
 When a new Ruby version comes out, a new tag is introduced and the images will be published using this tag and the former images will not be updated anymore. Here is a list of the tags that have been used in this repo so far:
 
 | Ruby version | Tag          | First published |
-|--------------|--------------|-----------------|
+| ------------ | ------------ | --------------- |
 | 3.1.3        | 3.1.3-alpine | 2022-11-26      |
 | 3.1.2        | 3.1.2-alpine | 2022-04-13      |
 | 3.1.1        | 3.1.1-alpine | 2022-02-19      |
