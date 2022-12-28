@@ -64,33 +64,3 @@ jobs:
             ${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
             ghcr.io/${{ env.USER_NAME }}/rails-base-final:latest
             ${{ env.USER_NAME }}/rails-base-final:latest
-
-      - name: Purge untagged packages from GitHub Container Registry
-        uses: actions/github-script@v6
-        env:
-          DELETE_PACKAGES_TOKEN: ${{ secrets.DELETE_PACKAGES_TOKEN }}
-        if: env.DELETE_PACKAGES_TOKEN != null
-        with:
-          github-token: ${{ secrets.DELETE_PACKAGES_TOKEN }}
-          script: |
-            const response1 = await github.request("GET /user/packages/container/rails-base-builder/versions",
-              { per_page: 100 }
-            );
-            for(version of response1.data) {
-                if (version.metadata.container.tags.length == 0) {
-                    console.log("delete package " + version.id)
-                    const deleteResponse = await github.request("DELETE /user/packages/container/rails-base-builder/versions/" + version.id, {});
-                    console.log("status " + deleteResponse.status)
-                }
-            }
-
-            const response2 = await github.request("GET /user/packages/container/rails-base-final/versions",
-              { per_page: 100 }
-            );
-            for(version of response2.data) {
-                if (version.metadata.container.tags.length == 0) {
-                    console.log("delete package " + version.id)
-                    const deleteResponse = await github.request("DELETE /user/packages/container/rails-base-final/versions/" + version.id, {});
-                    console.log("status " + deleteResponse.status)
-                }
-            }
