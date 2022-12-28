@@ -5,6 +5,7 @@ LABEL maintainer="georg@ledermann.dev"
 RUN apk add --no-cache \
       xz-libs \
       postgresql-client \
+      gcompat \
       brotli-libs \
       tzdata \
       file

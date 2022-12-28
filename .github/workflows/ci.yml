@@ -45,6 +45,7 @@ jobs:
         with:
           context: ./Builder
           file: ./Builder/Dockerfile
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: |
             ghcr.io/${{ env.USER_NAME }}/rails-base-builder:${{ env.TAG_NAME }}
@@ -58,6 +59,7 @@ jobs:
         with:
           context: ./Final
           file: ./Final/Dockerfile
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: |
             ghcr.io/${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
