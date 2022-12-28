@@ -349,7 +349,7 @@ DEPENDENCIES
   vite_rails
 
 RUBY VERSION
-   ruby 3.1.3p185
+   ruby 3.2.0p0
 
 BUNDLED WITH
    2.4.1
