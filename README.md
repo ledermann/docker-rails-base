@@ -1,4 +1,4 @@
-![Build images](https://github.com/ledermann/docker-rails-base/workflows/Build%20images/badge.svg)
+[![Build images](https://github.com/ledermann/docker-rails-base/actions/workflows/ci.yml/badge.svg)](https://github.com/ledermann/docker-rails-base/actions/workflows/ci.yml)
 
 # DockerRailsBase
 
