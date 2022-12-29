@@ -17,8 +17,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -45,8 +43,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v3
         with:
-          context: ./Builder
-          file: ./Builder/Dockerfile
+          context: '{{defaultContext}}:Builder'
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -59,8 +56,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v3
         with:
-          context: ./Final
-          file: ./Final/Dockerfile
+          context: '{{defaultContext}}:Final'
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
