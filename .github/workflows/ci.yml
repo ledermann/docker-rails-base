@@ -40,12 +40,11 @@ jobs:
           password: ${{ secrets.CR_PAT }}
 
       - name: Build and push BUILDER image
-        if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v3
         with:
           context: '{{defaultContext}}:Builder'
           platforms: linux/amd64,linux/arm64
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
             ghcr.io/${{ env.USER_NAME }}/rails-base-builder:${{ env.TAG_NAME }}
             ${{ env.USER_NAME }}/rails-base-builder:${{ env.TAG_NAME }}
@@ -53,12 +52,11 @@ jobs:
             ${{ env.USER_NAME }}/rails-base-builder:latest
 
       - name: Build and push FINAL image
-        if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v3
         with:
           context: '{{defaultContext}}:Final'
           platforms: linux/amd64,linux/arm64
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
             ghcr.io/${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
             ${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
