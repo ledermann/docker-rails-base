@@ -1,4 +1,4 @@
-FROM ruby:3.1.3-alpine
+FROM ruby:3.0.4-alpine
 LABEL maintainer="georg@ledermann.dev"
 
 # Add basic packages
