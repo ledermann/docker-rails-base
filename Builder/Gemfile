@@ -36,9 +36,6 @@ gem 'oj'
 # High-level wrapper for processing images for the web with ImageMagick or libvips. (https://github.com/janko/image_processing)
 gem 'image_processing', '~> 1.2'
 
-# AWS SDK for Ruby - Amazon S3 (https://github.com/aws/aws-sdk-ruby)
-gem 'aws-sdk-s3'
-
 # Boot large ruby/rails apps faster (https://github.com/Shopify/bootsnap)
 gem 'bootsnap', require: false
 
@@ -50,9 +47,6 @@ gem 'lograge'
 
 # The kick-ass pagination ruby gem (https://github.com/ddnexus/pagy)
 gem 'pagy'
-
-# A modern, responsive admin framework for Ruby on Rails (https://www.trestle.io)
-gem 'trestle'
 
 # Flexible authentication solution for Rails with Warden (https://github.com/heartcombo/devise)
 gem 'devise'
@@ -69,12 +63,6 @@ gem 'rack-canonical-host'
 # Brotli compression for Rack responses (http://github.com/marcotc/rack-brotli/)
 gem 'rack-brotli'
 
-# Simple authorization solution for Rails. (https://github.com/CanCanCommunity/cancancan)
-gem 'cancancan'
-
-# A gem adding sorting, reordering capabilities to an active_record model, allowing it to act as a list (http://github.com/brendon/acts_as_list)
-gem 'acts_as_list'
-
 # Slim templates generator for Rails (https://github.com/slim-template/slim-rails)
 gem 'slim-rails'
 
@@ -86,12 +74,6 @@ gem 'rest-client'
 
 # Simple, efficient background processing for Ruby (https://sidekiq.org)
 gem 'sidekiq'
-
-# Complete geocoding solution for Ruby. (http://www.rubygeocoder.com)
-gem 'geocoder'
-
-# Collection of SEO helpers for Ruby on Rails. (https://github.com/kpumuk/meta-tags)
-gem 'meta-tags'
 
 # Markdown that smells nice (http://github.com/vmg/redcarpet)
 gem 'redcarpet'
