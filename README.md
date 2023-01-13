@@ -174,7 +174,7 @@ When a new Ruby version comes out, a new tag is introduced and the images will b
 
 | Ruby version | Tag          | First published |
 | ------------ | ------------ | --------------- |
-| 3.2.0        | 3.2.0-alpine | 2022-12-28      |
+| 3.2.0        | 3.2.0-alpine | 2023-01-13      |
 | 3.1.3        | 3.1.3-alpine | 2022-11-26      |
 | 3.1.2        | 3.1.2-alpine | 2022-04-13      |
 | 3.1.1        | 3.1.1-alpine | 2022-02-19      |
