@@ -112,19 +112,19 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.16.17.tgz#c5a1a4bfe1b57f0c3e61b29883525c6da3e5c091"
   integrity sha512-y+EHuSchhL7FjHgvQL/0fnnFmO4T1bhvWANX6gcnqTjtnKWbTvUMCpGnv2+t+31d7RzyEAYAd4u2fnIhHL6N/Q==
 
-"@honeybadger-io/core@^4.8.2":
-  version "4.8.2"
-  resolved "https://registry.yarnpkg.com/@honeybadger-io/core/-/core-4.8.2.tgz#55ff217b9970827cc8a7b1b1851d6a3a6949d114"
-  integrity sha512-cg/kzNB8bXZ73YpR8MtexlYuVlvdxxDT+PR6uTyL2vqBl5iDreyw3eiBv4DQNAepl2vs+VIgJ6qlv4HqzG10Dw==
+"@honeybadger-io/core@^4.9.0":
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/@honeybadger-io/core/-/core-4.9.0.tgz#55a6d6c870133603ae57e53399a67cd3f98b2266"
+  integrity sha512-Yz1YewbE/O8vKbGZkxpCRvdCt6jgv55wJfDA2QFE/2GuQoj7c7onMGKqVFctNHuZCBTo/3M+3i4c9OgYqYhbUg==
   dependencies:
     stacktrace-parser "^0.1.10"
 
-"@honeybadger-io/js@^4.8.2":
-  version "4.8.2"
-  resolved "https://registry.yarnpkg.com/@honeybadger-io/js/-/js-4.8.2.tgz#9cc182031e0778fa1bd794a1d98d15015170e625"
-  integrity sha512-KuDwhKyXac6fRshIkHySd5S/iiLQIHmIvEPDo0Hficez4ZWg9Ko5we8KaOuZoct1FQCmjoVErqIxV5N6XTLjfw==
+"@honeybadger-io/js@^4.9.0":
+  version "4.9.0"
+  resolved "https://registry.yarnpkg.com/@honeybadger-io/js/-/js-4.9.0.tgz#82bd618fdb4b17ad67f6b6284fc56f3153bb3510"
+  integrity sha512-yGa7K0D/CtoPntjhh30V4TxGqXyuld8VEq/pZRKqviZ/c+G9fK8tmg/gBhIH3W/fKUlpahCs89xkgIO+fdA4/Q==
   dependencies:
-    "@honeybadger-io/core" "^4.8.2"
+    "@honeybadger-io/core" "^4.9.0"
     "@types/aws-lambda" "^8.10.89"
     "@types/express" "^4.17.13"
 
