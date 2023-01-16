@@ -43,6 +43,8 @@ ONBUILD COPY Gemfile* /app/
 ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
             bundle config --local without 'development test' && \
             bundle install -j4 --retry 3 && \
+            # Precompile gems with Bootsnap (and ignore errors)
+            bundle exec bootsnap precompile --gemfile || true && \
             # Remove unneeded gems
             bundle clean --force && \
             # Remove unneeded files from installed gems (cache, *.o, *.c)
@@ -52,6 +54,9 @@ ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
 
 # Copy the whole application folder into the image
 ONBUILD COPY . /app
+
+# Precompile application code with Bootsnap (and ignore errors)
+ONBUILD RUN bundle exec bootsnap precompile app/ lib/ || true
 
 # Precompile assets
 #
@@ -78,5 +83,5 @@ ONBUILD RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 # Normally it is not needed in the resulting image, because it was compiled
 # to `public/`. But if the app uses importmaps, the folder is still required
 # for pinning and must not be removed.
-ONBUILD RUN rm -rf node_modules yarn.lock .yarn tmp/cache vendor/bundle test spec app/packs
+ONBUILD RUN rm -rf node_modules yarn.lock .yarn vendor/bundle test spec app/packs
 ONBUILD RUN if [ ! -f config/importmap.rb ]; then rm -rf app/javascript; fi
