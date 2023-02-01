@@ -3,7 +3,7 @@
   "dependencies": {
     "@honeybadger-io/js": "^4.9.3",
     "@hotwired/stimulus": "^3.2.1",
-    "@hotwired/turbo-rails": "^7.2.4",
+    "@hotwired/turbo-rails": "^7.2.5",
     "@rails/actioncable": "^7.0.4",
     "@rails/activestorage": "^7.0.4",
     "@rails/request.js": "^0.0.8",
