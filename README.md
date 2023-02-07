@@ -76,6 +76,8 @@ Add this `Dockerfile` to your application:
 FROM ledermann/rails-base-builder:3.2.0-alpine AS Builder
 FROM ledermann/rails-base-final:3.2.0-alpine
 USER app
+# Optional: Enable YJIT
+# ENV RUBY_YJIT_ENABLE=1
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
 
