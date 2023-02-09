@@ -39,7 +39,7 @@ gem 'image_processing', '~> 1.2'
 # Boot large ruby/rails apps faster (https://github.com/Shopify/bootsnap)
 gem 'bootsnap', require: false
 
-# Error reports you can be happy about. (https://github.com/honeybadger-io/honeybadger-ruby)
+# Error reports you can be happy about. (https://www.honeybadger.io/for/ruby/)
 gem 'honeybadger'
 
 # Tame Rails' multi-line logging into a single line per request (https://github.com/roidrage/lograge)
@@ -75,7 +75,7 @@ gem 'rest-client'
 # Simple, efficient background processing for Ruby (https://sidekiq.org)
 gem 'sidekiq'
 
-# Markdown that smells nice (http://github.com/vmg/redcarpet)
+# Markdown that smells nice (https://github.com/vmg/redcarpet)
 gem 'redcarpet'
 
 # A comprehensive slugging and pretty-URL plugin. (https://github.com/norman/friendly_id)
