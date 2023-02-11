@@ -101,6 +101,8 @@ FROM ledermann/rails-base-final:3.2.1-alpine
 COPY --from=Builder /etc/alpine-release /tmp/dummy
 
 USER app
+# Optional: Enable YJIT
+# ENV RUBY_YJIT_ENABLE=1
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
 ```
 
