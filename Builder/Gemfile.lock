@@ -243,7 +243,7 @@ GEM
       railties (>= 6.0.0)
     temple (0.10.0)
     thor (1.2.1)
-    tilt (2.0.11)
+    tilt (2.1.0)
     timeout (0.3.2)
     turbo-rails (1.4.0)
       actionpack (>= 6.0.0)
