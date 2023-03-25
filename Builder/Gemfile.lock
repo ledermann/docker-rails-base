@@ -74,7 +74,7 @@ GEM
     brotli (0.4.0)
     builder (3.2.4)
     concurrent-ruby (1.2.2)
-    connection_pool (2.3.0)
+    connection_pool (2.4.0)
     crass (1.0.6)
     date (3.3.3)
     devise (4.9.0)
