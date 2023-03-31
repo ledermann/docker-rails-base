@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  TAG_NAME: 3.2.1-alpine
+  TAG_NAME: 3.2.2-alpine
   USER_NAME: ledermann
 
 jobs:

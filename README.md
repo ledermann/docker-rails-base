@@ -44,7 +44,7 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `Builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:3.2.1-alpine](https://github.com/docker-library/ruby/blob/master/3.2/alpine3.17/Dockerfile)
+- Based on [ruby:3.2.2-alpine](https://github.com/docker-library/ruby/blob/master/3.2/alpine3.17/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
 - Adds some default Ruby gems (Rails 7.0 etc., see [Gemfile](./Builder/Gemfile))
 - Adds some default Node modules (Turbo, Stimulus, TailwindCSS etc., see [package.json](./Builder/package.json))
@@ -56,7 +56,7 @@ See [Builder/Dockerfile](./Builder/Dockerfile)
 
 The `Final` stage builds the production image, which includes just the bare minimum.
 
-- Based on [ruby:3.2.1-alpine](https://github.com/docker-library/ruby/blob/master/3.2/alpine3.17/Dockerfile)
+- Based on [ruby:3.2.2-alpine](https://github.com/docker-library/ruby/blob/master/3.2/alpine3.17/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
 - Via ONBUILD triggers it mainly copies the app and gems from the `Builder` stage
 
@@ -73,8 +73,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem or Node modu
 Add this `Dockerfile` to your application:
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:3.2.1-alpine AS Builder
-FROM ledermann/rails-base-final:3.2.1-alpine
+FROM ledermann/rails-base-builder:3.2.2-alpine AS Builder
+FROM ledermann/rails-base-final:3.2.2-alpine
 USER app
 # Optional: Enable YJIT
 # ENV RUBY_YJIT_ENABLE=1
@@ -94,8 +94,8 @@ $ docker build .
 [BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/) requires a little [workaround](https://github.com/moby/buildkit/issues/816) to trigger the ONBUILD statements. Add a `COPY` statement to the `Dockerfile`:
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:3.2.1-alpine AS Builder
-FROM ledermann/rails-base-final:3.2.1-alpine
+FROM ledermann/rails-base-builder:3.2.2-alpine AS Builder
+FROM ledermann/rails-base-final:3.2.2-alpine
 
 # Workaround to trigger Builder's ONBUILDs to finish:
 COPY --from=Builder /etc/alpine-release /tmp/dummy
@@ -178,6 +178,7 @@ When a new Ruby version comes out, a new tag is introduced and the images will b
 
 | Ruby version | Tag          | First published |
 | ------------ | ------------ | --------------- |
+| 3.2.2        | 3.2.2-alpine | 2023-03-31      |
 | 3.2.1        | 3.2.1-alpine | 2023-02-10      |
 | 3.2.0        | 3.2.0-alpine | 2023-01-13      |
 | 3.1.3        | 3.1.3-alpine | 2022-11-26      |
