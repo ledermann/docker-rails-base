@@ -150,7 +150,7 @@ GEM
     pagy (6.0.2)
     pg (1.4.6)
     public_suffix (5.0.1)
-    puma (6.2.0)
+    puma (6.2.1)
       nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
