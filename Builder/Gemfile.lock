@@ -220,11 +220,11 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sidekiq (7.0.9)
+    sidekiq (7.1.0)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
-      redis-client (>= 0.11.0)
+      redis-client (>= 0.14.0)
     slim (5.1.0)
       temple (~> 0.10.0)
       tilt (>= 2.0.6, < 2.2)
