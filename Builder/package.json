@@ -11,7 +11,7 @@
     "postcss": "^8.4.25",
     "rollup": "^3.26.2",
     "tailwindcss": "^3.3.2",
-    "vite": "^4.4.2",
+    "vite": "^4.4.3",
     "vite-plugin-rails": "^0.1.0"
   }
 }
