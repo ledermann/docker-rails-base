@@ -117,19 +117,19 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.18.19.tgz#6105755d7097e0d7e22f893c3e62f143d8137bd0"
   integrity sha512-z69jhyG20Gq4QL5JKPLqUT+eREuqnDAFItLbza4JCmpvUnIlY73YNjd5djlO7kBiiZnvTnJuAbOjIoZIOa1GjA==
 
-"@honeybadger-io/core@^6.1.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@honeybadger-io/core/-/core-6.1.0.tgz#9e171b2321fbff347c42c8b80cf4b1afde4da738"
-  integrity sha512-t8GonzOfy0zSUvFvFIsvyCrYEyhNi341CDGiNbCQa6XBIISCr4BZPnXmnfRwqQZsVY6H5xyip4aZ8iT8LvvdXA==
+"@honeybadger-io/core@^6.2.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@honeybadger-io/core/-/core-6.2.0.tgz#47f0e833290d0c2705b8ed1a9119eda214d7ea7a"
+  integrity sha512-3j3b0uDs5ZW/8r22dozLLAVKSwMoyGD/YzMRRJ/cOTJD9ch3duJ2FrfJRD1VaSZ9nK26c7NBYU9Nlra4apEw5g==
   dependencies:
     stacktrace-parser "^0.1.10"
 
-"@honeybadger-io/js@^6.3.0":
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/@honeybadger-io/js/-/js-6.3.0.tgz#a004db4faf67d0761a45847b4af9adcb0e15230f"
-  integrity sha512-JPzLEsmolL+1miZQGTgMzpCGTBmg5iRif4Hw90q2J29u8F/s+k4nkq80Ah6KkAjQqckIi5EV6DICYXVLdpdAog==
+"@honeybadger-io/js@^6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@honeybadger-io/js/-/js-6.4.0.tgz#75809ddeb8fb801585c8a58bef95cd46fd84218b"
+  integrity sha512-WrMBAlW3FzqMeFE3dO0HMJ5BvWi0rVcjnvXfxxEgAJq3dpCFD6XXx0yvI9rQv37Nt7GiPBVVPUF0UhfUFONyKA==
   dependencies:
-    "@honeybadger-io/core" "^6.1.0"
+    "@honeybadger-io/core" "^6.2.0"
     "@types/aws-lambda" "^8.10.89"
     "@types/express" "^4.17.13"
 
