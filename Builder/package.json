@@ -9,7 +9,7 @@
     "@rails/request.js": "^0.0.8",
     "autoprefixer": "^10.4.15",
     "postcss": "^8.4.28",
-    "rollup": "^3.28.0",
+    "rollup": "^3.28.1",
     "tailwindcss": "^3.3.3",
     "vite": "^4.4.9",
     "vite-plugin-rails": "^0.1.0"
