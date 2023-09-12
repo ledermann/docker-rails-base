@@ -124,10 +124,10 @@
   dependencies:
     stacktrace-parser "^0.1.10"
 
-"@honeybadger-io/js@^6.4.3":
-  version "6.4.3"
-  resolved "https://registry.yarnpkg.com/@honeybadger-io/js/-/js-6.4.3.tgz#6b6edd7fdb554ef4947d63e0add7973de9f29d8a"
-  integrity sha512-wL2o0xdyX9uwgNFuBUuD9KluLAxIL9JK7tC976mkxpi+MXFjgkHNC41E9/Z8Zv+UBNYO4jQaI/jiLvPl32uqpw==
+"@honeybadger-io/js@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@honeybadger-io/js/-/js-6.5.0.tgz#34c3ff921700bac5598c8f3f027a062a9bb658fe"
+  integrity sha512-3lUbrs9OpODw/8IIFI0SmNxPekJW3qI+nrsyn/IRyMDWMHY0hvQnx9L+C1dC/jT95IpZDnTEdMXb96e4nSvNtQ==
   dependencies:
     "@honeybadger-io/core" "^6.3.0"
     "@types/aws-lambda" "^8.10.89"
