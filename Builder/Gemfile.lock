@@ -87,7 +87,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dry-cli (1.0.0)
     erubi (1.12.0)
-    ffi (1.15.5)
+    ffi (1.16.0)
     friendly_id (5.5.0)
       activerecord (>= 4.0.0)
     globalid (1.2.1)
