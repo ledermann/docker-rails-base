@@ -6,7 +6,7 @@
     "@hotwired/turbo-rails": "^7.3.0",
     "@rails/actioncable": "^7.0.8",
     "@rails/activestorage": "^7.0.8",
-    "@rails/request.js": "^0.0.8",
+    "@rails/request.js": "^0.0.9",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.30",
     "rollup": "^3.29.3",
