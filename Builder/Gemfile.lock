@@ -114,7 +114,7 @@ GEM
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     io-console (0.6.0)
-    irb (1.8.2)
+    irb (1.8.3)
       rdoc
       reline (>= 0.3.8)
     jbuilder (2.11.5)
