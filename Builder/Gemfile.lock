@@ -225,7 +225,7 @@ GEM
     rdoc (6.5.0)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
-    redis-client (0.17.0)
+    redis-client (0.17.1)
       connection_pool
     reline (0.3.9)
       io-console (~> 0.5)
