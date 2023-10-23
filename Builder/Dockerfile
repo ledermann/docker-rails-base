@@ -4,18 +4,18 @@ LABEL maintainer="georg@ledermann.dev"
 
 # Add basic packages
 RUN apk add --no-cache \
-      build-base \
-      gcompat \
-      vips-dev \
-      postgresql-dev \
-      sqlite-dev \
-      mariadb-dev \
-      git \
-      nodejs \
-      npm \
-      yarn \
-      tzdata \
-      file
+    build-base \
+    gcompat \
+    vips-dev \
+    postgresql-dev \
+    sqlite-dev \
+    mariadb-dev \
+    git \
+    nodejs \
+    npm \
+    yarn \
+    tzdata \
+    file
 
 WORKDIR /app
 
@@ -45,16 +45,16 @@ ONBUILD COPY .ruby-version /app/
 
 # Install Ruby gems (for production only)
 ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
-            bundle config --local without 'development test' && \
-            bundle install -j4 --retry 3 && \
-            # Precompile gems with Bootsnap (and ignore errors)
-            bundle exec bootsnap precompile --gemfile || true && \
-            # Remove unneeded gems
-            bundle clean --force && \
-            # Remove unneeded files from installed gems (cache, *.o, *.c)
-            rm -rf /usr/local/bundle/cache && \
-            find /usr/local/bundle/gems/ -name "*.c" -delete && \
-            find /usr/local/bundle/gems/ -name "*.o" -delete
+    bundle config --local without 'development test' && \
+    bundle install -j4 --retry 3 && \
+    # Precompile gems with Bootsnap (and ignore errors)
+    bundle exec bootsnap precompile --gemfile || true && \
+    # Remove unneeded gems
+    bundle clean --force && \
+    # Remove unneeded files from installed gems (cache, *.o, *.c)
+    rm -rf /usr/local/bundle/cache && \
+    find /usr/local/bundle/gems/ -name "*.c" -delete && \
+    find /usr/local/bundle/gems/ -name "*.o" -delete
 
 # Copy the whole application folder into the image
 ONBUILD COPY . /app
@@ -73,12 +73,12 @@ ONBUILD RUN bundle exec bootsnap precompile app/ lib/ || true
 ONBUILD RUN mv config/credentials.yml.enc config/credentials.yml.enc.bak 2>/dev/null || true
 ONBUILD RUN mv config/credentials config/credentials.bak 2>/dev/null || true
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
-            --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
-            yarn install
+    --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
+    yarn install
 ONBUILD RUN RAILS_ENV=production \
-            SECRET_KEY_BASE=dummy \
-            RAILS_MASTER_KEY=dummy \
-            bundle exec rails assets:precompile
+    SECRET_KEY_BASE=dummy \
+    RAILS_MASTER_KEY=dummy \
+    bundle exec rails assets:precompile
 ONBUILD RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/null || true
 ONBUILD RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 

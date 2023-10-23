@@ -34,7 +34,7 @@ ONBUILD ENV COMMIT_VERSION ${COMMIT_VERSION}
 
 # Add user
 ONBUILD RUN addgroup -g 1000 -S app && \
-            adduser -u 1000 -S app -G app
+      adduser -u 1000 -S app -G app
 
 # Copy app with gems from former build stage
 ONBUILD COPY --from=Builder --chown=app:app /usr/local/bundle/ /usr/local/bundle/

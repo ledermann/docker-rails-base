@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: bundler
-    directory: "/Builder"
+    directory: '/Builder'
     schedule:
       interval: daily
       time: '01:00'
@@ -21,7 +21,7 @@ updates:
       - 'ruby'
 
   - package-ecosystem: npm
-    directory: "/Builder"
+    directory: '/Builder'
     schedule:
       interval: daily
       time: '01:00'
