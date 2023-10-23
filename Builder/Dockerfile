@@ -31,7 +31,7 @@ RUN yarn install --frozen-lockfile
 ####
 
 ##### Install standard gems
-COPY Gemfile* /app/
+COPY Gemfile Gemfile.lock /app/
 RUN bundle config --local frozen 1 && \
     bundle install -j4 --retry 3
 ####
@@ -39,7 +39,7 @@ RUN bundle config --local frozen 1 && \
 #### ONBUILD: Add triggers to the image, executed later while building a child image
 
 # Copy only the files needed for installing gems
-ONBUILD COPY Gemfile* /app/
+ONBUILD COPY Gemfile Gemfile.lock /app/
 ONBUILD COPY vendor/ /app/vendor/
 ONBUILD COPY .ruby-version /app/
 
