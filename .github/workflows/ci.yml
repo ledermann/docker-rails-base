@@ -53,6 +53,8 @@ jobs:
             ${{ env.USER_NAME }}/rails-base-builder:${{ env.TAG_NAME }}
             ghcr.io/${{ env.USER_NAME }}/rails-base-builder:latest
             ${{ env.USER_NAME }}/rails-base-builder:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Build and push FINAL image
         uses: docker/build-push-action@v5
@@ -65,3 +67,5 @@ jobs:
             ${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
             ghcr.io/${{ env.USER_NAME }}/rails-base-final:latest
             ${{ env.USER_NAME }}/rails-base-final:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
