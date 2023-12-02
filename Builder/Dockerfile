@@ -12,11 +12,9 @@ RUN apk add --no-cache \
     sqlite-dev \
     mariadb-dev \
     git \
-    nodejs \
     npm \
     yarn \
-    tzdata \
-    file
+    tzdata
 
 WORKDIR /app
 
