@@ -7,6 +7,7 @@ RUN apk add --no-cache \
     build-base \
     gcompat \
     vips-dev \
+    imagemagick-dev \
     postgresql-dev \
     sqlite-dev \
     mariadb-dev \
