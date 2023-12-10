@@ -32,7 +32,7 @@ This repo is based on the following assumptions:
 - Your app uses Ruby on Rails 6.0, 6.1, 7.0 or 7.1
 - Your app uses PostgreSQL, SQLite or MySQL/MariaDB
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
-- Your app bundles JavaScript with `rails assets:precompile`. This works with [Vite Ruby](https://github.com/ElMassimo/vite_ruby), [Webpacker](https://github.com/rails/webpacker), [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails) and others. This project does **not** support API-only applications, as there is no JavaScript to compile there.
+- Your app bundles JavaScript with `rails assets:precompile`. This works with [Vite Ruby](https://github.com/ElMassimo/vite_ruby), [Webpacker](https://github.com/rails/webpacker), [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails) and others. Projects without any JavaScript or without precompiling assets are supported, too.
 
 If your project differs from this, I suggest to fork this project and create your own base image.
 
