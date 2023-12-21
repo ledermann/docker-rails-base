@@ -80,3 +80,6 @@ gem 'redcarpet'
 
 # A comprehensive slugging and pretty-URL plugin. (https://github.com/norman/friendly_id)
 gem 'friendly_id'
+
+# SSL/TLS and general-purpose cryptography for Ruby (https://github.com/ruby/openssl)
+gem 'openssl'

@@ -164,6 +164,7 @@ GEM
       racc (~> 1.4)
     oj (3.16.3)
       bigdecimal (>= 3.0)
+    openssl (3.2.0)
     orm_adapter (0.5.0)
     pagy (6.2.0)
     pg (1.5.4)
@@ -318,6 +319,7 @@ DEPENDENCIES
   jbuilder
   lograge
   oj
+  openssl
   pagy
   pg (~> 1.1)
   puma (~> 6)
