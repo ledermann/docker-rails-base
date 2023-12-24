@@ -88,5 +88,5 @@ ONBUILD RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 # Normally it is not needed in the resulting image, because it was compiled
 # to `public/`. But if the app uses importmaps, the folder is still required
 # for pinning and must not be removed.
-ONBUILD RUN rm -rf node_modules yarn.lock .yarn vendor/bundle test spec app/packs
+ONBUILD RUN rm -rf node_modules yarn.lock .yarn .yarnrc.yml vendor/bundle test spec app/packs
 ONBUILD RUN if [ ! -f config/importmap.rb ]; then rm -rf app/javascript; fi
