@@ -69,17 +69,16 @@ ONBUILD RUN bundle exec bootsnap precompile app/ lib/ || true
 #   2. For an app using encrypted credentials, Rails raises a `MissingKeyError`
 #      if the master key is missing. Because on CI there is no master key,
 #      we hide the credentials while compiling assets (by renaming them before and after)
-#   3. Any errors are ignored, so it works even if the app does not use JavaScript at all
 #
 ONBUILD RUN mv config/credentials.yml.enc config/credentials.yml.enc.bak 2>/dev/null || true
 ONBUILD RUN mv config/credentials config/credentials.bak 2>/dev/null || true
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
-    yarn install || true
+    yarn install
 ONBUILD RUN RAILS_ENV=production \
     SECRET_KEY_BASE=dummy \
     RAILS_MASTER_KEY=dummy \
-    bundle exec rails assets:precompile || true
+    bundle exec rails assets:precompile
 ONBUILD RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/null || true
 ONBUILD RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 

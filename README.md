@@ -32,7 +32,7 @@ This repo is based on the following assumptions:
 - Your app uses Ruby on Rails 6.0, 6.1, 7.0 or 7.1
 - Your app uses PostgreSQL, SQLite or MySQL/MariaDB
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
-- Your app bundles JavaScript with `rails assets:precompile`. This works with [Vite Ruby](https://github.com/ElMassimo/vite_ruby), [Webpacker](https://github.com/rails/webpacker), [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails) and others. Projects without any JavaScript or without precompiling assets are supported, too.
+- Your app bundles JavaScript with `rails assets:precompile`. This works with [Vite Ruby](https://github.com/ElMassimo/vite_ruby), [Webpacker](https://github.com/rails/webpacker), [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails) and others.
 
 If your project differs from this, I suggest to fork this project and create your own base image.
 
@@ -216,3 +216,17 @@ This doesn't matter:
 ### There are gems included that my app doesn't need. Will they bloat the resulting image?
 
 No. In the build stage there is a `bundle clean --force`, which uninstalls all gems not referenced in the app's Gemfile.
+
+### My app is API-only, it does not need to compile assets. Can I use this project?
+
+There is a workaround for this. Just add ths file to define a dummy task:
+
+```ruby
+# lib/tasks/precompile.rake
+namespace :assets do
+  desc 'Precompile assets'
+  task precompile: :environment do
+    puts 'No need to precompile assets'
+  end
+end
+```
