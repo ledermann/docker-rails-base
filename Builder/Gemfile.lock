@@ -80,7 +80,7 @@ GEM
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.6)
-    bootsnap (1.18.1)
+    bootsnap (1.18.2)
       msgpack (~> 1.2)
     brotli (0.4.0)
     builder (3.2.4)
