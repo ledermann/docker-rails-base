@@ -139,7 +139,6 @@ GEM
     mime-types-data (3.2024.0305)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.6)
     minitest (5.22.3)
     msgpack (1.7.2)
     mutex_m (0.2.0)
@@ -154,10 +153,9 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.1)
-    nokogiri (1.16.4)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
     nokogiri (1.16.4-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.16.4-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
@@ -305,7 +303,7 @@ GEM
 
 PLATFORMS
   aarch64-linux-musl
-  ruby
+  arm64-darwin-23
   x86_64-linux-musl
 
 DEPENDENCIES
