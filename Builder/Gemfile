@@ -45,7 +45,7 @@ gem 'honeybadger'
 # Tame Rails' multi-line logging into a single line per request (https://github.com/roidrage/lograge)
 gem 'lograge'
 
-# The kick-ass pagination ruby gem (https://github.com/ddnexus/pagy)
+# The best pagination ruby gem (https://github.com/ddnexus/pagy)
 gem 'pagy'
 
 # Flexible authentication solution for Rails with Warden (https://github.com/heartcombo/devise)
