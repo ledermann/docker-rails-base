@@ -33,6 +33,9 @@ gem 'jbuilder'
 # A fast JSON parser and serializer. (http://www.ohler.com/oj)
 gem 'oj'
 
+# JSON Implementation for Ruby (https://flori.github.io/json)
+gem 'json'
+
 # High-level wrapper for processing images for the web with ImageMagick or libvips. (https://github.com/janko/image_processing)
 gem 'image_processing', '~> 1.2'
 
