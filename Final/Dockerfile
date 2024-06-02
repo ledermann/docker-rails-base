@@ -4,6 +4,7 @@ LABEL maintainer="georg@ledermann.dev"
 
 # Add basic packages
 RUN apk add --no-cache \
+      jemalloc \
       xz-libs \
       postgresql-client \
       gcompat \
@@ -14,7 +15,6 @@ RUN apk add --no-cache \
 # Configure Rails
 ENV RAILS_LOG_TO_STDOUT true
 ENV RAILS_SERVE_STATIC_FILES true
-ENV MALLOC_ARENA_MAX 2
 
 WORKDIR /app
 
@@ -23,6 +23,9 @@ EXPOSE 3000
 
 # This image is for production env only
 ENV RAILS_ENV production
+
+# Enable jemalloc for reduced memory usage and latency
+ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
 # Write GIT meta data from arguments to env vars
 ONBUILD ARG COMMIT_SHA
