@@ -108,7 +108,7 @@ GEM
       activesupport (>= 6.1)
     honeybadger (5.10.2)
     http-accept (1.7.0)
-    http-cookie (1.0.5)
+    http-cookie (1.0.6)
       domain_name (~> 0.5)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
