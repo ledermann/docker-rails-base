@@ -20,18 +20,6 @@ updates:
       - 'dependencies'
       - 'ruby'
 
-  - package-ecosystem: npm
-    directory: '/Builder'
-    schedule:
-      interval: daily
-      time: '01:00'
-      timezone: Europe/Berlin
-    open-pull-requests-limit: 10
-    versioning-strategy: auto
-    labels:
-      - 'dependencies'
-      - 'javascript'
-
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
