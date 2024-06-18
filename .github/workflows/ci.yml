@@ -44,7 +44,7 @@ jobs:
           password: ${{ secrets.CR_PAT }}
 
       - name: Build and push BUILDER image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: '{{defaultContext}}:Builder'
           platforms: linux/amd64,linux/arm64
@@ -58,7 +58,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Build and push FINAL image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: '{{defaultContext}}:Final'
           platforms: linux/amd64,linux/arm64
