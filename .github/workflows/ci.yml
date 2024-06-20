@@ -39,8 +39,8 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push BUILDER image
         uses: docker/build-push-action@v6
