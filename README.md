@@ -72,8 +72,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem results in a
 Add this `Dockerfile` to your application:
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:3.3.3-alpine AS Builder
-FROM ledermann/rails-base-final:3.3.3-alpine
+FROM ghcr.io/ledermann/rails-base-builder:3.3.3-alpine AS Builder
+FROM ghcr.io/ledermann/rails-base-final:3.3.3-alpine
 USER app
 # Optional: Enable YJIT
 # ENV RUBY_YJIT_ENABLE=1
@@ -93,8 +93,8 @@ $ docker build .
 [BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/) requires a little [workaround](https://github.com/moby/buildkit/issues/816) to trigger the ONBUILD statements. Add a `COPY` statement to the `Dockerfile`:
 
 ```Dockerfile
-FROM ledermann/rails-base-builder:3.3.3-alpine AS Builder
-FROM ledermann/rails-base-final:3.3.3-alpine
+FROM ghcr.io/ledermann/rails-base-builder:3.3.3-alpine AS Builder
+FROM ghcr.io/ledermann/rails-base-final:3.3.3-alpine
 
 # Workaround to trigger Builder's ONBUILDs to finish:
 COPY --from=Builder /etc/alpine-release /tmp/dummy
@@ -167,10 +167,10 @@ deploy:
 
 ## Available Docker images
 
-Both Docker images (`Builder` and `Final`) are regularly published at DockerHub and tagged with the current Ruby version:
+Both Docker images (`Builder` and `Final`) are regularly published at ghcr.io and tagged with the current Ruby version:
 
-- https://hub.docker.com/r/ledermann/rails-base-builder/tags
-- https://hub.docker.com/r/ledermann/rails-base-final/tags
+- https://github.com/ledermann/docker-rails-base/pkgs/container/rails-base-builder
+- https://github.com/ledermann/docker-rails-base/pkgs/container/rails-base-final
 
 Beware: The published images are **not** immutable. When a dependency (e.g. Ruby gem) is updated, the images will be republished using the **same** tag.
 
