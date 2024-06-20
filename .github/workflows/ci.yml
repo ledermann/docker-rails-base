@@ -14,7 +14,6 @@ concurrency:
 
 env:
   TAG_NAME: 3.3.3-alpine
-  USER_NAME: ledermann
 
 jobs:
   build:
@@ -50,10 +49,10 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
-            ghcr.io/${{ env.USER_NAME }}/rails-base-builder:${{ env.TAG_NAME }}
-            ${{ env.USER_NAME }}/rails-base-builder:${{ env.TAG_NAME }}
-            ghcr.io/${{ env.USER_NAME }}/rails-base-builder:latest
-            ${{ env.USER_NAME }}/rails-base-builder:latest
+            ghcr.io/${{ github.repository_owner }}/rails-base-builder:${{ env.TAG_NAME }}
+            ${{ github.repository_owner }}/rails-base-builder:${{ env.TAG_NAME }}
+            ghcr.io/${{ github.repository_owner }}/rails-base-builder:latest
+            ${{ github.repository_owner }}/rails-base-builder:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -64,9 +63,9 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
-            ghcr.io/${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
-            ${{ env.USER_NAME }}/rails-base-final:${{ env.TAG_NAME }}
-            ghcr.io/${{ env.USER_NAME }}/rails-base-final:latest
-            ${{ env.USER_NAME }}/rails-base-final:latest
+            ghcr.io/${{ github.repository_owner }}/rails-base-final:${{ env.TAG_NAME }}
+            ${{ github.repository_owner }}/rails-base-final:${{ env.TAG_NAME }}
+            ghcr.io/${{ github.repository_owner }}/rails-base-final:latest
+            ${{ github.repository_owner }}/rails-base-final:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
