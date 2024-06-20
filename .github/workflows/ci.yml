@@ -41,6 +41,7 @@ jobs:
         with:
           context: '{{defaultContext}}:Builder'
           platforms: linux/amd64,linux/arm64
+          provenance: false
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
             ghcr.io/${{ github.repository_owner }}/rails-base-builder:${{ env.TAG_NAME }}
@@ -53,6 +54,7 @@ jobs:
         with:
           context: '{{defaultContext}}:Final'
           platforms: linux/amd64,linux/arm64
+          provenance: false
           push: ${{ github.ref == 'refs/heads/main' }}
           tags: |
             ghcr.io/${{ github.repository_owner }}/rails-base-final:${{ env.TAG_NAME }}
