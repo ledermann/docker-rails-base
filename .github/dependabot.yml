@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: bundler
-    directory: '/Builder'
+    directory: '/builder'
     schedule:
       interval: daily
       time: '01:00'
