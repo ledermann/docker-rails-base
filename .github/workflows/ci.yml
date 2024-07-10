@@ -39,7 +39,7 @@ jobs:
       - name: Build and push BUILDER image
         uses: docker/build-push-action@v6
         with:
-          context: '{{defaultContext}}:Builder'
+          context: '{{defaultContext}}:builder'
           platforms: linux/amd64,linux/arm64
           provenance: false
           push: ${{ github.ref == 'refs/heads/main' }}
@@ -52,7 +52,7 @@ jobs:
       - name: Build and push FINAL image
         uses: docker/build-push-action@v6
         with:
-          context: '{{defaultContext}}:Final'
+          context: '{{defaultContext}}:final'
           platforms: linux/amd64,linux/arm64
           provenance: false
           push: ${{ github.ref == 'refs/heads/main' }}

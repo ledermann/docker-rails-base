@@ -38,11 +38,11 @@ If your project differs from this, I suggest to fork this project and create you
 
 ## How?
 
-It uses [multi-stage building](https://docs.docker.com/develop/develop-images/multistage-build/) to build a very small production image. There are two Dockerfiles in this repo, one for the first stage (called `Builder`) and one for the resulting stage (called `Final`).
+It uses [multi-stage building](https://docs.docker.com/develop/develop-images/multistage-build/) to build a very small production image. There are two Dockerfiles in this repo, one for the first stage (called `builder`) and one for the resulting stage (called `final`).
 
 ### Builder stage
 
-The `Builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
+The `builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
 - Based on [ruby:3.3.4-alpine](https://github.com/docker-library/ruby/blob/master/3.3/alpine3.20/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
@@ -53,11 +53,11 @@ See [Builder/Dockerfile](./Builder/Dockerfile)
 
 ### Final stage
 
-The `Final` stage builds the production image, which includes just the bare minimum.
+The `final` stage builds the production image, which includes just the bare minimum.
 
 - Based on [ruby:3.3.4-alpine](https://github.com/docker-library/ruby/blob/master/3.3/alpine3.20/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
-- Via ONBUILD triggers it mainly copies the app and gems from the `Builder` stage
+- Via ONBUILD triggers it mainly copies the app and gems from the `builder` stage
 
 See [Final/Dockerfile](./Final/Dockerfile)
 
@@ -72,7 +72,7 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem results in a
 Add this `Dockerfile` to your application:
 
 ```Dockerfile
-FROM ghcr.io/ledermann/rails-base-builder:3.3.4-alpine AS Builder
+FROM ghcr.io/ledermann/rails-base-builder:3.3.4-alpine AS builder
 FROM ghcr.io/ledermann/rails-base-final:3.3.4-alpine
 USER app
 # Optional: Enable YJIT
@@ -93,11 +93,11 @@ $ docker build .
 [BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/) requires a little [workaround](https://github.com/moby/buildkit/issues/816) to trigger the ONBUILD statements. Add a `COPY` statement to the `Dockerfile`:
 
 ```Dockerfile
-FROM ghcr.io/ledermann/rails-base-builder:3.3.4-alpine AS Builder
+FROM ghcr.io/ledermann/rails-base-builder:3.3.4-alpine AS builder
 FROM ghcr.io/ledermann/rails-base-final:3.3.4-alpine
 
-# Workaround to trigger Builder's ONBUILDs to finish:
-COPY --from=Builder /etc/alpine-release /tmp/dummy
+# Workaround to trigger builder's ONBUILDs to finish:
+COPY --from=builder /etc/alpine-release /tmp/dummy
 
 USER app
 # Optional: Enable YJIT
@@ -167,7 +167,7 @@ deploy:
 
 ## Available Docker images
 
-Both Docker images (`Builder` and `Final`) are regularly published at ghcr.io and tagged with the current Ruby version:
+Both Docker images (`builder` and `final`) are regularly published at ghcr.io and tagged with the current Ruby version:
 
 - https://github.com/ledermann/docker-rails-base/pkgs/container/rails-base-builder
 - https://github.com/ledermann/docker-rails-base/pkgs/container/rails-base-final
