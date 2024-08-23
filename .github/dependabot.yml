@@ -19,6 +19,31 @@ updates:
     labels:
       - 'dependencies'
       - 'ruby'
+    groups:
+      rails:
+        patterns:
+          - 'actioncable'
+          - 'actionmailbox'
+          - 'actionmailer'
+          - 'actionpack'
+          - 'actiontext'
+          - 'actionview'
+          - 'activejob'
+          - 'activemodel'
+          - 'activerecord'
+          - 'activestorage'
+          - 'activesupport'
+          - 'rails'
+          - 'railties'
+          - 'globalid'
+          - 'i18n'
+          - 'mail'
+          - 'rack'
+          - 'rackup'
+      turbo:
+        patterns:
+          - 'turbo-rails'
+          - 'stimulus-rails'
 
   - package-ecosystem: 'github-actions'
     directory: '/'
