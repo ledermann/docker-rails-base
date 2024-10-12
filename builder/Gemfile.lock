@@ -296,8 +296,9 @@ GEM
     vite_rails (3.0.17)
       railties (>= 5.1, < 8)
       vite_ruby (~> 3.0, >= 3.2.2)
-    vite_ruby (3.8.2)
+    vite_ruby (3.9.0)
       dry-cli (>= 0.7, < 2)
+      logger (~> 1.6)
       rack-proxy (~> 0.6, >= 0.6.1)
       zeitwerk (~> 2.2)
     warden (1.2.9)
@@ -306,7 +307,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.6.18)
+    zeitwerk (2.7.0)
 
 PLATFORMS
   aarch64-linux-musl
