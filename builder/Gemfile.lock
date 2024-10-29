@@ -167,7 +167,7 @@ GEM
     openssl (3.2.0)
     orm_adapter (0.5.0)
     ostruct (0.6.0)
-    pagy (9.1.0)
+    pagy (9.1.1)
     pg (1.5.9)
     psych (5.1.2)
       stringio
