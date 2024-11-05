@@ -257,7 +257,7 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.3.1)
-    sidekiq (7.3.4)
+    sidekiq (7.3.5)
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
