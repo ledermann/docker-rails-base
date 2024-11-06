@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1
-FROM ruby:3.3.5-alpine
+FROM ruby:3.3.6-alpine
 LABEL maintainer="georg@ledermann.dev"
 
 # Add basic packages
