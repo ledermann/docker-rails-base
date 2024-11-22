@@ -138,7 +138,7 @@ deploy:
   runs-on: ubuntu-latest
 
   steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
@@ -147,7 +147,7 @@ deploy:
       run: git fetch --tags --force
 
     - name: Login to GitHub Container Registry
-      uses: docker/login-action@v1
+      uses: docker/login-action@v3
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
