@@ -144,7 +144,7 @@ GEM
     mime-types-data (3.2024.1105)
     mini_magick (4.13.2)
     mini_mime (1.1.5)
-    minitest (5.25.2)
+    minitest (5.25.3)
     msgpack (1.7.5)
     mutex_m (0.3.0)
     net-imap (0.5.1)
