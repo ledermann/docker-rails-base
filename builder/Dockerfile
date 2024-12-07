@@ -22,7 +22,7 @@ WORKDIR /app
 #### Install standard Node modules
 COPY package.json yarn.lock /app/
 # If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
-# explicitely exclude it from installing (because tests are not run here)
+# explicitly exclude it from installing (because tests are not run here)
 ENV CYPRESS_INSTALL_BINARY=0
 # Avoid error "digital envelope routines::initialization error" while compiling assets with Webpack
 # due to OpenSSL 3.0 (included in Alpine 3.17+)
@@ -85,7 +85,7 @@ ONBUILD RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 # Remove folders not needed in resulting image
 # This includes `app/javascript` which contains the JavaScript source code.
 # Normally it is not needed in the resulting image, because it was compiled
-# to `public/`. But if the app uses importmaps, the folder is still required
+# to `public/`. But if the app uses import maps, the folder is still required
 # for pinning and must not be removed.
 ONBUILD RUN rm -rf node_modules yarn.lock .yarn .yarnrc.yml vendor/bundle test spec app/packs
 ONBUILD RUN if [ ! -f config/importmap.rb ]; then rm -rf app/javascript; fi
