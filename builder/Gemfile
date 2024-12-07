@@ -18,7 +18,7 @@ gem 'stimulus-rails'
 # Pg is the Ruby interface to the PostgreSQL RDBMS (https://github.com/ged/ruby-pg)
 gem 'pg', '~> 1.1'
 
-# Puma is a simple, fast, threaded, and highly parallel HTTP 1.1 server for Ruby/Rack applications (https://puma.io)
+# A Ruby/Rack web server built for parallelism. (https://puma.io)
 gem 'puma', '~> 6'
 
 # The speed of a single-page web application without having to write any JavaScript. (https://github.com/hotwired/turbo-rails)
@@ -33,7 +33,7 @@ gem 'jbuilder'
 # A fast JSON parser and serializer. (http://www.ohler.com/oj)
 gem 'oj'
 
-# JSON Implementation for Ruby (https://flori.github.io/json)
+# JSON Implementation for Ruby (https://ruby.github.io/json)
 gem 'json'
 
 # High-level wrapper for processing images for the web with ImageMagick or libvips. (https://github.com/janko/image_processing)
