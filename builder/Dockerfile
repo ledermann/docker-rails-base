@@ -6,16 +6,16 @@ LABEL maintainer="georg@ledermann.dev"
 RUN apk add --no-cache \
     build-base \
     gcompat \
-    vips-dev \
-    imagemagick-dev \
-    postgresql-dev \
-    sqlite-dev \
-    mariadb-dev \
     git \
+    imagemagick-dev \
+    mariadb-dev \
     nodejs-current \
     npm \
-    yarn \
-    tzdata
+    postgresql-dev \
+    sqlite-dev \
+    tzdata \
+    vips-dev \
+    yarn
 
 WORKDIR /app
 
