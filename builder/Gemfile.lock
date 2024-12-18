@@ -104,7 +104,7 @@ GEM
       activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (5.26.0)
+    honeybadger (5.26.1)
       logger
     http-accept (1.7.0)
     http-cookie (1.0.8)
