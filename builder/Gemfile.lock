@@ -96,10 +96,7 @@ GEM
     drb (2.2.1)
     dry-cli (1.2.0)
     erubi (1.13.1)
-    ffi (1.17.0-aarch64-linux-musl)
-    ffi (1.17.0-arm64-darwin)
-    ffi (1.17.0-x86_64-linux-gnu)
-    ffi (1.17.0-x86_64-linux-musl)
+    ffi (1.17.0)
     friendly_id (5.5.1)
       activerecord (>= 4.0.0)
     globalid (1.2.1)
@@ -155,7 +152,6 @@ GEM
     net-protocol (0.2.2)
       timeout
     net-smtp (0.5.0)
-      net-protocol
     netrc (0.11.0)
     nio4r (2.7.4)
     nokogiri (1.18.0-aarch64-linux-musl)
@@ -351,7 +347,7 @@ DEPENDENCIES
   vite_rails
 
 RUBY VERSION
-   ruby 3.3.6p108
+   ruby 3.4.1p0
 
 BUNDLED WITH
    2.6.2
