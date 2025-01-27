@@ -15,6 +15,7 @@ RUN apk add --no-cache \
     sqlite-dev \
     tzdata \
     vips-dev \
+    yaml-dev \
     yarn
 
 WORKDIR /app
