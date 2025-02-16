@@ -44,7 +44,7 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:3.4.1-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.21/Dockerfile)
+- Based on [ruby:3.4.2-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.21/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
 - Adds some default Ruby gems (Rails 8.0 etc., see [Gemfile](./builder/Gemfile))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
@@ -55,7 +55,7 @@ See [builder/Dockerfile](./builder/Dockerfile)
 
 The `final` stage builds the production image, which includes just the bare minimum.
 
-- Based on [ruby:3.4.1-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.21/Dockerfile)
+- Based on [ruby:3.4.2-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.21/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
 - Via ONBUILD triggers it mainly copies the app and gems from the `builder` stage
 
@@ -72,8 +72,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem results in a
 Add this `Dockerfile` to your application:
 
 ```Dockerfile
-FROM ghcr.io/ledermann/rails-base-builder:3.4.1-alpine AS builder
-FROM ghcr.io/ledermann/rails-base-final:3.4.1-alpine
+FROM ghcr.io/ledermann/rails-base-builder:3.4.2-alpine AS builder
+FROM ghcr.io/ledermann/rails-base-final:3.4.2-alpine
 USER app
 # Optional: Enable YJIT
 # ENV RUBY_YJIT_ENABLE=1
@@ -93,8 +93,8 @@ $ docker build .
 [BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/) requires a little [workaround](https://github.com/moby/buildkit/issues/816) to trigger the ONBUILD statements. Add a `COPY` statement to the `Dockerfile`:
 
 ```Dockerfile
-FROM ghcr.io/ledermann/rails-base-builder:3.4.1-alpine AS builder
-FROM ghcr.io/ledermann/rails-base-final:3.4.1-alpine
+FROM ghcr.io/ledermann/rails-base-builder:3.4.2-alpine AS builder
+FROM ghcr.io/ledermann/rails-base-final:3.4.2-alpine
 
 # Workaround to trigger builder's ONBUILDs to finish:
 COPY --from=builder /etc/alpine-release /tmp/dummy
@@ -178,6 +178,7 @@ When a new Ruby version comes out, a new tag is introduced and the images will b
 
 | Ruby version | Tag          | First published |
 | ------------ | ------------ | --------------- |
+| 3.4.2        | 3.4.2-alpine | 2025-02-16      |
 | 3.4.1        | 3.4.1-alpine | 2024-12-28      |
 | 3.3.6        | 3.3.6-alpine | 2024-11-06      |
 | 3.3.5        | 3.3.5-alpine | 2024-09-05      |
