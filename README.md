@@ -90,23 +90,6 @@ $ docker build .
 
 #### Building the Docker image with BuildKit
 
-[BuildKit](https://docs.docker.com/develop/develop-images/build_enhancements/) requires a little [workaround](https://github.com/moby/buildkit/issues/816) to trigger the ONBUILD statements. Add a `COPY` statement to the `Dockerfile`:
-
-```Dockerfile
-FROM ghcr.io/ledermann/rails-base-builder:3.4.2-alpine AS builder
-FROM ghcr.io/ledermann/rails-base-final:3.4.2-alpine
-
-# Workaround to trigger builder's ONBUILDs to finish:
-COPY --from=builder /etc/alpine-release /tmp/dummy
-
-USER app
-# Optional: Enable YJIT
-# ENV RUBY_YJIT_ENABLE=1
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
-```
-
-Now you can build the image with BuildKit:
-
 ```
 docker buildx build .
 ```
