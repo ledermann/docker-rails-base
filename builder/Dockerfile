@@ -49,7 +49,7 @@ ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
     bundle config --local without 'development test' && \
     bundle install -j4 --retry 3 && \
     # Precompile gems with Bootsnap (and ignore errors)
-    bundle exec bootsnap precompile --gemfile || true && \
+    # bundle exec bootsnap precompile --gemfile || true && \
     # Remove unneeded gems
     bundle clean --force && \
     # Remove unneeded files from installed gems (cache, *.o, *.c)
@@ -61,7 +61,7 @@ ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
 ONBUILD COPY . /app
 
 # Precompile application code with Bootsnap (and ignore errors)
-ONBUILD RUN bundle exec bootsnap precompile app/ lib/ || true
+# ONBUILD RUN bundle exec bootsnap precompile app/ lib/ || true
 
 # Precompile assets
 #
