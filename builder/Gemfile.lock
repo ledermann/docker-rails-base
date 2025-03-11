@@ -176,7 +176,7 @@ GEM
     openssl (3.3.0)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
-    pagy (9.3.3)
+    pagy (9.3.4)
     pg (1.5.9)
     pp (0.6.2)
       prettyprint
