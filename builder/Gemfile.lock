@@ -348,7 +348,7 @@ DEPENDENCIES
   rack-brotli
   rack-canonical-host
   rack-cors
-  rails (~> 8.0.0)
+  rails (~> 8.0.2)
   redcarpet
   rest-client
   sass-rails (>= 6)
