@@ -123,7 +123,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.11.2)
+    json (2.11.3)
     logger (1.7.0)
     lograge (0.14.0)
       actionpack (>= 4)
