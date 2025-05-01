@@ -5,12 +5,10 @@ LABEL maintainer="georg@ledermann.dev"
 # Add basic packages
 RUN apk add --no-cache \
       brotli-libs \
-      file \
       gcompat \
       jemalloc \
       postgresql-client \
-      tzdata \
-      xz-libs
+      tzdata
 
 # Configure Rails
 ENV RAILS_LOG_TO_STDOUT=true
