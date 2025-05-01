@@ -34,7 +34,7 @@ RUN yarn install --frozen-lockfile
 ##### Install standard gems
 COPY Gemfile Gemfile.lock /app/
 RUN bundle config --local frozen 1 && \
-    bundle install -j4 --retry 3
+    bundle install --jobs $(nproc) --retry 3
 ####
 
 #### ONBUILD: Add triggers to the image, executed later while building a child image
@@ -47,7 +47,7 @@ ONBUILD COPY .ruby-version /app/
 # Install Ruby gems (for production only)
 ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
     bundle config --local without 'development test' && \
-    bundle install -j4 --retry 3 && \
+    bundle install --jobs $(nproc) --retry 3 && \
     # Precompile gems with Bootsnap (and ignore errors)
     # bundle exec bootsnap precompile --gemfile || true && \
     # Remove unneeded gems
