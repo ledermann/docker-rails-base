@@ -53,8 +53,13 @@ ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
     bundle clean --force && \
     # Remove unneeded files from installed gems (cache, *.o, *.c)
     rm -rf /usr/local/bundle/cache && \
-    find /usr/local/bundle/gems/ -name "*.c" -delete && \
-    find /usr/local/bundle/gems/ -name "*.o" -delete
+    find /usr/local/bundle -type f \( \
+    -name '*.c' -o \
+    -name '*.o' -o \
+    -name '*.log' -o \
+    -name 'gem_make.out' \
+    \) -delete && \
+    find /usr/local/bundle -name '*.so' -exec strip --strip-unneeded {} +
 
 # Copy the whole application folder into the image
 ONBUILD COPY . /app
