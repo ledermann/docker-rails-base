@@ -83,6 +83,7 @@ ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
 ONBUILD RUN RAILS_ENV=production \
     SECRET_KEY_BASE=dummy \
     RAILS_MASTER_KEY=dummy \
+    VITE_RUBY_SKIP_ASSETS_PRECOMPILE_INSTALL=true \
     bundle exec rails assets:precompile
 ONBUILD RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/null || true
 ONBUILD RUN mv config/credentials.bak config/credentials 2>/dev/null || true
