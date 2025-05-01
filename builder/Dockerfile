@@ -40,9 +40,8 @@ RUN bundle config --local frozen 1 && \
 #### ONBUILD: Add triggers to the image, executed later while building a child image
 
 # Copy only the files needed for installing gems
-ONBUILD COPY Gemfile Gemfile.lock /app/
+ONBUILD COPY .ruby-version Gemfile Gemfile.lock /app/
 ONBUILD COPY vendor/ /app/vendor/
-ONBUILD COPY .ruby-version /app/
 
 # Install Ruby gems (for production only)
 ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
