@@ -88,7 +88,7 @@ ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
 ONBUILD RUN RAILS_ENV=production \
     SECRET_KEY_BASE_DUMMY=1 \
     VITE_RUBY_SKIP_ASSETS_PRECOMPILE_INSTALL=true \
-    bundle exec rails assets:precompile
+    ./bin/rails assets:precompile
 
 # Remove folders not needed in resulting image
 # This includes `app/javascript` which contains the JavaScript source code.
