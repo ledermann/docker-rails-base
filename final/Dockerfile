@@ -13,16 +13,14 @@ RUN apk add --no-cache \
       tzdata
 
 # Configure Rails
-ENV RAILS_LOG_TO_STDOUT=true
-ENV RAILS_SERVE_STATIC_FILES=true
+ENV RAILS_LOG_TO_STDOUT=true \
+      RAILS_SERVE_STATIC_FILES=true \
+      RAILS_ENV=production
 
 WORKDIR /app
 
 # Expose Puma port
 EXPOSE 3000
-
-# This image is for production env only
-ENV RAILS_ENV=production
 
 # Enable jemalloc for reduced memory usage and latency
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
