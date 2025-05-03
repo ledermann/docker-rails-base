@@ -54,8 +54,9 @@ ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
     bundle install --jobs $(nproc) --retry 3 && \
     # Remove unneeded gems
     bundle clean --force && \
-    # Remove unneeded files from installed gems (cache, *.o, *.c)
+    # Remove unneeded files from installed gems (cache, .git, *.o, *.c)
     rm -rf /usr/local/bundle/cache && \
+    rm -rf /usr/local/bundle/bundler/gems/*/.git && \
     find /usr/local/bundle -type f \( \
     -name '*.c' -o \
     -name '*.o' -o \
