@@ -22,17 +22,6 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 
-#### Install standard Node modules
-COPY package.json yarn.lock /app/
-# If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
-# explicitly exclude it from installing (because tests are not run here)
-ENV CYPRESS_INSTALL_BINARY=0
-# Avoid error "digital envelope routines::initialization error" while compiling assets with Webpack
-# due to OpenSSL 3.0 (included in Alpine 3.17+)
-ENV NODE_OPTIONS=--openssl-legacy-provider
-RUN yarn install --frozen-lockfile
-####
-
 ##### Install standard gems
 COPY Gemfile Gemfile.lock /app/
 RUN bundle config --local frozen 1 && \
@@ -89,6 +78,9 @@ ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
 ONBUILD RUN RAILS_ENV=production \
     SECRET_KEY_BASE_DUMMY=1 \
     VITE_RUBY_SKIP_ASSETS_PRECOMPILE_INSTALL=true \
+    # If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
+    # explicitly exclude it from installing (because tests are not run here)
+    CYPRESS_INSTALL_BINARY=0 \
     ./bin/rails assets:precompile && \
     # remove runtime Bootsnap cache unless explicitly told not to
     if [ -n "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
