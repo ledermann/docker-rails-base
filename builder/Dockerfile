@@ -39,6 +39,9 @@ RUN bundle config --local frozen 1 && \
 
 #### ONBUILD: Add triggers to the image, executed later while building a child image
 
+# Arguments for the child image
+ONBUILD ARG SKIP_BOOTSNAP_PRECOMPILE
+
 # Copy only the files needed for installing gems
 ONBUILD COPY .ruby-version Gemfile Gemfile.lock /app/
 ONBUILD COPY vendor/ /app/vendor/
@@ -47,8 +50,6 @@ ONBUILD COPY vendor/ /app/vendor/
 ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
     bundle config --local without 'development test' && \
     bundle install --jobs $(nproc) --retry 3 && \
-    # Precompile gems with Bootsnap (and ignore errors)
-    bundle exec bootsnap precompile --gemfile || true && \
     # Remove unneeded gems
     bundle clean --force && \
     # Remove unneeded files from installed gems (cache, *.o, *.c)
@@ -61,11 +62,22 @@ ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
     \) -delete && \
     find /usr/local/bundle -name '*.so' -exec strip --strip-unneeded {} +
 
+# Precompile gems with Bootsnap
+ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
+    bundle exec bootsnap precompile --gemfile ; \
+    else \
+    echo "Skipped precompiling gems with Bootsnap" ; \
+    fi
+
 # Copy the whole application folder into the image
 ONBUILD COPY . /app
 
-# Precompile application code with Bootsnap (and ignore errors)
-ONBUILD RUN bundle exec bootsnap precompile app/ lib/ || true
+# Precompile application code with Bootsnap
+ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
+    bundle exec bootsnap precompile app/ lib/ ; \
+    else \
+    echo "Skipped precompiling app with Bootsnap" ; \
+    fi
 
 # Precompile assets
 #
