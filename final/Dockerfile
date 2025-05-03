@@ -1,4 +1,6 @@
-# syntax = docker/dockerfile:1
+# syntax=docker/dockerfile:1
+# check=error=true
+
 FROM ruby:3.4.3-alpine
 LABEL maintainer="georg@ledermann.dev"
 
