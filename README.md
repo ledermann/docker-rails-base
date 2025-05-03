@@ -29,7 +29,7 @@ This repo is based on the following assumptions:
 
 - Your Docker host is compatible with [Alpine Linux 3.21](https://www.alpinelinux.org/posts/Alpine-3.21.0-released.html), which requires Docker 20.10.0 or later
 - Your app is compatible with [Ruby 3.4 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.21/Dockerfile)
-- Your app uses Ruby on Rails 7.0 or later (including Rails 8.0)
+- Your app uses Ruby on Rails 7.1 or later (including Rails 8.0)
 - Your app uses PostgreSQL, SQLite or MySQL/MariaDB
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
 - Your app bundles JavaScript with `rails assets:precompile`. This works with [Vite Ruby](https://github.com/ElMassimo/vite_ruby), [Webpacker](https://github.com/rails/webpacker), [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails) and others.

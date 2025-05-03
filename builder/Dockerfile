@@ -82,25 +82,13 @@ ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
     fi
 
 # Precompile assets
-#
-# Notes:
-#   1. What exactly "assets:precompile" does depends on your JavaScript bundler
-#   2. For an app using encrypted credentials, Rails raises a `MissingKeyError`
-#      if the master key is missing. Because on CI there is no master key,
-#      we hide the credentials while compiling assets (by renaming them before and after)
-#
-ONBUILD RUN mv config/credentials.yml.enc config/credentials.yml.enc.bak 2>/dev/null || true
-ONBUILD RUN mv config/credentials config/credentials.bak 2>/dev/null || true
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
     yarn install
 ONBUILD RUN RAILS_ENV=production \
-    SECRET_KEY_BASE=dummy \
-    RAILS_MASTER_KEY=dummy \
+    SECRET_KEY_BASE_DUMMY=1 \
     VITE_RUBY_SKIP_ASSETS_PRECOMPILE_INSTALL=true \
     bundle exec rails assets:precompile
-ONBUILD RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/null || true
-ONBUILD RUN mv config/credentials.bak config/credentials 2>/dev/null || true
 
 # Remove folders not needed in resulting image
 # This includes `app/javascript` which contains the JavaScript source code.
