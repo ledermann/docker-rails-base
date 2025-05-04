@@ -17,8 +17,7 @@ RUN apk add --no-cache \
     sqlite-dev \
     tzdata \
     vips-dev \
-    yaml-dev \
-    yarn
+    yaml-dev
 
 WORKDIR /app
 
@@ -61,6 +60,18 @@ ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
     echo "Skipped precompiling gems with Bootsnap" ; \
     fi
 
+# Install JavaScript dependencies
+ONBUILD COPY package.json yarn.lock /app/
+ONBUILD COPY .yarnrc.yml .yarnrc.yml
+ONBUILD COPY .yarn .yarn
+ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
+    --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
+    # If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
+    # explicitly exclude it from installing (because tests are not run here)
+    corepack enable && \
+    CYPRESS_INSTALL_BINARY=0 \
+    yarn install --frozen-lockfile
+
 # Copy the whole application folder into the image
 ONBUILD COPY . /app
 
@@ -72,15 +83,9 @@ ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
     fi
 
 # Precompile assets
-ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
-    --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
-    yarn install
 ONBUILD RUN RAILS_ENV=production \
     SECRET_KEY_BASE_DUMMY=1 \
     VITE_RUBY_SKIP_ASSETS_PRECOMPILE_INSTALL=true \
-    # If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
-    # explicitly exclude it from installing (because tests are not run here)
-    CYPRESS_INSTALL_BINARY=0 \
     ./bin/rails assets:precompile && \
     # remove runtime Bootsnap cache unless explicitly told not to
     if [ -n "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \

@@ -222,3 +222,22 @@ namespace :assets do
   end
 end
 ```
+
+In addition, you need to ensure that these files are present, even if they are not needed:
+
+```
+package.json
+yarn.lock
+.yarnrc.yml
+.yarn
+```
+
+You can do this by running:
+
+```bash
+yarn init
+yarn install
+touch .yarnrc.yml
+mkdir -p .yarn
+touch .yarn/.keep
+```
