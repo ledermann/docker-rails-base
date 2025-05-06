@@ -209,7 +209,7 @@ This doesn't matter:
 
 No. In the build stage there is a `bundle clean --force`, which uninstalls all gems not referenced in the app's Gemfile.
 
-### My app is API-only, it does not need to compile assets. Can I use this project?
+### My app does not need to compile assets (e.g. API only or ImportMaps). Can I use this project?
 
 There is a workaround for this. Just add ths file to define a dummy task:
 
