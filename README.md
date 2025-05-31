@@ -27,8 +27,8 @@ Note: Before I started timing, the base image was not available on my machine, s
 
 This repo is based on the following assumptions:
 
-- Your Docker host is compatible with [Alpine Linux 3.21](https://www.alpinelinux.org/posts/Alpine-3.21.0-released.html), which requires Docker 20.10.0 or later
-- Your app is compatible with [Ruby 3.4 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.21/Dockerfile)
+- Your Docker host is compatible with [Alpine Linux 3.22](https://www.alpinelinux.org/posts/Alpine-3.22.0-released.html), which requires Docker 20.10.0 or later
+- Your app is compatible with [Ruby 3.4 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.22/Dockerfile)
 - Your app uses Ruby on Rails 7.1 or later (including Rails 8.0)
 - Your app uses PostgreSQL, SQLite or MySQL/MariaDB
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/)
@@ -44,7 +44,7 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:3.4.4-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.21/Dockerfile)
+- Based on [ruby:3.4.4-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.22/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
 - Adds some default Ruby gems (Rails 8.0 etc., see [Gemfile](./builder/Gemfile))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
@@ -55,7 +55,7 @@ See [builder/Dockerfile](./builder/Dockerfile)
 
 The `final` stage builds the production image, which includes just the bare minimum.
 
-- Based on [ruby:3.4.4-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.21/Dockerfile)
+- Based on [ruby:3.4.4-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.22/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
 - Via ONBUILD triggers it mainly copies the app and gems from the `builder` stage
 
