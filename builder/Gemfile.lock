@@ -144,7 +144,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0527)
+    mime-types-data (3.2025.0603)
     mini_magick (5.2.0)
       benchmark
       logger
