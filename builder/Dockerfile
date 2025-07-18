@@ -84,7 +84,7 @@ ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
 
 # Precompile assets
 ONBUILD RUN RAILS_ENV=production \
-    SECRET_KEY_BASE_DUMMY=1 \
+    SECRET_KEY_BASE="dummy-secret-for-assets-precompile" \
     VITE_RUBY_SKIP_ASSETS_PRECOMPILE_INSTALL=true \
     ./bin/rails assets:precompile && \
     # remove runtime Bootsnap cache unless explicitly told not to
