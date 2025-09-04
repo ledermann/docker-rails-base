@@ -143,7 +143,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0826)
+    mime-types-data (3.2025.0902)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
