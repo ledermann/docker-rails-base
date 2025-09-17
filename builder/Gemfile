@@ -19,7 +19,7 @@ gem 'stimulus-rails'
 gem 'pg', '~> 1.1'
 
 # A Ruby/Rack web server built for parallelism. (https://puma.io)
-gem 'puma', '~> 6'
+gem 'puma', '>= 5.0'
 
 # The speed of a single-page web application without having to write any JavaScript. (https://github.com/hotwired/turbo-rails)
 gem 'turbo-rails'
