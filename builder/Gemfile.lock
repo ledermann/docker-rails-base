@@ -124,7 +124,7 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.14.0)
+    json (2.14.1)
     logger (1.7.0)
     lograge (0.14.0)
       actionpack (>= 4)
