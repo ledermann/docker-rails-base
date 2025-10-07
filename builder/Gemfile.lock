@@ -309,7 +309,7 @@ GEM
       railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uri (1.0.3)
+    uri (1.0.4)
     useragent (0.16.11)
     view_component (4.0.2)
       activesupport (>= 7.1.0, < 8.1)
