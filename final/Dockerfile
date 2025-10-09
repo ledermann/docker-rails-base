@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 # check=error=true
 
-FROM ruby:3.4.6-alpine
+FROM ruby:3.4.7-alpine
 LABEL maintainer="georg@ledermann.dev"
 
 # Add basic packages
