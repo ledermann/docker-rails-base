@@ -24,9 +24,10 @@ RUN apk add --no-cache \
 
 WORKDIR /app
 
-# Create dummy files/directories to prevent COPY errors if not present in the app
-RUN mkdir -p .yarn && \
-    echo '{"name":"dummy","private":true}' > package.json
+# Create dummy files/directories for optional JavaScript dependencies
+RUN echo '{"name":"dummy","private":true}' > package.json && \
+    touch yarn.lock .yarnrc.yml bun.lock bun.lockb && \
+    mkdir -p .yarn
 
 # Install Bun
 RUN curl -fsSL https://bun.sh/install | bash && \
@@ -73,18 +74,18 @@ ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
     fi
 
 # Install JavaScript dependencies
-ONBUILD COPY package.json* yarn.lock* .yarnrc.yml* bun.lock* /app/
-ONBUILD COPY .yarn .yarn
+ONBUILD COPY package.json yarn.lock .yarnrc.yml bun.lock bun.lockb /app/
+ONBUILD COPY .yarn /app/.yarn
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
     # If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
     # explicitly exclude it from installing (because tests are not run here)
     export CYPRESS_INSTALL_BINARY=0 && \
     # Detect and use the appropriate package manager
-    if [ -f bun.lockb ] || [ -f bun.lock ]; then \
+    if ([ -f bun.lockb ] && [ -s bun.lockb ]) || ([ -f bun.lock ] && [ -s bun.lock ]); then \
     echo "Installing dependencies with Bun..." && \
     bun install --frozen-lockfile; \
-    elif [ -f yarn.lock ]; then \
+    elif [ -f yarn.lock ] && [ -s yarn.lock ]; then \
     echo "Installing dependencies with Yarn..." && \
     corepack enable && \
     yarn install --frozen-lockfile; \
