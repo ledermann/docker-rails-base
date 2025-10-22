@@ -6,7 +6,9 @@ LABEL maintainer="georg@ledermann.dev"
 
 # Add basic packages
 RUN apk add --no-cache \
+    bash \
     build-base \
+    curl \
     gcompat \
     git \
     imagemagick-dev \
@@ -16,10 +18,20 @@ RUN apk add --no-cache \
     postgresql-dev \
     sqlite-dev \
     tzdata \
+    unzip \
     vips-dev \
     yaml-dev
 
 WORKDIR /app
+
+# Create dummy files/directories to prevent COPY errors if not present in the app
+RUN mkdir -p .yarn && \
+    echo '{"name":"dummy","private":true}' > package.json
+
+# Install Bun
+RUN curl -fsSL https://bun.sh/install | bash && \
+    ln -s /root/.bun/bin/bun /usr/local/bin/bun && \
+    bun --version
 
 ##### Install standard gems
 COPY Gemfile Gemfile.lock /app/
@@ -61,16 +73,24 @@ ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
     fi
 
 # Install JavaScript dependencies
-ONBUILD COPY package.json yarn.lock /app/
-ONBUILD COPY .yarnrc.yml .yarnrc.yml
+ONBUILD COPY package.json* yarn.lock* .yarnrc.yml* bun.lock* /app/
 ONBUILD COPY .yarn .yarn
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
     # If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
     # explicitly exclude it from installing (because tests are not run here)
+    export CYPRESS_INSTALL_BINARY=0 && \
+    # Detect and use the appropriate package manager
+    if [ -f bun.lockb ] || [ -f bun.lock ]; then \
+    echo "Installing dependencies with Bun..." && \
+    bun install --frozen-lockfile; \
+    elif [ -f yarn.lock ]; then \
+    echo "Installing dependencies with Yarn..." && \
     corepack enable && \
-    CYPRESS_INSTALL_BINARY=0 \
-    yarn install --frozen-lockfile
+    yarn install --frozen-lockfile; \
+    else \
+    echo "No lock file found, skipping JavaScript dependencies installation..."; \
+    fi
 
 # Copy the whole application folder into the image
 ONBUILD COPY . /app
@@ -97,5 +117,5 @@ ONBUILD RUN RAILS_ENV=production \
 # Normally it is not needed in the resulting image, because it was compiled
 # to `public/`. But if the app uses import maps, the folder is still required
 # for pinning and must not be removed.
-ONBUILD RUN rm -rf node_modules yarn.lock .yarn .yarnrc.yml vendor/bundle test spec app/packs
+ONBUILD RUN rm -rf node_modules yarn.lock .yarn .yarnrc.yml bun.lock bun.lockb vendor/bundle test spec app/packs
 ONBUILD RUN if [ ! -f config/importmap.rb ]; then rm -rf app/javascript; fi

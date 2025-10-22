@@ -31,7 +31,7 @@ This repo is based on the following assumptions:
 - Your app is compatible with [Ruby 3.4 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.22/Dockerfile)
 - Your app uses Ruby on Rails 7.1 or later (including Rails 8.0)
 - Your app uses PostgreSQL, SQLite or MySQL/MariaDB
-- Your app installs Node modules with [Yarn](https://yarnpkg.com/)
+- Your app installs Node modules with [Yarn](https://yarnpkg.com/) or [Bun](https://bun.sh/) (automatically detected)
 - Your app bundles JavaScript with `rails assets:precompile`. This works with [Vite Ruby](https://github.com/ElMassimo/vite_ruby), [Webpacker](https://github.com/rails/webpacker), [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails) and others.
 
 If your project differs from this, I suggest to fork this project and create your own base image.
@@ -45,9 +45,13 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 The `builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
 - Based on [ruby:3.4.7-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.22/Dockerfile)
-- Adds packages needed for installing gems and compiling assets: Git, Node.js, Yarn, PostgreSQL client and build tools
+- Adds packages needed for installing gems and compiling assets: Git, Node.js, PostgreSQL client and build tools
 - Adds some default Ruby gems (Rails 8.0 etc., see [Gemfile](./builder/Gemfile))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
+- Automatically detects whether to use Yarn or Bun based on lock files:
+  - If `bun.lockb` or `bun.lock` exists: Installs Bun and uses it for package installation
+  - If `yarn.lock` exists: Uses Yarn (via corepack)
+  - If no lock file exists: Falls back to Yarn
 
 See [builder/Dockerfile](./builder/Dockerfile)
 
@@ -94,17 +98,19 @@ $ docker build .
 docker buildx build .
 ```
 
-You can use private npm/Yarn packages by mounting the config file:
+You can use private npm/Yarn/Bun packages by mounting the config file:
 
 ```
 docker buildx build --secret id=npmrc,src=$HOME/.npmrc .
 ```
 
-or
+or for Yarn:
 
 ```
 docker buildx build --secret id=yarnrc,src=$HOME/.yarnrc.yml .
 ```
+
+Note: For Bun, the `.npmrc` file is also used for authentication.
 
 In a similar way you can provide a configuration file for Bundler:
 
@@ -213,9 +219,11 @@ This doesn't matter:
 
 No. In the build stage there is a `bundle clean --force`, which uninstalls all gems not referenced in the app's Gemfile.
 
-### My app does not need to compile assets (e.g. API only or ImportMaps). Can I use this project?
+### My app does not need to compile assets (e.g. API only). Can I use this project?
 
-There is a workaround for this. Just add ths file to define a dummy task:
+Yes! If your app doesn't have JavaScript dependencies, simply don't include a `package.json` file. The JavaScript installation will be automatically skipped.
+
+If your app doesn't compile assets at all (e.g. API-only), add this file to define a dummy task:
 
 ```ruby
 # lib/tasks/precompile.rake
@@ -227,21 +235,4 @@ namespace :assets do
 end
 ```
 
-In addition, you need to ensure that these files are present, even if they are not needed:
-
-```
-package.json
-yarn.lock
-.yarnrc.yml
-.yarn
-```
-
-You can do this by running:
-
-```bash
-yarn init
-yarn install
-touch .yarnrc.yml
-mkdir -p .yarn
-touch .yarn/.keep
-```
+Note: Apps using ImportMaps still need to run `assets:precompile` but don't require a `package.json` file.
