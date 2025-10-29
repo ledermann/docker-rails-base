@@ -305,7 +305,7 @@ GEM
     temple (0.10.4)
     thor (1.4.0)
     tilt (2.6.1)
-    timeout (0.4.3)
+    timeout (0.4.4)
     tsort (0.2.0)
     turbo-rails (2.0.20)
       actionpack (>= 7.1.0)
