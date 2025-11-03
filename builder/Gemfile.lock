@@ -178,7 +178,9 @@ GEM
     openssl (3.3.2)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
-    pagy (9.4.0)
+    pagy (43.0.0)
+      json
+      yaml
     pg (1.6.2-aarch64-linux-musl)
     pg (1.6.2-arm64-darwin)
     pg (1.6.2-x86_64-linux)
@@ -332,6 +334,7 @@ GEM
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    yaml (0.4.0)
     zeitwerk (2.7.3)
 
 PLATFORMS
