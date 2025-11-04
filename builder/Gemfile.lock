@@ -280,7 +280,7 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.1)
-    sidekiq (8.0.8)
+    sidekiq (8.0.9)
       connection_pool (>= 2.5.0)
       json (>= 2.9.0)
       logger (>= 1.6.2)
