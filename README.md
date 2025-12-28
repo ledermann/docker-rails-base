@@ -44,7 +44,7 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:3.4.8-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.23/Dockerfile)
+- Based on [ruby:4.0.0-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.23/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, PostgreSQL client and build tools
 - Adds some default Ruby gems (Rails 8.0 etc., see [Gemfile](./builder/Gemfile))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
@@ -59,7 +59,7 @@ See [builder/Dockerfile](./builder/Dockerfile)
 
 The `final` stage builds the production image, which includes just the bare minimum.
 
-- Based on [ruby:3.4.8-alpine](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.23/Dockerfile)
+- Based on [ruby:4.0.0-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.23/Dockerfile)
 - Adds packages needed for production: postgresql-client, tzdata, file
 - Via ONBUILD triggers it mainly copies the app and gems from the `builder` stage
 
@@ -76,8 +76,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem results in a
 Add this `Dockerfile` to your application:
 
 ```Dockerfile
-FROM ghcr.io/ledermann/rails-base-builder:3.4.8-alpine AS builder
-FROM ghcr.io/ledermann/rails-base-final:3.4.8-alpine
+FROM ghcr.io/ledermann/rails-base-builder:4.0.0-alpine AS builder
+FROM ghcr.io/ledermann/rails-base-final:4.0.0-alpine
 USER app
 # Optional: Enable YJIT
 # ENV RUBY_YJIT_ENABLE=1
@@ -167,6 +167,7 @@ When a new Ruby version comes out, a new tag is introduced and the images will b
 
 | Ruby version | Tag          | First published |
 | ------------ | ------------ | --------------- |
+| 4.0.0        | 4.0.0-alpine | 2025-12-28      |
 | 3.4.8        | 3.4.8-alpine | 2025-12-18      |
 | 3.4.7        | 3.4.7-alpine | 2025-10-09      |
 | 3.4.6        | 3.4.6-alpine | 2025-09-17      |
