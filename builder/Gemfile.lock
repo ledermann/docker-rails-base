@@ -78,7 +78,7 @@ GEM
     addressable (2.8.8)
       public_suffix (>= 2.0.2, < 8.0)
     base64 (0.3.0)
-    bcrypt (3.1.20)
+    bcrypt (3.1.21)
     bigdecimal (4.0.1)
     bootsnap (1.20.1)
       msgpack (~> 1.2)
