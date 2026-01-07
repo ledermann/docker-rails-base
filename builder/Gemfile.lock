@@ -307,7 +307,7 @@ GEM
       railties (>= 6.0.0)
     stringio (3.2.0)
     temple (0.10.4)
-    thor (1.4.0)
+    thor (1.5.0)
     tilt (2.6.1)
     timeout (0.6.0)
     tsort (0.2.0)
