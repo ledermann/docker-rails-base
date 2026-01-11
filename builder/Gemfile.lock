@@ -308,7 +308,7 @@ GEM
     stringio (3.2.0)
     temple (0.10.4)
     thor (1.5.0)
-    tilt (2.6.1)
+    tilt (2.7.0)
     timeout (0.6.0)
     tsort (0.2.0)
     turbo-rails (2.0.20)
