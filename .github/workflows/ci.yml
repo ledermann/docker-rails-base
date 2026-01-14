@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  TAG_NAME: 4.0.0-alpine
+  TAG_NAME: 4.0.1-alpine
 
 jobs:
   build:
