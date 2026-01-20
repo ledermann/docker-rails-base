@@ -179,7 +179,7 @@ GEM
     openssl (4.0.0)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
-    pagy (43.2.6)
+    pagy (43.2.7)
       json
       yaml
     pg (1.6.3-aarch64-linux-musl)
