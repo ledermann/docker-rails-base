@@ -63,7 +63,10 @@ ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
     -name '*.log' -o \
     -name 'gem_make.out' \
     \) -delete && \
-    find /usr/local/bundle -name '*.so' -exec strip --strip-unneeded {} +
+    # Strip native shared objects only; skip vendored arch-specific libs
+    find /usr/local/bundle \
+    -path "*/vendor/*-linux/*" -prune -o \
+    -type f -name '*.so' -exec strip --strip-unneeded {} +
 
 # Precompile gems with Bootsnap
 ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
