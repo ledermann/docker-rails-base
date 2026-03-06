@@ -52,7 +52,7 @@ jobs:
 
       - name: Docker meta for BUILDER
         id: meta-builder
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ghcr.io/${{ github.repository_owner }}/rails-base-builder
 
@@ -76,7 +76,7 @@ jobs:
 
       - name: Docker meta for FINAL
         id: meta-final
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ghcr.io/${{ github.repository_owner }}/rails-base-final
 
