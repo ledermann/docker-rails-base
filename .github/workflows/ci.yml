@@ -58,7 +58,7 @@ jobs:
 
       - name: Build and push BUILDER image by digest
         id: build-builder
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: builder
           platforms: ${{ matrix.platform }}
@@ -82,7 +82,7 @@ jobs:
 
       - name: Build and push FINAL image by digest
         id: build-final
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: final
           platforms: ${{ matrix.platform }}
