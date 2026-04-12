@@ -175,7 +175,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.2-x86_64-linux-musl)
       racc (~> 1.4)
-    oj (3.16.16)
+    oj (3.16.17)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
     openssl (4.0.1)
