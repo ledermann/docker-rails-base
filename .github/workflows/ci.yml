@@ -50,11 +50,18 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Docker meta for BUILDER
-        id: meta-builder
+      # metadata-action derives the OCI annotations from the GitHub repository
+      # (title, description, source, licenses, ...), not from the image name, so
+      # a single step covers both the builder and the final image. They are
+      # exposed as annotations instead of config labels, so they are not
+      # inherited by downstream images via `FROM`.
+      - name: Docker meta
+        id: meta
         uses: docker/metadata-action@v6
         with:
-          images: ghcr.io/${{ github.repository_owner }}/rails-base-builder
+          images: ghcr.io/${{ github.repository_owner }}/rails-base-final
+          labels: |
+            org.opencontainers.image.authors=georg@ledermann.dev
 
       - name: Build and push BUILDER image by digest
         id: build-builder
@@ -63,8 +70,10 @@ jobs:
           context: builder
           platforms: ${{ matrix.platform }}
           provenance: false
-          labels: ${{ steps.meta-builder.outputs.labels }}
-          outputs: type=image,name=ghcr.io/${{ github.repository_owner }}/rails-base-builder,push-by-digest=true,name-canonical=true,push=true
+          annotations: ${{ steps.meta.outputs.annotations }}
+          # OCI media types are required for annotations to be stored; without
+          # this the index/manifests use the Docker format, which drops them.
+          outputs: type=image,name=ghcr.io/${{ github.repository_owner }}/rails-base-builder,push-by-digest=true,name-canonical=true,push=true,oci-mediatypes=true
           cache-from: type=gha,scope=builder-${{ env.PLATFORM_PAIR }}
           cache-to: type=gha,mode=max,scope=builder-${{ env.PLATFORM_PAIR }}
 
@@ -74,12 +83,6 @@ jobs:
           digest="${{ steps.build-builder.outputs.digest }}"
           touch "/tmp/digests/builder/${digest#sha256:}"
 
-      - name: Docker meta for FINAL
-        id: meta-final
-        uses: docker/metadata-action@v6
-        with:
-          images: ghcr.io/${{ github.repository_owner }}/rails-base-final
-
       - name: Build and push FINAL image by digest
         id: build-final
         uses: docker/build-push-action@v7
@@ -87,8 +90,10 @@ jobs:
           context: final
           platforms: ${{ matrix.platform }}
           provenance: false
-          labels: ${{ steps.meta-final.outputs.labels }}
-          outputs: type=image,name=ghcr.io/${{ github.repository_owner }}/rails-base-final,push-by-digest=true,name-canonical=true,push=true
+          annotations: ${{ steps.meta.outputs.annotations }}
+          # OCI media types are required for annotations to be stored; without
+          # this the index/manifests use the Docker format, which drops them.
+          outputs: type=image,name=ghcr.io/${{ github.repository_owner }}/rails-base-final,push-by-digest=true,name-canonical=true,push=true,oci-mediatypes=true
 
       - name: Export FINAL digest
         run: |
@@ -110,6 +115,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     timeout-minutes: 10
     permissions:
+      contents: read
       packages: write
 
     steps:
@@ -127,18 +133,40 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      # Same annotations for both images (see build job). They are added at the
+      # index level because imagetools does not carry over the annotations of
+      # the per-platform manifests, and GHCR reads the package description from
+      # the index of a multi-arch image.
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/rails-base-final
+          labels: |
+            org.opencontainers.image.authors=georg@ledermann.dev
+        env:
+          DOCKER_METADATA_ANNOTATIONS_LEVELS: index
+
       - name: Create and push BUILDER manifest
         working-directory: /tmp/digests/builder
+        env:
+          ANNOTATIONS: ${{ steps.meta.outputs.annotations }}
         run: |
-          docker buildx imagetools create \
+          flags=()
+          while IFS= read -r a; do [ -n "$a" ] && flags+=("--annotation" "$a"); done <<< "$ANNOTATIONS"
+          docker buildx imagetools create "${flags[@]}" \
             -t ghcr.io/${{ github.repository_owner }}/rails-base-builder:${{ env.TAG_NAME }} \
             -t ghcr.io/${{ github.repository_owner }}/rails-base-builder:latest \
             $(printf 'ghcr.io/${{ github.repository_owner }}/rails-base-builder@sha256:%s ' *)
 
       - name: Create and push FINAL manifest
         working-directory: /tmp/digests/final
+        env:
+          ANNOTATIONS: ${{ steps.meta.outputs.annotations }}
         run: |
-          docker buildx imagetools create \
+          flags=()
+          while IFS= read -r a; do [ -n "$a" ] && flags+=("--annotation" "$a"); done <<< "$ANNOTATIONS"
+          docker buildx imagetools create "${flags[@]}" \
             -t ghcr.io/${{ github.repository_owner }}/rails-base-final:${{ env.TAG_NAME }} \
             -t ghcr.io/${{ github.repository_owner }}/rails-base-final:latest \
             $(printf 'ghcr.io/${{ github.repository_owner }}/rails-base-final@sha256:%s ' *)

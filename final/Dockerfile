@@ -2,7 +2,6 @@
 # check=error=true
 
 FROM ruby:4.0.5-alpine
-LABEL maintainer="georg@ledermann.dev"
 
 # Add basic packages
 RUN apk add --no-cache \
