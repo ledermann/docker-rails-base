@@ -75,7 +75,7 @@ ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
     fi
 
 # Install JavaScript dependencies
-ONBUILD COPY package.json* yarn.lock* .yarnrc.yml* bun.lock* /app/
+ONBUILD COPY package.json* yarn.lock* .yarnrc.yml* pnpm-lock.yaml* pnpm-workspace.yaml* bun.lock* /app/
 ONBUILD COPY .yarn .yarn
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
@@ -90,6 +90,10 @@ ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     echo "Installing dependencies with Yarn..." && \
     corepack enable && \
     yarn install --frozen-lockfile; \
+    elif [ -f pnpm-lock.yaml ]; then \
+    echo "Installing dependencies with pnpm..." && \
+    corepack enable && \
+    pnpm install --frozen-lockfile; \
     else \
     echo "No lock file found, skipping JavaScript dependencies installation..."; \
     fi
@@ -119,5 +123,5 @@ ONBUILD RUN RAILS_ENV=production \
 # Normally it is not needed in the resulting image, because it was compiled
 # to `public/`. But if the app uses import maps, the folder is still required
 # for pinning and must not be removed.
-ONBUILD RUN rm -rf node_modules yarn.lock .yarn .yarnrc.yml bun.lock bun.lockb vendor/bundle test spec app/packs
+ONBUILD RUN rm -rf node_modules yarn.lock .yarn .yarnrc.yml bun.lock bun.lockb pnpm-lock.yaml pnpm-workspace.yaml .pnpm-store vendor/bundle test spec app/packs
 ONBUILD RUN if [ ! -f config/importmap.rb ]; then rm -rf app/javascript; fi
