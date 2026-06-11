@@ -37,7 +37,7 @@ RUN curl -fsSL https://bun.sh/install | bash && \
 
 ##### Install standard gems
 COPY Gemfile Gemfile.lock /app/
-RUN bundle config --local frozen 1 && \
+RUN bundle config set --local frozen 1 && \
     bundle install --jobs $(nproc) --retry 3
 ####
 
@@ -52,7 +52,7 @@ ONBUILD COPY vendor/ /app/vendor/
 
 # Install Ruby gems (for production only)
 ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
-    bundle config --local without 'development test' && \
+    bundle config set --local without 'development test' && \
     bundle install --jobs $(nproc) --retry 3 && \
     # Remove unneeded gems
     bundle clean --force && \
