@@ -26,9 +26,8 @@ RUN npm install -g corepack && corepack enable
 
 WORKDIR /app
 
-# Create dummy files/directories to prevent COPY errors if not present in the app
-RUN mkdir -p .yarn && \
-    echo '{"name":"dummy","private":true}' > package.json
+# Create a dummy package.json to prevent COPY errors if not present in the app
+RUN echo '{"name":"dummy","private":true}' > package.json
 
 # Install Bun
 RUN curl -fsSL https://bun.sh/install | bash && \
@@ -79,7 +78,12 @@ ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \
 
 # Install JavaScript dependencies
 ONBUILD COPY package.json* yarn.lock* .yarnrc.yml* pnpm-lock.yaml* pnpm-workspace.yaml* bun.lock* /app/
-ONBUILD COPY .yarn .yarn
+# Copy the Yarn Berry directory (yarn release, plugins, …) if the app has one.
+# The `.yar[n]` bracket-glob makes this optional: it matches the `.yarn`
+# directory when present, and copies nothing when absent — a plain
+# `COPY .yarn .yarn` reads from the build context and fails for apps without it
+# (corepack-managed Yarn, Bun, pnpm or no JavaScript at all).
+ONBUILD COPY .yar[n] /app/.yarn/
 ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     --mount=type=secret,id=yarnrc,dst=/root/.yarnrc.yml \
     # If your app uses Cypress for end-to-end testing, installing the binary can be slow, so we
