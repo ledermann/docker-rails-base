@@ -91,7 +91,13 @@ ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     bun install --frozen-lockfile; \
     elif [ -f yarn.lock ]; then \
     echo "Installing dependencies with Yarn..." && \
+    # Yarn Berry (>=2) deprecated --frozen-lockfile in favour of --immutable,
+    # which classic Yarn 1.x does not understand. Pick the right flag per version.
+    if yarn --version | grep -q '^1\.'; then \
     yarn install --frozen-lockfile; \
+    else \
+    yarn install --immutable; \
+    fi; \
     elif [ -f pnpm-lock.yaml ]; then \
     echo "Installing dependencies with pnpm..." && \
     pnpm install --frozen-lockfile; \
