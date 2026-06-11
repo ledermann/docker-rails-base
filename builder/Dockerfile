@@ -21,6 +21,9 @@ RUN apk add --no-cache \
     vips-dev \
     yaml-dev
 
+# Node 25+ ships without corepack — install it explicitly
+RUN npm install -g corepack && corepack enable
+
 WORKDIR /app
 
 # Create dummy files/directories to prevent COPY errors if not present in the app
@@ -88,11 +91,9 @@ ONBUILD RUN --mount=type=secret,id=npmrc,dst=/root/.npmrc \
     bun install --frozen-lockfile; \
     elif [ -f yarn.lock ]; then \
     echo "Installing dependencies with Yarn..." && \
-    corepack enable && \
     yarn install --frozen-lockfile; \
     elif [ -f pnpm-lock.yaml ]; then \
     echo "Installing dependencies with pnpm..." && \
-    corepack enable && \
     pnpm install --frozen-lockfile; \
     else \
     echo "No lock file found, skipping JavaScript dependencies installation..."; \

@@ -27,8 +27,8 @@ Note: Before I started timing, the base image was not available on my machine, s
 
 This repo is based on the following assumptions:
 
-- Your Docker host is compatible with [Alpine Linux 3.23](https://www.alpinelinux.org/posts/Alpine-3.23.0-released.html), which requires Docker 20.10.0 or later
-- Your app is compatible with [Ruby 4.0 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.23/Dockerfile)
+- Your Docker host is compatible with [Alpine Linux 3.24](https://www.alpinelinux.org/posts/Alpine-3.24.0-released.html), which requires Docker 20.10.0 or later
+- Your app is compatible with [Ruby 4.0 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
 - Your app uses Ruby on Rails 7.1 or later (including Rails 8.1)
 - Your app uses PostgreSQL, SQLite or MySQL/MariaDB
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/) or [Bun](https://bun.sh/) (automatically detected)
@@ -44,7 +44,7 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:4.0.5-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.23/Dockerfile)
+- Based on [ruby:4.0.5-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, PostgreSQL client and build tools
 - Adds some default Ruby gems (Rails 8.1 etc., see [Gemfile](./builder/Gemfile))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
@@ -61,7 +61,7 @@ See [builder/Dockerfile](./builder/Dockerfile)
 
 The `final` stage builds the production image, which includes just the bare minimum.
 
-- Based on [ruby:4.0.5-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.23/Dockerfile)
+- Based on [ruby:4.0.5-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
 - Adds packages needed for production: `postgresql-client`, `tzdata`, `gcompat`, `brotli-libs`, `jemalloc`
 - Preloads [jemalloc](https://jemalloc.net/) via `LD_PRELOAD` for reduced memory usage and lower latency
 - Ships `brotli-libs` so [`rack-brotli`](https://github.com/marcotc/rack-brotli) can serve Brotli-compressed responses
