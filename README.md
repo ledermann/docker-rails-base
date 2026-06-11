@@ -31,7 +31,7 @@ This repo is based on the following assumptions:
 - Your app is compatible with [Ruby 4.0 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
 - Your app uses Ruby on Rails 7.1 or later (including Rails 8.1)
 - Your app uses PostgreSQL, SQLite or MySQL/MariaDB
-- Your app installs Node modules with [Yarn](https://yarnpkg.com/) or [Bun](https://bun.sh/) (automatically detected)
+- Your app installs Node modules with [Yarn](https://yarnpkg.com/), [pnpm](https://pnpm.io/) or [Bun](https://bun.sh/) (automatically detected)
 - Your app bundles JavaScript with `rails assets:precompile`. This works with [Vite Ruby](https://github.com/ElMassimo/vite_ruby), [Webpacker](https://github.com/rails/webpacker), [Asset pipeline (Sprockets)](https://github.com/rails/sprockets-rails) and others.
 
 If your project differs from this, I suggest to fork this project and create your own base image.
@@ -48,10 +48,11 @@ The `builder` stage installs Ruby gems and Node modules. It also includes Git, N
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, PostgreSQL client and build tools
 - Adds some default Ruby gems (Rails 8.1 etc., see [Gemfile](./builder/Gemfile))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
-- Automatically detects whether to use Yarn or Bun based on lock files:
+- Automatically detects the package manager based on lock files:
   - If `bun.lockb` or `bun.lock` exists: Installs Bun and uses it for package installation
   - If `yarn.lock` exists: Uses Yarn (via corepack)
-  - If no lock file exists: Falls back to Yarn
+  - If `pnpm-lock.yaml` exists: Uses pnpm (via corepack)
+  - If no lock file exists: Skips JavaScript dependency installation
 - Precompiles gems and application code with [Bootsnap](https://github.com/Shopify/bootsnap) for faster boot times. Can be disabled via the `SKIP_BOOTSNAP_PRECOMPILE` build argument.
 - Shrinks the final image by removing the gem cache, vendored `.git` directories and `*.c` / `*.o` build artifacts, and by stripping native shared objects
 
