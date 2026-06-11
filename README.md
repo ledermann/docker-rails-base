@@ -19,9 +19,9 @@ I compared building times using a typical Rails application. This is the result 
 - Based on official Ruby image: **4:50 min**
 - Based on DockerRailsBase: **1:57 min**
 
-As you can see, using DockerRailsBase is more than **2 times faster** compared to the official Ruby image. It saves nearly **3min** on every build.
+As you can see, using DockerRailsBase is more than **2 times faster** compared to the official Ruby image. It saves nearly **3 min** on every build.
 
-Note: Before I started timing, the base image was not available on my machine, so it was downloaded first, which took some time. If the base image is already available, the building time is only 1:18min (**3 times faster**).
+Note: Before I started timing, the base image was not available on my machine, so it was downloaded first, which took some time. If the base image is already available, the building time is only 1:18 min (**3 times faster**).
 
 ## Requirements
 
