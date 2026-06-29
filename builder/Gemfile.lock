@@ -209,7 +209,7 @@ GEM
     rack-cors (3.0.0)
       logger
       rack (>= 3.0.14)
-    rack-proxy (0.8.2)
+    rack-proxy (0.8.3)
       rack
     rack-session (2.1.2)
       base64 (>= 0.1.0)
