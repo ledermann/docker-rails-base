@@ -129,7 +129,7 @@ GEM
       activesupport (>= 7.0.0)
     json (2.20.0)
     logger (1.7.0)
-    lograge (0.14.0)
+    lograge (0.15.0)
       actionpack (>= 4)
       activesupport (>= 4)
       railties (>= 4)
