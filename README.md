@@ -44,7 +44,7 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:4.0.5-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
+- Based on [ruby:4.0.6-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, PostgreSQL client and build tools
 - Adds some default Ruby gems (Rails 8.1 etc., see [Gemfile](./builder/Gemfile))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
@@ -62,7 +62,7 @@ See [builder/Dockerfile](./builder/Dockerfile)
 
 The `final` stage builds the production image, which includes just the bare minimum.
 
-- Based on [ruby:4.0.5-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
+- Based on [ruby:4.0.6-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
 - Adds packages needed for production: `postgresql-client`, `tzdata`, `gcompat`, `brotli-libs`, `jemalloc`
 - Preloads [jemalloc](https://jemalloc.net/) via `LD_PRELOAD` for reduced memory usage and lower latency
 - Ships `brotli-libs` so [`rack-brotli`](https://github.com/marcotc/rack-brotli) can serve Brotli-compressed responses
@@ -81,8 +81,8 @@ Using [Dependabot](https://dependabot.com/), every updated Ruby gem results in a
 Add this `Dockerfile` to your application:
 
 ```Dockerfile
-FROM ghcr.io/ledermann/rails-base-builder:4.0.5-alpine AS builder
-FROM ghcr.io/ledermann/rails-base-final:4.0.5-alpine
+FROM ghcr.io/ledermann/rails-base-builder:4.0.6-alpine AS builder
+FROM ghcr.io/ledermann/rails-base-final:4.0.6-alpine
 USER app
 # Optional: Enable YJIT
 # ENV RUBY_YJIT_ENABLE=1
@@ -178,6 +178,7 @@ When a new Ruby version comes out, a new tag is introduced and the images will b
 
 | Ruby version | Tag          | First published |
 | ------------ | ------------ | --------------- |
+| 4.0.6        | 4.0.6-alpine | 2026-07-15      |
 | 4.0.5        | 4.0.5-alpine | 2026-05-21      |
 | 4.0.4        | 4.0.4-alpine | 2026-05-12      |
 | 4.0.3        | 4.0.3-alpine | 2026-04-22      |

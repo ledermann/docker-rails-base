@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 # check=error=true
 
-FROM ruby:4.0.5-alpine
+FROM ruby:4.0.6-alpine
 
 # Add basic packages
 RUN apk add --no-cache \
