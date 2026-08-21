@@ -47,9 +47,10 @@ The `builder` stage installs Ruby gems and Node modules. It also includes Git, N
 - Based on [ruby:4.0.6-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, PostgreSQL client and build tools
 - Adds some default Ruby gems (Rails 8.1 etc., see [Gemfile](./builder/Gemfile))
+- Adds Bun in a pinned version. Alpine and corepack do not supply Bun, so the image downloads it.
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
 - Automatically detects the package manager based on lock files:
-  - If `bun.lockb` or `bun.lock` exists: Installs Bun and uses it for package installation
+  - If `bun.lockb` or `bun.lock` exists: Uses Bun (preinstalled)
   - If `yarn.lock` exists: Uses Yarn (via corepack)
   - If `pnpm-lock.yaml` exists: Uses pnpm (via corepack)
   - If no lock file exists: Skips JavaScript dependency installation
@@ -73,6 +74,8 @@ See [final/Dockerfile](./final/Dockerfile)
 ### Staying up-to-date
 
 Using [Dependabot](https://dependabot.com/), every updated Ruby gem results in an updated image.
+
+Dependabot does not track Ruby, Node.js and Bun. These versions are pinned in the Dockerfiles and get updated by hand. As a result, a new upstream release cannot enter your builds without a commit in this repository.
 
 ### How to use for your Rails application
 

@@ -29,10 +29,11 @@ WORKDIR /app
 # Create a dummy package.json to prevent COPY errors if not present in the app
 RUN echo '{"name":"dummy","private":true}' > package.json
 
-# Install Bun
-RUN curl -fsSL https://bun.sh/install | bash && \
-    ln -s /root/.bun/bin/bun /usr/local/bin/bun && \
-    bun --version
+# Install Bun. It is not available via corepack or apk, so it is downloaded.
+# Keep the version pinned: an unpinned install puts a new Bun release into
+# every downstream build without a commit in this repo.
+RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr/local bash -s "bun-v1.4.0" && \
+    bun --version && bunx --version
 
 ##### Install standard gems
 COPY Gemfile Gemfile.lock /app/
