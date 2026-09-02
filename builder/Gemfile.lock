@@ -94,7 +94,7 @@ GEM
       railties (>= 7.0)
       responders
       warden (~> 1.2.3)
-    domain_name (0.6.20240107)
+    domain_name (0.6.20260829)
     drb (2.2.3)
     dry-cli (1.4.1)
     erb (6.0.7)
