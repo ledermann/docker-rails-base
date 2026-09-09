@@ -32,7 +32,7 @@ RUN echo '{"name":"dummy","private":true}' > package.json
 # Install Bun. It is not available via corepack or apk, so it is downloaded.
 # Keep the version pinned: an unpinned install puts a new Bun release into
 # every downstream build without a commit in this repo.
-RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr/local bash -s "bun-v1.4.0" && \
+RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr/local bash -s "bun-v1.4.2" && \
     bun --version && bunx --version
 
 ##### Install standard gems
