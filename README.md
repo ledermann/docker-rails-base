@@ -68,6 +68,7 @@ The `final` stage builds the production image, which includes just the bare mini
 - Preloads [jemalloc](https://jemalloc.net/) via `LD_PRELOAD` for reduced memory usage and lower latency
 - Ships `brotli-libs` so [`rack-brotli`](https://github.com/marcotc/rack-brotli) can serve Brotli-compressed responses
 - Via ONBUILD triggers it mainly copies the app and gems from the `builder` stage
+- Via ONBUILD triggers it stores the Git metadata of the build (see [Reading the Git metadata](#reading-the-git-metadata))
 
 See [final/Dockerfile](./final/Dockerfile)
 
@@ -166,6 +167,27 @@ deploy:
 
     - name: Push the image
       run: docker push ghcr.io/user/repo:latest
+```
+
+#### Reading the Git metadata
+
+The four build arguments `COMMIT_SHA`, `COMMIT_TIME`, `COMMIT_VERSION` and `COMMIT_BRANCH` go to two places in the image:
+
+- The env vars of the same name
+- The file `/etc/build-info`, one `NAME=value` line for each
+
+Docker copies the env vars of the image into each container that it creates. Some update tools recreate a container from the configuration of the old container. After such an update, the env vars can still hold the values of the old image. The file always belongs to the image that runs.
+
+If your app shows its version, read it from the file:
+
+```ruby
+# config/initializers/build_info.rb
+BUILD_INFO =
+  if File.exist?('/etc/build-info')
+    File.foreach('/etc/build-info', chomp: true).to_h { |line| line.split('=', 2) }
+  else
+    {} # Not in the Docker image, for example in development
+  end
 ```
 
 ## Available Docker images

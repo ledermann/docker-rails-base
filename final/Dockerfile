@@ -42,3 +42,12 @@ ONBUILD ENV COMMIT_SHA=${COMMIT_SHA}
 ONBUILD ENV COMMIT_TIME=${COMMIT_TIME}
 ONBUILD ENV COMMIT_VERSION=${COMMIT_VERSION}
 ONBUILD ENV COMMIT_BRANCH=${COMMIT_BRANCH}
+
+# Write the same GIT meta data to a file. A container keeps the env vars it
+# was created with, so a tool that recreates it from its old configuration
+# after an update carries over the values of the old image. The file always
+# belongs to the image that runs. It lies outside /app to never collide with
+# a file of the app.
+ONBUILD RUN printf 'COMMIT_SHA=%s\nCOMMIT_TIME=%s\nCOMMIT_VERSION=%s\nCOMMIT_BRANCH=%s\n' \
+      "${COMMIT_SHA}" "${COMMIT_TIME}" "${COMMIT_VERSION}" "${COMMIT_BRANCH}" \
+      > /etc/build-info
