@@ -28,9 +28,11 @@ ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 ONBUILD RUN addgroup -g 1000 -S app && \
       adduser -u 1000 -S app -G app
 
-# Copy app with gems from former build stage
-ONBUILD COPY --from=builder --chown=app:app /usr/local/bundle/ /usr/local/bundle/
-ONBUILD COPY --from=builder --chown=app:app /app /app
+# Copy app with gems from former build stage. Without --chown the files keep the
+# owner they have there: root for the code and the gems, `app` for the folders
+# written at runtime (see builder/Dockerfile).
+ONBUILD COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
+ONBUILD COPY --from=builder /app /app
 
 # Write GIT meta data from arguments to env vars
 ONBUILD ARG COMMIT_SHA

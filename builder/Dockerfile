@@ -138,3 +138,10 @@ ONBUILD RUN RAILS_ENV=production \
 # for pinning and must not be removed.
 ONBUILD RUN rm -rf node_modules yarn.lock .yarn .yarnrc.yml bun.lock bun.lockb pnpm-lock.yaml pnpm-workspace.yaml .pnpm-store vendor/bundle test spec app/packs
 ONBUILD RUN if [ ! -f config/importmap.rb ]; then rm -rf app/javascript; fi
+
+# Give the folders a Rails app writes at runtime to the user of the final image
+# (uid/gid 1000, see final/Dockerfile). Everything else stays with root, so the
+# app cannot change its own code. The final stage copies /app without --chown,
+# which keeps this ownership.
+ONBUILD RUN mkdir -p db log storage tmp && \
+    chown -R 1000:1000 db log storage tmp

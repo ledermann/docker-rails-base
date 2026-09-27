@@ -68,6 +68,7 @@ The `final` stage builds the production image, which includes just the bare mini
 - Preloads [jemalloc](https://jemalloc.net/) via `LD_PRELOAD` for reduced memory usage and lower latency
 - Ships `brotli-libs` so [`rack-brotli`](https://github.com/marcotc/rack-brotli) can serve Brotli-compressed responses
 - Via ONBUILD triggers it mainly copies the app and gems from the `builder` stage
+- Root owns the code and the gems. The app runs as the user `app` and cannot change them. The user `app` owns only `db`, `log`, `storage` and `tmp`, the folders that Rails writes at runtime. If your app writes to a different folder, use a volume for it or give it to `app` in your Dockerfile.
 - Via ONBUILD triggers it stores the Git metadata of the build (see [Reading the Git metadata](#reading-the-git-metadata))
 
 See [final/Dockerfile](./final/Dockerfile)
