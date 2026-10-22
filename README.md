@@ -198,7 +198,7 @@ Both Docker images (`builder` and `final`) are regularly published at ghcr.io an
 - https://github.com/ledermann/docker-rails-base/pkgs/container/rails-base-builder
 - https://github.com/ledermann/docker-rails-base/pkgs/container/rails-base-final
 
-Beware: The published images are **not** immutable. When a dependency (e.g. Ruby gem) is updated, the images will be republished using the **same** tag.
+Beware: The published images are **not** immutable. When a dependency (e.g. Ruby gem) or the base image is updated, the images will be republished using the **same** tag.
 
 When a new Ruby version comes out, a new tag is introduced and the images will be published using this tag and the former images will not be updated anymore. Here is a list of the tags that have been used in this repo so far:
 

@@ -45,6 +45,34 @@ updates:
           - 'turbo-rails'
           - 'stimulus-rails'
 
+  # Only digest updates: the Ruby version is also set in builder/Gemfile and
+  # .ruby-version, so version bumps stay a manual change.
+  # Every day and without cooldown, so a rebuilt base image arrives quickly
+  # ("daily" skips weekends, and the default cooldown is 3 days).
+  - package-ecosystem: 'docker'
+    directories:
+      - '/builder'
+      - '/final'
+    schedule:
+      interval: 'cron'
+      cronjob: '0 6 * * *'
+      timezone: Europe/Berlin
+    cooldown:
+      exclude:
+        - 'ruby'
+    ignore:
+      - dependency-name: 'ruby'
+        update-types:
+          - 'version-update:semver-major'
+          - 'version-update:semver-minor'
+          - 'version-update:semver-patch'
+    labels:
+      - 'dependencies'
+      - 'docker'
+    groups:
+      base-image:
+        group-by: dependency-name
+
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
