@@ -1,0 +1,86 @@
+name: Base image diff
+on:
+  pull_request:
+    paths:
+      - '**/Dockerfile'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  diff:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      # Depth 2 includes the base commit as the first parent of the merge commit
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+
+      - name: Compare base images
+        shell: bash # Adds pipefail to the default "bash -e"
+        run: |
+          # Reads all input: an early exit can fail "git show" with SIGPIPE
+          from() { awk '/^FROM / && !n++ { print $2 }'; }
+
+          pairs=$(
+            git diff --name-only --diff-filter=M HEAD^1 HEAD -- ':(glob)**/Dockerfile' |
+            while read -r file; do
+              old=$(git show "HEAD^1:$file" | from)
+              new=$(from < "$file")
+              if [ "$old" != "$new" ]; then echo "$old $new"; fi
+            done | sort -u
+          )
+
+          if [ -z "$pairs" ]; then
+            echo "No FROM line changed."
+            exit 0
+          fi
+
+          while read -r old new; do
+            .github/scripts/base-image-diff.sh "$old" "$new"
+            echo
+          done <<< "$pairs" > "$RUNNER_TEMP/comment.md"
+
+          cat "$RUNNER_TEMP/comment.md" >> "$GITHUB_STEP_SUMMARY"
+
+      # A fork PR gets a read-only token, so it gets only the step summary.
+      # The marker finds the comment again, so a rebased PR updates the
+      # existing comment instead of adding a new one. If the PR still changes
+      # a Dockerfile but no longer a FROM line, the comment is deleted.
+      - name: Comment on PR
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          marker='<!-- base-image-diff -->'
+          api="repos/$GITHUB_REPOSITORY/issues"
+
+          # ID of the last own comment with the marker, empty if there is none
+          id=$(
+            gh api --paginate "$api/$PR_NUMBER/comments" --jq "
+              .[]
+              | select(.user.login == \"github-actions[bot]\")
+              | select(.body | startswith(\"$marker\"))
+              | .id" |
+            tail -n 1
+          )
+
+          if [ -f "$RUNNER_TEMP/comment.md" ]; then
+            body="$RUNNER_TEMP/body.md"
+            { echo "$marker"; cat "$RUNNER_TEMP/comment.md"; } > "$body"
+            if [ -n "$id" ]; then
+              gh api --silent --method PATCH "$api/comments/$id" -F "body=@$body"
+            else
+              gh api --silent "$api/$PR_NUMBER/comments" -F "body=@$body"
+            fi
+          elif [ -n "$id" ]; then
+            gh api --silent --method DELETE "$api/comments/$id"
+          fi
