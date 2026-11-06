@@ -38,11 +38,49 @@ short() {
   sed -E 's/(@sha256:[0-9a-f]{7})[0-9a-f]+/\1/' <<< "$1"
 }
 
-probe "$old_ref" old
-probe "$new_ref" new
+# Writes "<name>.idx" with one "platform<TAB>digest" line per image in the
+# index. Attestation manifests ("unknown/unknown") are skipped.
+manifests() {
+  local ref="$1" name="$2"
+  docker buildx imagetools inspect --raw "$ref" | jq -r '
+    .manifests[]?
+    | select(.platform.os != "unknown")
+    | [([.platform.os, .platform.architecture, .platform.variant // empty]
+        | join("/")), .digest]
+    | @tsv' | sort > "$tmp/$name.idx"
+}
+
+manifests "$old_ref" old
+manifests "$new_ref" new
 
 echo "### Base image: \`$(short "$old_ref")\` → \`$(short "$new_ref")\`"
 echo
+
+# A digest change can come from a rebuild of a single platform. Then the
+# inspected platform is identical, and a probe would only show equal values.
+if [ -s "$tmp/old.idx" ] && [ -s "$tmp/new.idx" ]; then
+  changed=$(
+    join -t $'\t' -a 1 -a 2 -e '–' -o 0,1.2,2.2 "$tmp/old.idx" "$tmp/new.idx" |
+      awk -F'\t' '$2 != $3 { printf "%s`%s`", (n++ ? ", " : ""), $1 }'
+  )
+  echo "Changed platforms: ${changed:-none (only the index metadata changed)}"
+  echo
+
+  # Number of distinct digests of the inspected platform in both indexes.
+  # "linux/arm64" also matches "linux/arm64/v8".
+  digests=$(
+    awk -F'\t' -v p="$platform" '$1 == p || index($1, p "/") == 1 { print $2 }' \
+      "$tmp/old.idx" "$tmp/new.idx" | sort -u | wc -l
+  )
+  if [ "$digests" -eq 1 ]; then
+    echo "The \`$platform\` image is identical. Nothing to compare."
+    exit 0
+  fi
+fi
+
+probe "$old_ref" old
+probe "$new_ref" new
+
 echo "| Component | Old | New |"
 echo "|---|---|---|"
 paste "$tmp/old.sys" "$tmp/new.sys" | awk -F'\t' '{
