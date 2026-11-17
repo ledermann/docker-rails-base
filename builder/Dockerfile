@@ -65,10 +65,17 @@ ONBUILD RUN --mount=type=secret,id=bundleconfig,dst=/root/.bundle/config \
     -name '*.log' -o \
     -name 'gem_make.out' \
     \) -delete && \
-    # Strip native shared objects only; skip vendored arch-specific libs
+    # Precompiled native gems (nokogiri, pg, ...) ship one binary per Ruby
+    # version in lib/**/X.Y/. Ruby loads only the one of its own version.
+    abi="$(ruby -e 'print RUBY_VERSION[/\A\d+\.\d+/]')" && \
+    find /usr/local/bundle/gems/*/lib -type d \
+    \( -name '[0-9].[0-9]' -o -name '[0-9].[0-9][0-9]' \) ! -name "$abi" -prune \
+    -exec sh -c 'for d; do if ls "$d"/*.so >/dev/null 2>&1; then rm -rf "$d"; fi; done' _ {} + && \
+    # Strip native shared objects only (also versioned ones like the libpq of
+    # pg); skip vendored arch-specific libs
     find /usr/local/bundle \
     -path "*/vendor/*-linux/*" -prune -o \
-    -type f -name '*.so' -exec strip --strip-unneeded {} +
+    -type f \( -name '*.so' -o -name '*.so.[0-9]*' \) -exec strip --strip-unneeded {} +
 
 # Precompile gems with Bootsnap
 ONBUILD RUN if [ -z "$SKIP_BOOTSNAP_PRECOMPILE" ]; then \

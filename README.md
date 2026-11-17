@@ -56,6 +56,7 @@ The `builder` stage installs Ruby gems and Node modules. It also includes Git, N
   - If no lock file exists: Skips JavaScript dependency installation
 - Precompiles gems and application code with [Bootsnap](https://github.com/Shopify/bootsnap) for faster boot times. Can be disabled via the `SKIP_BOOTSNAP_PRECOMPILE` build argument.
 - Shrinks the final image by removing the gem cache, vendored `.git` directories and `*.c` / `*.o` build artifacts, and by stripping native shared objects
+- Removes the binaries for other Ruby versions from precompiled native gems (nokogiri, pg, ...). Ruby loads only the binary for its own version.
 
 See [builder/Dockerfile](./builder/Dockerfile)
 
