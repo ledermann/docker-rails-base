@@ -44,7 +44,7 @@ It uses [multi-stage building](https://docs.docker.com/develop/develop-images/mu
 
 The `builder` stage installs Ruby gems and Node modules. It also includes Git, Node.js and some build tools - all we need to compile assets.
 
-- Based on [ruby:4.0.9-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
+- Based on [ruby:4.0.10-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, PostgreSQL client and build tools
 - Adds some default Ruby gems (Rails 8.1 etc., see [Gemfile](./builder/Gemfile))
 - Adds Bun in a pinned version. Alpine and corepack do not supply Bun, so the image downloads it.
@@ -64,7 +64,7 @@ See [builder/Dockerfile](./builder/Dockerfile)
 
 The `final` stage builds the production image, which includes just the bare minimum.
 
-- Based on [ruby:4.0.9-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
+- Based on [ruby:4.0.10-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.24/Dockerfile)
 - Adds packages needed for production: `postgresql-client`, `tzdata`, `gcompat`, `brotli-libs`, `jemalloc`
 - Preloads [jemalloc](https://jemalloc.net/) via `LD_PRELOAD` for reduced memory usage and lower latency
 - Ships `brotli-libs` so [`rack-brotli`](https://github.com/marcotc/rack-brotli) can serve Brotli-compressed responses
@@ -87,8 +87,8 @@ Dependabot does not track Ruby, Node.js and Bun. These versions are pinned in th
 Add this `Dockerfile` to your application:
 
 ```Dockerfile
-FROM ghcr.io/ledermann/rails-base-builder:4.0.9-alpine AS builder
-FROM ghcr.io/ledermann/rails-base-final:4.0.9-alpine
+FROM ghcr.io/ledermann/rails-base-builder:4.0.10-alpine AS builder
+FROM ghcr.io/ledermann/rails-base-final:4.0.10-alpine
 USER app
 # Optional: Enable YJIT
 # ENV RUBY_YJIT_ENABLE=1
@@ -203,54 +203,55 @@ Beware: The published images are **not** immutable. When a dependency (e.g. Ruby
 
 When a new Ruby version comes out, a new tag is introduced and the images will be published using this tag and the former images will not be updated anymore. Here is a list of the tags that have been used in this repo so far:
 
-| Ruby version | Tag          | First published |
-| ------------ | ------------ | --------------- |
-| 4.0.9        | 4.0.9-alpine | 2026-10-23      |
-| 4.0.8        | 4.0.8-alpine | 2026-10-23      |
-| 4.0.7        | 4.0.7-alpine | 2026-09-15      |
-| 4.0.6        | 4.0.6-alpine | 2026-07-15      |
-| 4.0.5        | 4.0.5-alpine | 2026-05-21      |
-| 4.0.4        | 4.0.4-alpine | 2026-05-12      |
-| 4.0.3        | 4.0.3-alpine | 2026-04-22      |
-| 4.0.2        | 4.0.2-alpine | 2026-03-18      |
-| 4.0.1        | 4.0.1-alpine | 2026-01-14      |
-| 4.0.0        | 4.0.0-alpine | 2025-12-28      |
+| Ruby version | Tag           | First published |
+| ------------ | ------------- | --------------- |
+| 4.0.10       | 4.0.10-alpine | 2026-11-19      |
+| 4.0.9        | 4.0.9-alpine  | 2026-10-23      |
+| 4.0.8        | 4.0.8-alpine  | 2026-10-23      |
+| 4.0.7        | 4.0.7-alpine  | 2026-09-15      |
+| 4.0.6        | 4.0.6-alpine  | 2026-07-15      |
+| 4.0.5        | 4.0.5-alpine  | 2026-05-21      |
+| 4.0.4        | 4.0.4-alpine  | 2026-05-12      |
+| 4.0.3        | 4.0.3-alpine  | 2026-04-22      |
+| 4.0.2        | 4.0.2-alpine  | 2026-03-18      |
+| 4.0.1        | 4.0.1-alpine  | 2026-01-14      |
+| 4.0.0        | 4.0.0-alpine  | 2025-12-28      |
 
 <details>
 <summary>Older Ruby versions</summary>
 
-| Ruby version | Tag          | First published |
-| ------------ | ------------ | --------------- |
-| 3.4.8        | 3.4.8-alpine | 2025-12-18      |
-| 3.4.7        | 3.4.7-alpine | 2025-10-09      |
-| 3.4.6        | 3.4.6-alpine | 2025-09-17      |
-| 3.4.5        | 3.4.5-alpine | 2025-07-16      |
-| 3.4.4        | 3.4.4-alpine | 2025-05-16      |
-| 3.4.3        | 3.4.3-alpine | 2025-04-15      |
-| 3.4.2        | 3.4.2-alpine | 2025-02-16      |
-| 3.4.1        | 3.4.1-alpine | 2024-12-28      |
-| 3.3.6        | 3.3.6-alpine | 2024-11-06      |
-| 3.3.5        | 3.3.5-alpine | 2024-09-05      |
-| 3.3.4        | 3.3.4-alpine | 2024-07-10      |
-| 3.3.3        | 3.3.3-alpine | 2024-06-13      |
-| 3.3.2        | 3.3.2-alpine | 2024-05-31      |
-| 3.3.1        | 3.3.1-alpine | 2024-04-23      |
-| 3.3.0        | 3.3.0-alpine | 2023-12-27      |
-| 3.2.2        | 3.2.2-alpine | 2023-03-31      |
-| 3.2.1        | 3.2.1-alpine | 2023-02-10      |
-| 3.2.0        | 3.2.0-alpine | 2023-01-13      |
-| 3.1.3        | 3.1.3-alpine | 2022-11-26      |
-| 3.1.2        | 3.1.2-alpine | 2022-04-13      |
-| 3.1.1        | 3.1.1-alpine | 2022-02-19      |
-| 3.1.0        | 3.1.0-alpine | 2022-01-08      |
-| 3.0.3        | 3.0.3-alpine | 2021-11-24      |
-| 3.0.2        | 3.0.2-alpine | 2021-07-08      |
-| 3.0.1        | 3.0.1-alpine | 2021-04-06      |
-| 3.0.0        | 3.0.0-alpine | 2021-02-15      |
-| 2.7.2        | 2.7.2-alpine | 2020-10-10      |
-| 2.7.1        | 2.7.1-alpine | 2020-05-20      |
-| 2.6.6        | -            | 2020-04-01      |
-| 2.6.5        | -            | 2020-01-24      |
+| Ruby version | Tag           | First published |
+| ------------ | ------------- | --------------- |
+| 3.4.8        | 3.4.8-alpine  | 2025-12-18      |
+| 3.4.7        | 3.4.7-alpine  | 2025-10-09      |
+| 3.4.6        | 3.4.6-alpine  | 2025-09-17      |
+| 3.4.5        | 3.4.5-alpine  | 2025-07-16      |
+| 3.4.4        | 3.4.4-alpine  | 2025-05-16      |
+| 3.4.3        | 3.4.3-alpine  | 2025-04-15      |
+| 3.4.2        | 3.4.2-alpine  | 2025-02-16      |
+| 3.4.1        | 3.4.1-alpine  | 2024-12-28      |
+| 3.3.6        | 3.3.6-alpine  | 2024-11-06      |
+| 3.3.5        | 3.3.5-alpine  | 2024-09-05      |
+| 3.3.4        | 3.3.4-alpine  | 2024-07-10      |
+| 3.3.3        | 3.3.3-alpine  | 2024-06-13      |
+| 3.3.2        | 3.3.2-alpine  | 2024-05-31      |
+| 3.3.1        | 3.3.1-alpine  | 2024-04-23      |
+| 3.3.0        | 3.3.0-alpine  | 2023-12-27      |
+| 3.2.2        | 3.2.2-alpine  | 2023-03-31      |
+| 3.2.1        | 3.2.1-alpine  | 2023-02-10      |
+| 3.2.0        | 3.2.0-alpine  | 2023-01-13      |
+| 3.1.3        | 3.1.3-alpine  | 2022-11-26      |
+| 3.1.2        | 3.1.2-alpine  | 2022-04-13      |
+| 3.1.1        | 3.1.1-alpine  | 2022-02-19      |
+| 3.1.0        | 3.1.0-alpine  | 2022-01-08      |
+| 3.0.3        | 3.0.3-alpine  | 2021-11-24      |
+| 3.0.2        | 3.0.2-alpine  | 2021-07-08      |
+| 3.0.1        | 3.0.1-alpine  | 2021-04-06      |
+| 3.0.0        | 3.0.0-alpine  | 2021-02-15      |
+| 2.7.2        | 2.7.2-alpine  | 2020-10-10      |
+| 2.7.1        | 2.7.1-alpine  | 2020-05-20      |
+| 2.6.6        | ------------- | 2020-04-01      |
+| 2.6.5        | ------------- | 2020-01-24      |
 
 </details>
 
