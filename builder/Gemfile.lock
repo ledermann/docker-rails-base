@@ -350,7 +350,7 @@ GEM
     websocket-driver (0.9.0)
       base64
       websocket-extensions (>= 0.2.0)
-    websocket-extensions (0.2.0)
+    websocket-extensions (0.3.0)
     yaml (0.4.0)
     zeitwerk (2.8.3)
 
